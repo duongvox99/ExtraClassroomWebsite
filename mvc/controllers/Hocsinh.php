@@ -1,11 +1,12 @@
 <?php
 
-class Home extends Controller{
+class Hocsinh extends Controller{
 
     function Default(){
-        $teo = $this->model("SinhVienModel");
-        echo $teo->GetSV();
+        // $teo = $this->model("SinhVienModel");
+        // echo $teo->GetSV();
 
+        $this->view("doExam");
     }
 
     function Show($a, $b){        

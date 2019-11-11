@@ -1,5 +1,5 @@
 <?php
-class SinhVienModel extends DB{
+class SinhVienModel extends MySQL{
     public function GetSV(){
         return "Nguyen Van Teo";
     }
@@ -9,7 +9,7 @@ class SinhVienModel extends DB{
     }
 
     public function SinhVien(){
-        $qr = "SELECT * FROM sinhvien";
+        $qr = "SELECT * FROM hocsinh";
         return mysqli_query($this->con, $qr);
     }
 

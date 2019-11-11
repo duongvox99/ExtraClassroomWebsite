@@ -1,0 +1,18 @@
+Khi vào thi:
+    lưu đáp án vào cookie
+    nếu trình duyệt load lại thì đáp án sẽ tự tick lại
+
+Kênh thảo luận chung:
+
+Ranking theo bài test
+
+Ranking Tổng
+
+Page chào đón cựu học sinh
+
+
+
+
+
+Optional:
+Điểm danh
