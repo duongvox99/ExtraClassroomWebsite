@@ -1,12 +1,11 @@
 <?php
 
-class Hocsinh extends Controller{
+class Admin extends Controller{
 
     function Default(){
-        // $teo = $this->model("SinhVienModel");
-        // echo $teo->GetSV();
+        $teo = $this->model("SinhVienModel");
+        echo $teo->GetSV();
 
-        $this->view("doExam");
     }
 
     function Show($a, $b){        

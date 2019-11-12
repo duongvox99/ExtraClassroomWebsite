@@ -1,7 +1,7 @@
 <?php
 class App{
 
-    protected $controller="HocSinh";
+    protected $controller="Hocsinh";
     protected $action="Default";
     protected $params=[];
 

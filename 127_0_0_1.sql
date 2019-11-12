@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 01:03 PM
+-- Generation Time: Nov 12, 2019 at 12:32 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -111,8 +111,7 @@ CREATE TABLE `nguoidung` (
   `Lop` int(11) NOT NULL,
   `IdNhom` int(11) NOT NULL,
   `LoaiTaiKhoan` int(11) NOT NULL,
-  `RandomCode` int(11) NOT NULL,
-  `Email` varchar(100) NOT NULL
+  `RandomCode` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -170,7 +169,6 @@ ALTER TABLE `nganhangcauhoi`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`IdNguoiDung`),
-  ADD UNIQUE KEY `Username` (`Username`),
   ADD KEY `cst_nhom_nguoidung` (`IdNhom`);
 
 --
