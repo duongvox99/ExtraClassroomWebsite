@@ -16,7 +16,7 @@
 
 	<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
 
-	<script src="./public/js/my-js.js"></script>
+	<script src="./public/js/doExamJs.js"></script>
 </head>
 
 <body>
@@ -102,7 +102,7 @@
 			</form>
 		</div>
 	</div>
-	<div style="clear: both;"></div>
+	
 	<div id="footer">
 		<b>Copyright ©: Duong Pham and Duong Vo</b>
 	</div>
