@@ -37,74 +37,78 @@
 		</div>
 		<!--  -->
 	</div>
-	<div id="wrapper">
-		<div id="left">
-			<section id="timer">
-				<div class="row">
-					<div class=" countdown-wrapper text-center mb20">
-						<div class="card">
-							<div class="card-header">
-								Thi thử THPT Quốc gia Lớp 12<br>
-								Thời gian làm bài: 90 phút
-								Tổng số câu hỏi: 50 câu
+	<div class="container">
+  		<div id="wrapper" class= "row">
+			<div id="left" class="col col-8 border border-dark">
+				<form>
+					<div id="exam-container" class="overflow-auto container border border-dark" style="height: 400px;">
+						<div id="question-content-container">
+							<div id="question-content">
 							</div>
-							<div class="card-block">
-								<div id="countdown">
-									<div class="well">
-										<span id="hour" class="timer bg-success">00</span>
-										<span class="dots">:</span>
-										<span id="min" class="timer bg-info">00</span>
-										<span class="dots">:</span>
-										<span id="sec" class="timer bg-primary">00</span>
+						</div>
+						<h4>Trả lời</h4>
+						<hr>
+						<div id="answer-select-container">
+						</div>
+					</div>
+					
+					<div id="question-select-cotainer container">										
+						<div id="question-num-list-container" class="row" style="text-align: center;">							
+							<div class="col col-1 float-left border border-dark">
+								<input type="button" class="btn btn-info pre" value="&#10094;">
+							</div>
+							<div class="col col-10 border border-dark">
+								<ul class="question-num-list" style="text-align: center;">
+								</ul>
+							</div>
+							<div class="col col-1 float-right border border-dark">
+								<input type="button" class="btn btn-info next" value="&#10095;" >
+							</div>
+						</div>													
+					</div>
+					<div style="text-align: center;"><input type="submit" name="submit" value="Nộp bài" class="mt-4 btn btn-success btn_submit"></div>
+				</form>
+			</div>
+			<div id="right" class="col col-2 border border-dark">
+				<section id="timer">
+					<div class="row">
+						<div class=" countdown-wrapper text-center mb20">
+							<div class="card">
+								<div class="card-header">
+									Thi thử THPT Quốc gia Lớp 12<br>
+									Thời gian làm bài: 90 phút
+									Tổng số câu hỏi: 50 câu
+								</div>
+								<div class="card-block">
+									<div id="countdown">
+										<div class="well">
+											<span id="hour" class="timer bg-success">00</span>
+											<span class="dots">:</span>
+											<span id="min" class="timer bg-info">00</span>
+											<span class="dots">:</span>
+											<span id="sec" class="timer bg-primary">00</span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="card-footer">
-								<!-- <a href="#" class="btn btn-primary">Book now</a> -->
-								<a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Nộp
-									bài</a>
-								<!-- <a href="#" class="btn btn-danger">14 remaining</a> -->
+								<div class="card-footer">
+									<!-- <a href="#" class="btn btn-primary">Book now</a> -->
+									<a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Nộp
+										bài</a>
+									<!-- <a href="#" class="btn btn-danger">14 remaining</a> -->
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</section>
-		</div>
-		<div id="right">
-			<form>
-				<div id="exam-container" class="overflow-auto" style="height: 400px;">
-					<div id="question-content-container">
-						<div id="question-content">
-						</div>
-					</div>
-					<h4>Trả lời</h4>
-					<hr>
-					<div id="answer-select-container">
-					</div>
-				</div>
-				<div id="question-select-cotainer">
-					<?php
-					$test = 'When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are $$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$';
-					echo "<p>" . $test . "</p>";
-					?>
-
-					<div>
-						<input type="button" class="btn btn-info pre" value="&#10094;" style="float: left;">
-						<input type="button" class="btn btn-info next" value="&#10095;" style="float: right;">
-					</div>
-					<div style="clear: both;"></div>
-					<div id="question-num-list-container" style="text-align: center;">
-						<ul class="question-num-list" style="text-align: center;">
-						</ul>
-					</div>
-				</div>
-				<div style="text-align: center;"><input type="submit" name="submit" value="Nộp bài" class="mt-4 btn btn-success btn_submit"></div>
-			</form>
+				</section>
+			</div>
 		</div>
 	</div>
 	
+	
 	<div id="footer">
-		<b>Copyright ©: Duong Pham and Duong Vo</b>
+		<footer>
+			<span class="text-muted"><b>Copyright ©: Duong Pham and Duong Vo</b></span>
+		</footer>
 	</div>
 </body>
 

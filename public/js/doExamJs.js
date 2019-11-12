@@ -24,17 +24,17 @@ $(document).ready(function(){
 	     
 	});
 
-	var li = "<li><input type='button' id='q_btn_"+ 1 +"' class='btn btn-outline-info active boder6 q_btn' value=' "+"Câu 0"+ 1 +"'></li>";	
+	var li = "<li class='col col-2'><input type='button' id='q_btn_"+ 1 +"' class='btn btn-outline-info active boder6 q_btn' value=' "+"Câu 0"+ 1 +"'></li>";	
 	$('.question-num-list').append(li);
 	for (var i = 2; i <= 50; i++) 
 	{
 		if (i<10) 
 		{
-			li = "<li><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu 0"+ i +"'></li>";
+			li = "<li class='col col-2'><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu 0"+ i +"'></li>";
 		}
 		else
 		{
-			li = "<li><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu "+ i +"'></li>";		
+			li = "<li class='col col-2'><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu "+ i +"'></li>";		
 		}
 		
 		
