@@ -4,21 +4,15 @@
 <head>
 	<title></title>
 	<meta charset="UTF-8">
-
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./public/css/style.css">
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script type="text/javascript" src="support/jquery-1.5.2.js"></script>
-
 	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 	<script src="https://cdn.ckeditor.com/ckeditor5/15.0.0/classic/ckeditor.js"></script>
-
 	<script src="./public/js/doExamJs.js"></script>
 </head>
-
 <body>
 	<!-- Header of web -->
 	<div id="header">
@@ -111,5 +105,4 @@
 		</footer>
 	</div>
 </body>
-
 </html>
