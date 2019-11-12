@@ -1,26 +1,23 @@
 <?php
 
-class Hocsinh extends Controller{
+class HocSinh extends Controller{
 
     function Default(){
-        // $teo = $this->model("SinhVienModel");
-        // echo $teo->GetSV();
-
-        $this->view("doExam");
+        $this->view("Test");
     }
 
-    function Show($a, $b){        
+    function LamBai($idDeThi){        
         // Call Models
-        $teo = $this->model("SinhVienModel");
-        $tong = $teo->Tong($a, $b); // 3
+        $De_CauHoiModel = $this->model("De_CauHoiModel");
+        $allIdCauHoi = $De_CauHoiModel->getAllIdCauHoi($idDeThi);
+
+        $NganHangCauHoiModel = $this->model("NganHangCauHoiModel");
+        $idCauHoi = 0;
+        $allCauHoi = $NganHangCauHoiModel->getCauHoi($idCauHoi);
 
         // Call Views
-        $this->view("aodep", [
-            "Page"=>"news",
-            "Number"=>$tong,
-            "Mau"=>"red",
-            "SoThich"=>["A", "B", "C"],
-            "SV" => $teo->SinhVien()
+        $this->view("LamBai", [
+            "DeThi"=>$allCauHoi,
         ]);
     }
 }
