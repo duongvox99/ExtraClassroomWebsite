@@ -7,13 +7,32 @@ class App{
     protected $action="Default";
     protected $params=[];
 
+    function isLoginSessionExpired() {
+        $login_session_duration = 120 * 60; // in second
+        $current_time = time();
+        if(isset($_SESSION['loggedin_time']) && isset($_SESSION["logined_IdNguoiDung"]) && isset($_SESSION["logined_IdLoaiTaiKhoan"])){  
+            if(((time() - $_SESSION['loggedin_time']) > $login_session_duration)){ 
+                return true; 
+            } 
+        }
+        return false;
+    }
+
     function __construct(){
         $arr = $this->UrlProcess();
 
         // Kiểm tra đã đăng nhập hay chưa
-        if (!isset($_SESSION["user"])) {
-            // Cần phải check loại tài khoản
-            $arr = array("0" => "HocSinh", "1" => "LamBai");
+        if (!$this->isLoginSessionExpired()) {
+            $IdNguoiDung = $_SESSION['logined_IdNguoiDung'];
+            $LoaiTaiKhoan = $_SESSION['logined_IdLoaiTaiKhoan'];
+            
+            if ($LoaiTaiKhoan == 0) {
+                $arr[0] = "GiaoVien";
+            }
+            else {
+                $arr[0] = "HocSinh";
+            }
+            // $arr = array("0" => "HocSinh", "1" => "LamBai");
         }
         else {
             if(isset($arr[1])){

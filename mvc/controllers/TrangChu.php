@@ -20,14 +20,22 @@ class TrangChu extends Controller{
             $password = $_POST["password"];
 
             if (!is_null($username) and !is_null($password)) {
-                $result = $this->NguoiDungModel->checkLogin($username, $password);
-
+                $result = $this->NguoiDungModel->checkTaiKhoan($username, $password);
+                
+                // Đăng nhập thành công sẽ trả về ID và Loại tài khoản
                 if ($result) {
-                    header("Location: /ExtraClassroomWebsite/HocSinh");
-                    header("Location: /ExtraClassroomWebsite/GiaoVien");
-                    // $this->view("LamBai", [
-                    //     "result" => $result
-                    // ]);
+                    // Lưu lại Session
+                    $_SESSION["logined_IdNguoiDung"] = $result['IdNguoiDung'];
+                    $_SESSION["logined_IdLoaiTaiKhoan"] = $result['LoaiTaiKhoan'];
+                    $_SESSION['loggedin_time'] = time();
+
+                    // Đi tới dashboard tương ứng với tài khoản đó
+                    if ($result["LoaiTaiKhoan"] == 0) {
+                        header("Location: /ExtraClassroomWebsite/GiaoVien");
+                    }
+                    else {
+                        header("Location: /ExtraClassroomWebsite/HocSinh");
+                    }
                 }
                 else {
                     $this->view("DangNhap", [
@@ -43,7 +51,11 @@ class TrangChu extends Controller{
     }
 
     public function DangXuat() {
-        // Dang xuat
+        // remove all session variables
+        session_unset();
+
+        // destroy the session
+        session_destroy(); 
     }
 
     protected function checkDangNhap(){
