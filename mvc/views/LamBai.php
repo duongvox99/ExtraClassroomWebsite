@@ -7,19 +7,19 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Lam Bai Thi</title>
 
-	<link rel="stylesheet" type="text/css" href="../public/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="../public/css/LamBai.css" />
+	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/LamBai.css" />
 
-	<script type='text/javascript' src='../public/js/jquery-3.4.1.js'></script>
-	<script type='text/javascript' src='../public/js/LamBai.js'></script>
-	<script id="MathJax-script" async src="../public/js/tex-mml-chtml.js"></script>
+	<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/jquery-3.4.1.js'></script>
+	<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/LamBai.js'></script>
+	<script id="MathJax-script" async src="/ExtraClassroomWebsite/public/js/tex-mml-chtml.js"></script>
 </head>
 
 <body>
 	<!-- Header of web -->
 	<div id="header">
 		<div id="banner" class="overflow-hidden">
-			<img src="https://education.reallusion.com/images/edu_banner_all01.jpg" style="margin: auto;">
+			<img src="/ExtraClassroomWebsite/public/img/banner.jpg" style="margin: auto;">
 		</div>
 		<!-- Navigation Bar -->
 		<div class="navbar navbar-default my-nav">

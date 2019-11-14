@@ -1,12 +1,7 @@
 <?php
+// $_SERVER['DOCUMENT_ROOT'] = $_SERVER['DOCUMENT_ROOT'] . "/ExtraClassroomWebsite" ;
 
-session_start();
-
-if (!isset($_SESSION["user"])) {
-    require_once "./mvc/Bridge.php";
-    $myApp = new App();
-} else {
-    echo "Login";
-}
+require_once "./mvc/Bridge.php";
+$myApp = new App();
 
 ?>
