@@ -5,15 +5,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Đăng nhập</title>
+    <title>Quên mật khẩu</title>
 
-    <!-- <link rel="stylesheet" type="text/css" href="./public/css/bootstrap.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/DangNhap.css" />
 
-    <!-- <script type="text/javascript" src="./public/js/jquery-3.4.1.js"></script> -->
+    <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
 </head>
 
 <body>
+    <?php
+    if (isset($data["result"])) {
+        if ($data["result"]) {
+            echo 
+            "<script type='text/javascript'>
+                $.confirm({
+                    theme: 'modern',
+                    title: 'Reset mật khẩu thành công!',
+                    content: 'Bạn vui lòng kiểm tra tra mail để xác nhận!',
+                    type: 'green',
+                    typeAnimated: true,
+                    buttons: {
+                        OK: {
+                            text: 'Đồng ý',
+                            btnClass: 'btn-green',
+                            action: function(){
+                            }
+                        }
+                    },
+                });            
+            </script>";
+        }
+        else {
+            echo 
+            "<script type='text/javascript'>
+                $.confirm({
+                    theme: 'modern',
+                    title: 'Reset mật khẩu thất bại!',
+                    content: 'Bạn vui lòng kiểm tra lại tên đăng nhập và email!',
+                    type: 'red',
+                    typeAnimated: true,
+                    autoClose: 'tryAgain|5000',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Thử lại',
+                            btnClass: 'btn-red',
+                            action: function(){
+                            }
+                        }
+                    },
+                });            
+            </script>";
+        }
+    }
+    ?>
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Banner -->

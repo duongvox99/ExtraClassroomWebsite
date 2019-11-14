@@ -23,7 +23,7 @@ class TrangChu extends Controller{
             if (!is_null($username) and !is_null($password)) {
                 $result = $this->NguoiDungModel->checkTaiKhoan($username, $password);
                 
-                print_r($result);
+                // print_r($result);
 
                 // Đăng nhập thành công sẽ trả về ID và Loại tài khoản
                 if ($result) {
@@ -112,31 +112,5 @@ class TrangChu extends Controller{
 
         header("Location: /ExtraClassroomWebsite");
     }
-
-    protected function checkDangNhap(){
-        if (!isset($_POST["btnSubmit"])) {
-            $this->view("ThemCauHoi");
-        }
-        else {
-            $CauHoi = $_POST["CauHoi"];
-            $DapAn1 = $_POST["DapAn1"];
-            $DapAn2 = $_POST["DapAn2"];
-            $DapAn3 = $_POST["DapAn3"];
-            $DapAn4 = $_POST["DapAn4"];
-            $DapAnDung = $_POST["DapAnDung"];
-            $LoiGiai = $_POST["LoiGiai"];
-            $LoaiCauHoi = $_POST["LoaiCauHoi"];
-            $Lop = $_POST["Lop"];
-
-            $result = $this->NganHangCauHoiModel->addCauHoi($CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop);
-
-            $this->view("ThemCauHoi", [
-                "result" => $result
-            ]);
-        }
-        
-    }
-
-
 }
 ?>
