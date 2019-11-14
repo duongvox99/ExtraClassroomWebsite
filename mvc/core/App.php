@@ -46,17 +46,13 @@ class App{
         }
         else {
             // echo 'Chua Dang Nhap';
-            if(isset($arr[1])){
-                if ($arr[1] == "QuenMatKhau") {
-                    $arr = array("0" => "TrangChu", "1" => "QuenMatKhau");
-                }
-            }
-            else {
-                $arr = array("0" => "TrangChu", "1" => "DangNhap");
+            $arr[0] = "TrangChu";
+            if (!isset($arr[1])) {
+                $arr[1] = "DangNhap";
             }
         }
 
-        print_r($arr);
+        // print_r($arr);
 
         // Controller
         if( file_exists("./mvc/controllers/" . $arr[0] . ".php") ){
