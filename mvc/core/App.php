@@ -8,7 +8,7 @@ class App{
     protected $params=[];
 
     function isLoginSessionExpired() {
-        $login_session_duration = 1 * 60; // in second
+        $login_session_duration = 120 * 60; // in second
         $current_time = time();
         if (isset($_SESSION['loggedin_time']) && isset($_SESSION["logined_IdNguoiDung"]) && isset($_SESSION["logined_IdLoaiTaiKhoan"])) {  
             if(((time() - $_SESSION['loggedin_time']) > $login_session_duration)){ 
@@ -56,7 +56,7 @@ class App{
             }
         }
 
-        // print_r($arr);
+        print_r($arr);
 
         // Controller
         if( file_exists("./mvc/controllers/" . $arr[0] . ".php") ){

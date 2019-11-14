@@ -23,7 +23,7 @@
             "<script type='text/javascript'>
                 $.confirm({
                     theme: 'modern',
-                    title: 'Reset mật khẩu thành công!',
+                    title: 'Reset thành công',
                     content: 'Bạn vui lòng kiểm tra tra mail để xác nhận!',
                     type: 'green',
                     typeAnimated: true,
@@ -43,7 +43,7 @@
             "<script type='text/javascript'>
                 $.confirm({
                     theme: 'modern',
-                    title: 'Reset mật khẩu thất bại!',
+                    title: 'Reset thất bại',
                     content: 'Bạn vui lòng kiểm tra lại tên đăng nhập và email!',
                     type: 'red',
                     typeAnimated: true,

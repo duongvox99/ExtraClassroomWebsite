@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Đăng nhập</title>
+    <title>Cập nhật tài khoản</title>
 
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
@@ -23,8 +23,8 @@
             "<script type='text/javascript'>
                 $.confirm({
                     theme: 'modern',
-                    title: 'Đăng nhập thất bại',
-                    content: 'Bạn vui lòng kiểm tra lại tên đăng nhập và mật khẩu!',
+                    title: 'Cập nhật thông tin tài khoản thất bại',
+                    content: 'Bạn vui lòng kiểm tra lại các trường!',
                     type: 'red',
                     typeAnimated: true,
                     autoClose: 'tryAgain|5000',
@@ -51,14 +51,20 @@
 
             <!-- Login Form -->
             <form action="" method="POST">
-                <input type="text" id="username" class="fadeIn second" name="username" placeholder="Tên đăng nhập">
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Mật khẩu">
-                <input type="submit" class="fadeIn fourth" value="Đăng nhập" name="btnSubmit">
+            <!-- 
+            $NamSinh = $_POST["NamSinh"];
+            $Avatar = "";
+            $Lop = $_POST["Lop"];
+            $Email = $_POST["Email"]' -->
+                <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Họ tên" value="">
+                <input type="password" id="password" class="fadeIn third" name="Password" placeholder="Mật khẩu">
+                <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Họ tên" value="">
+                <input type="submit" class="fadeIn fourth" value="Cập nhật" name="btnSubmit">
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                <a class="underlineHover" href="/ExtraClassroomWebsite/TrangChu/QuenMatKhau">Quên mật khẩu?</a>
+                <!-- <a class="underlineHover" href="/ExtraClassroomWebsite/TrangChu/QuenMatKhau">Quên mật khẩu?</a> -->
             </div>
 
         </div>

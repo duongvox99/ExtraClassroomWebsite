@@ -10,6 +10,7 @@
 <body>
     <?php
     if (isset($data['result'])) {
+        print_r($data);
         if ($data['result']) {
             echo "<script type='text/javascript'>alert('Add successfull');</script>";
         } else {

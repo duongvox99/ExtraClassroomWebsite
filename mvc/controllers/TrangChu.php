@@ -32,7 +32,7 @@ class TrangChu extends Controller{
                     $_SESSION["logined_IdLoaiTaiKhoan"] = $result["LoaiTaiKhoan"];
                     $_SESSION['loggedin_time'] = time();
 
-                    // Đi tới về trang chủ
+                    // Đi tới trang chủ
                     header("Location: /ExtraClassroomWebsite");
                 }
                 else {
@@ -91,16 +91,37 @@ class TrangChu extends Controller{
         if (!is_null($randomCode) && !is_null($username)) {
             $resultResetMatKhau = $this->NguoiDungModel->ResetMatKhau($username, $randomCode);
             if ($resultResetMatKhau) {
-                $this->view("DangNhap");
+                header("Location: /ExtraClassroomWebsite");
             }
             else {
-                $this->view("Loi");
+                $this->view("404");
             }
         }
     }
 
-    public function DoiMatKhau() {
+    public function CapNhatTaiKhoan() {
+        if (!isset($_POST["btnSubmit"])) {
+            $this->view("CapNhatTaiKhoan");
+        }
+        else {
+            $IdNguoiDung = $_SESSION["logined_IdNguoiDung"];
+            $Password = $_POST["Password"];
+            $HoTen = $_POST["HoTen"];
+            $NamSinh = $_POST["NamSinh"];
+            $Avatar = "";
+            $Lop = $_POST["Lop"];
+            $Email = $_POST["Email"];
 
+            $result = $this->NguoiDungModel->editNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email);
+            if ($result) {
+                header("Location: /ExtraClassroomWebsite");
+            }
+            else {
+                $this->view("CapNhatTaiKhoan", [
+                    "result" => $result,
+                ]);
+            }
+        }
     }
 
     public function DangXuat() {
