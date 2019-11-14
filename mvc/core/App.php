@@ -8,14 +8,20 @@ class App{
     protected $params=[];
 
     function isLoginSessionExpired() {
-        $login_session_duration = 120 * 60; // in second
+        $login_session_duration = 1 * 60; // in second
         $current_time = time();
-        if(isset($_SESSION['loggedin_time']) && isset($_SESSION["logined_IdNguoiDung"]) && isset($_SESSION["logined_IdLoaiTaiKhoan"])){  
+        if (isset($_SESSION['loggedin_time']) && isset($_SESSION["logined_IdNguoiDung"]) && isset($_SESSION["logined_IdLoaiTaiKhoan"])) {  
             if(((time() - $_SESSION['loggedin_time']) > $login_session_duration)){ 
                 return true; 
-            } 
+            }
+            else {
+                return false;
+            }
         }
-        return false;
+        else {
+            return true;
+        }
+        
     }
 
     function __construct(){
@@ -23,18 +29,23 @@ class App{
 
         // Kiểm tra đã đăng nhập hay chưa
         if (!$this->isLoginSessionExpired()) {
-            $IdNguoiDung = $_SESSION['logined_IdNguoiDung'];
-            $LoaiTaiKhoan = $_SESSION['logined_IdLoaiTaiKhoan'];
-            
-            if ($LoaiTaiKhoan == 0) {
-                $arr[0] = "GiaoVien";
-            }
-            else {
-                $arr[0] = "HocSinh";
+            // echo 'Da Dang Nhap';
+            if ($arr[0] != "TrangChu") {
+                $IdNguoiDung = $_SESSION['logined_IdNguoiDung'];
+                $LoaiTaiKhoan = $_SESSION['logined_IdLoaiTaiKhoan'];
+
+                // echo 'Loai: '. $LoaiTaiKhoan . 'asdf';
+                if ($LoaiTaiKhoan == "0") {
+                    $arr[0] = "GiaoVien";
+                }
+                else {
+                    $arr[0] = "HocSinh";
+                }
             }
             // $arr = array("0" => "HocSinh", "1" => "LamBai");
         }
         else {
+            // echo 'Chua Dang Nhap';
             if(isset($arr[1])){
                 if ($arr[1] == "QuenMatKhau") {
                     $arr = array("0" => "TrangChu", "1" => "QuenMatKhau");
@@ -44,7 +55,7 @@ class App{
                 $arr = array("0" => "TrangChu", "1" => "DangNhap");
             }
         }
-        
+
         // print_r($arr);
 
         // Controller
@@ -67,6 +78,7 @@ class App{
         // Params
         $this->params = $arr?array_values($arr):[];
         
+        // print_r($this->params);
         // print_r($this->controller);
         // print_r($this->action);
         // print_r($this->params);

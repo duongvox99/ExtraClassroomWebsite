@@ -25,7 +25,7 @@
             <!-- Login Form -->
             <form action="" method="POST">
                 <input type="text" id="username" class="fadeIn second" name="username" placeholder="Tên đăng nhập">
-                <input type="text" id="password" class="fadeIn third" name="password" placeholder="Email">
+                <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
                 <input type="submit" class="fadeIn fourth" value="Reset mật khẩu" name="btnSubmit">
             </form>
 
