@@ -4,7 +4,7 @@ class NguoiDungModel extends MySQL{
         $qr = "SELECT * FROM nguoidung WHERE Username='$username'";
 
         $result = mysqli_query($this->con, $qr);
-        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+        while ($row = mysqli_fetch_array($result, MYSQLI_BOTH, MYSQLI_ASSOC)) {
             $passwordHash = $row["Password"];
 
             if (password_verify($password, $passwordHash)) {
