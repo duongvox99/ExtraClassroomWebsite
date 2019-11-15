@@ -3,10 +3,7 @@
 class Hocsinh extends Controller{
 
     function Default(){
-        // $teo = $this->model("SinhVienModel");
-        // echo $teo->GetSV();
-        echo "Default";
-        // $this->view("doExam");
+        $this->view("BangDieuKhienHocSinh");
     }
 
     function LamBai(){
