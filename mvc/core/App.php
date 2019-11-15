@@ -50,7 +50,7 @@ class App{
             }
         }
 
-        $arr = array("0" => "GiaoVien", "1" => "ThemCauHoi");
+        // $arr = array("0" => "HocSinh", "1" => "BangDieuKhienHocSinh");
 
         // print_r($arr);
 
