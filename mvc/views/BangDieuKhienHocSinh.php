@@ -20,7 +20,7 @@
 </head>
 
 <body >
-	<<?php require("pages/header.php") ?>
+	<?php require("pages/header.php") ?>
 	<div class="container border border-dark bg-light">
 		<div class="row">
 			<div class="col col-lg-8 col-md-12 col-sm-12 col-12">
