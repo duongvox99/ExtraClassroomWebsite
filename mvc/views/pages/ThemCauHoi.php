@@ -19,7 +19,7 @@
     }
     ?>
     <h1>Classic editor</h1>
-    <?php echo '012' ?>
+    <?php echo 'php' ?>
     <form action="ThemCauHoi" method="post">
         <h1>CauHoi</h1>
         <textarea name="CauHoi" id="editorCauHoi"></textarea>

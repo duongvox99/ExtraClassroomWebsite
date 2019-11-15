@@ -17,6 +17,21 @@ class GiaoVien extends Controller{
         $this->view("BangDieuKhienGiaoVien");
     }
 
+    
+    public function Fake() {
+
+    }
+
+    // ####################################################################################
+
+    public function XemTatCaNhomHocSinh() {
+        $data = $this->NhomModel->getAllNhomHocSinh();
+    }
+
+    public function XemHocSinhTrongNhom($IdNhom) {
+        $data = $this->NguoiDungModel->getAllHocSinhInNhom($IdNhom);
+    }
+
     // ####################################################################################
     public function ThemHocSinh() {
         if (!isset($_POST["btnSubmit"])) {
@@ -43,7 +58,7 @@ class GiaoVien extends Controller{
             ]);
         }
     }
-
+    
     public function ChinhSuaHocSinh($IdNguoiDung) {
         if (!isset($_POST["btnSubmit"])) {
             $DataNguoiDung = $this->NguoiDungModel->getNguoiDung($IdNguoiDung);
@@ -102,9 +117,13 @@ class GiaoVien extends Controller{
 
     public function ThemCauHoi() {
         if (!isset($_POST["btnSubmit"])) {
-            $this->view("BangDieuKhienGiaoVien", [
+            $this->view("pages/ThemCauHoi", [
                 "subview" => "ThemCauHoi"
             ]);
+
+            // $this->view("BangDieuKhienGiaoVien", [
+            //     "subview" => "ThemCauHoi"
+            // ]);
         }
         else {
             $CauHoi = $_POST["CauHoi"];
@@ -119,12 +138,19 @@ class GiaoVien extends Controller{
 
             $result = $this->NganHangCauHoiModel->addCauHoi($CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop);
 
-            $this->view("BangDieuKhienGiaoVien", [
+            $this->view("pages/ThemCauHoi", [
                 "subview" => "ThemCauHoi",
                 "result" => $result,
                 "action" => "Thêm",
                 "type" => "câu hỏi"
             ]);
+
+            // $this->view("BangDieuKhienGiaoVien", [
+            //     "subview" => "ThemCauHoi",
+            //     "result" => $result,
+            //     "action" => "Thêm",
+            //     "type" => "câu hỏi"
+            // ]);
         }
     }
 

@@ -2,7 +2,7 @@
 class NganHangCauHoiModel extends MySQL{
     public function getCauHoi($IdCauHoi){
         $qr = "SELECT * FROM nganhangcauhoi WHERE IdCauHoi=$IdCauHoi";
-        return mysqli_fetch_array(mysqli_query($this->con, $qr));
+        return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
     }
     
     public function addCauHoi($CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop) {

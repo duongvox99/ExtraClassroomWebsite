@@ -34,7 +34,6 @@ class App{
                 $IdNguoiDung = $_SESSION['logined_IdNguoiDung'];
                 $LoaiTaiKhoan = $_SESSION['logined_IdLoaiTaiKhoan'];
 
-                // echo 'Loai: '. $LoaiTaiKhoan . 'asdf';
                 if ($LoaiTaiKhoan == "0") {
                     $arr[0] = "GiaoVien";
                 }
@@ -42,7 +41,6 @@ class App{
                     $arr[0] = "HocSinh";
                 }
             }
-            // $arr = array("0" => "HocSinh", "1" => "LamBai");
         }
         else {
             // echo 'Chua Dang Nhap';
@@ -51,6 +49,8 @@ class App{
                 $arr[1] = "DangNhap";
             }
         }
+
+        $arr = array("0" => "GiaoVien", "1" => "ThemCauHoi");
 
         // print_r($arr);
 

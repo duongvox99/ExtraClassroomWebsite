@@ -1,8 +1,22 @@
 <?php
 class NhomModel extends MySQL{
+    public function getAllNhomHocSinh(){
+        $qr = "SELECT * FROM nhom";
+        $result = mysqli_query($this->con, $qr);
+
+        // remove group admin
+        mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, $row);
+        }
+        return $output;
+    }
+
     public function getNhom($IdNhom){
         $qr = "SELECT * FROM nhom WHERE IdNhom=$IdNhom";
-        return mysqli_fetch_array(mysqli_query($this->con, $qr));
+        return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
     }
     
     public function addNhom($TenNhom, $SoLuong, $Lop) {

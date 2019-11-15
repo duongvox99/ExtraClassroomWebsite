@@ -87,6 +87,8 @@ class TrangChu extends Controller{
         }
     }
 
+
+    // HIDDEN (NO VIEW)
     public function ResetMatKhau($username, $randomCode) {
         if (!is_null($randomCode) && !is_null($username)) {
             $resultResetMatKhau = $this->NguoiDungModel->ResetMatKhau($username, $randomCode);

@@ -4,7 +4,7 @@ class NguoiDungModel extends MySQL{
         $qr = "SELECT * FROM nguoidung WHERE Username='$username'";
 
         $result = mysqli_query($this->con, $qr);
-        while ($row = mysqli_fetch_array($result, MYSQLI_BOTH)) {
+        while ($row = mysqli_fetch_array($result, MYSQLI_BOTH, MYSQLI_ASSOC)) {
             $passwordHash = $row["Password"];
 
             if (password_verify($password, $passwordHash)) {
@@ -21,9 +21,15 @@ class NguoiDungModel extends MySQL{
 
     }
 
-    public function getNguoiDung($IdNguoiDung){
-        $qr = "SELECT * FROM nguoidung WHERE IdNguoiDung=$IdNguoiDung";
-        return mysqli_fetch_array(mysqli_query($this->con, $qr));
+    public function getAllHocSinhInNhom($IdNhom) {
+        $qr = "SELECT * FROM nguoidung WHERE IdNhom='$IdNhom'";
+
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"]));
+        }
+        return $output;
     }
 
     public function addHocSinh($Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $RandomCode, $Email) {
@@ -40,18 +46,7 @@ class NguoiDungModel extends MySQL{
     public function editHocSinh($IdNguoiDung, $Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $RandomCode, $Email) {
         $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
         $qr = "UPDATE nguoidung SET Username='$Username', Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, IdNhom=$IdNhom, LoaiTaiKhoan=$LoaiTaiKhoan, RandomCode='$RandomCode', Email=$Email WHERE IdNguoiDung=$IdNguoiDung";
-        
-        $result = false;
-        if (mysqli_query($this->con, $qr)) {
-            $result = true;
-        }
-        return $result;
-    }
 
-    public function editNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email) {
-        $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
-        $qr = "UPDATE nguoidung SET Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, Email=$Email WHERE IdNguoiDung=$IdNguoiDung";
-        
         $result = false;
         if (mysqli_query($this->con, $qr)) {
             $result = true;
@@ -66,6 +61,22 @@ class NguoiDungModel extends MySQL{
             return true;
         }
         return false;
+    }
+
+    public function getNguoiDung($IdNguoiDung){
+        $qr = "SELECT * FROM nguoidung WHERE IdNguoiDung=$IdNguoiDung";
+        return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
+    }
+
+    public function editNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email) {
+        $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
+        $qr = "UPDATE nguoidung SET Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, Email=$Email WHERE IdNguoiDung=$IdNguoiDung";
+        
+        $result = false;
+        if (mysqli_query($this->con, $qr)) {
+            $result = true;
+        }
+        return $result;
     }
 
     public function setRandomCode($username, $email, $randomCode) {
