@@ -3,6 +3,14 @@
 	padding: 0;
 }
 
+body {
+    background: url('/ExtraClassroomWebsite/public/img/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
 #header
 {
 	width: 100%;
@@ -11,34 +19,55 @@
 .my-nav
 {
 	width: 100%;
-	background-color: #558B2F;
-	overflow: hidden;
+    padding: 0px;
+	background-color: darkgreen;
+
 }
 
 .my-nav ul 
 {
-	list-style-type: none;
-	/*margin: auto;*/
+	
+    list-style-type: none;
+	margin-top: 0px;
+    margin-bottom: 0px;
+    /*margin: auto;*/
+
 }
 
 .my-nav ul li
 {
-	margin: auto;
-	float: left;
-	display: inline-block;
+	/*margin: auto;*/
+	/*float: left;*/
+	/*display: inline-block;*/
 }
 
-.my-nav ul li a:hover
+.my-nav .my-nav-menu li a:hover
 {
-	background-color: #33691E;
+	background-color: #005000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 16px;
+}
+
+.my-nav .account .dropdown-menu-custom
+{
+    background-color: darkgreen;
+}
+
+.my-nav .account li a:hover
+{
+    background-color: #005000;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /*padding: 16px;*/
 }
 
 .my-nav ul li a
 {
 	text-decoration: none;
 	color: #FFFFFF;
-	padding: 30px;
 }
+
 #banner
 {
 	height: 200px;
@@ -71,6 +100,37 @@
 ul
 {
 	list-style-type: none;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.new-banner-location
+{
+    top:-25px;
+    right: 10px;
+}
+
+.new-banner .new-banner-location .new-banner-svg
+{
+    width: 90px;
+    height: 90px;
+}
+
+@media screen and (min-width: 768px) {
+
+.custom-collapse .collapse{
+        display:block;
+    }  
 }
 
 /*CSS of Countdown Clock*/
