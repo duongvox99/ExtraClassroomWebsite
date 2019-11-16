@@ -13,29 +13,31 @@ $(document).ready(function(){
 	    {	
 	    	//console.log("true");
 	    	$(".question-num-list").addClass("pagination");
-	    	$(".question-num-list").addClass("justify-content-center");
-	    	paginationQButton(currenQuestion);
+	    	$(".question-num-list").removeClass("justify-content-center");
+	    	//paginationQButton(currenQuestion);
+	    	$(".question-num-list").addClass("overflow-auto");
 			responsiveMode = true;
 	    }else{
 	    	$(".question-num-list").removeClass("pagination");
-	    	$(".question-num-list").removeClass("justify-content-center");
+	    	$(".question-num-list").addClass("justify-content-center");
+	    	$(".question-num-list").removeClass("overflow-auto");
 	    	$(".q_btn").show();
 	    	responsiveMode = false;
 	    }
 	     
 	});
 
-	var li = "<li class='col col-2'><input type='button' id='q_btn_"+ 1 +"' class='btn btn-outline-info active boder6 q_btn' value=' "+"Câu 0"+ 1 +"'></li>";	
+	var li = "<li><input type='button' id='q_btn_"+ 1 +"' class='btn btn-outline-info active boder6 q_btn' value=' "+"Câu 0"+ 1 +"'></li>";	
 	$('.question-num-list').append(li);
 	for (var i = 2; i <= 50; i++) 
 	{
 		if (i<10) 
 		{
-			li = "<li class='col col-2'><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu 0"+ i +"'></li>";
+			li = "<li><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu 0"+ i +"'></li>";
 		}
 		else
 		{
-			li = "<li class='col col-2'><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu "+ i +"'></li>";		
+			li = "<li><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu "+ i +"'></li>";		
 		}
 		
 		
@@ -56,7 +58,7 @@ $(document).ready(function(){
 // data of question
 $(document).ready(function createQuestion() {
 	for (var i = 1; i <= 50; i++) {
-		$('#question-content').append('<div class="question-content-item"><h4>Câu hỏi số ' + i+ '</h4><p>Question content ' + i +'</p></div>');
+		$('#question-content').append('<div class="question-content-item"><h4><i class="fas fa-question-circle"></i> Câu hỏi số ' + i+ '</h4><p>Question content ' + i +'</p></div>');
 		$('#answer-select-container').append("<ul class='answer-select-list_" + i +"'></ul>");
 		for(var j = 1; j<=4; j++)
 		{
@@ -70,14 +72,15 @@ $(document).ready(function createQuestion() {
 	$('.pre').click(function() {
 		
 		if (currenQuestion > 0) {currenQuestion = currenQuestion -1;}
-		if ((currenQuestion+1) % 5 == 0 && responsiveMode == true) { paginationQButton(currenQuestion - 4); }
+		//if (responsiveMode == true && currenQuestion>0) 
+
 		activeQuestion(currenQuestion);
 	});
 
 	$('.next').click(function() {
 		
 		if (currenQuestion <49 ) {currenQuestion = currenQuestion +1;}
-		if (currenQuestion % 5 == 0 && responsiveMode == true) { paginationQButton(currenQuestion); }	
+		//if (currenQuestion % 5 == 0 && responsiveMode == true) { paginationQButton(currenQuestion); }	
 		activeQuestion(currenQuestion);
 	});
 
@@ -128,10 +131,13 @@ $( document ).ready(function() {
 
         }, 1000)
     }
+
+//======================= update display 0[9] when number of time < 10    
     function pad(d) {
         return (d < 10) ? '0' + d.toString() : d.toString()
     }
 
+// ====================== Update display clock ========================
     function refreshClock()
     {
     	jQuery('#countdown #hour').html(pad(hours));
@@ -144,8 +150,9 @@ $( document ).ready(function() {
 });
 
 
-//===========================================================================================
+//======================== Active Question and Pagination Question Button ====================
 
+//======================== Show Question and update state of Question Button when click ======
 function activeQuestion(numQuestion)
 {
 	for (var i = 0; i < $('.question-content-item').length; i++) {
@@ -159,19 +166,13 @@ function activeQuestion(numQuestion)
 	$('.q_btn')[numQuestion].className += " "+"active";
 }
 
+//======================= Update state of Question Button when the answer is selected ========
 function completeQuestion(numQuestion) {
 	$(".q_btn")[numQuestion].classList.remove("btn-outline-info");
 	$(".q_btn")[numQuestion].className += " " + "btn btn-success";
 }
 
-function paginationQButton(numQuestion)
-{
-	$(".q_btn").hide();
-	for (var i = 1; i <=5; i++) {
-		$(".q_btn")[numQuestion].style.display = "block";
-		numQuestion++;
-	}
-}
+
 
 
 		
