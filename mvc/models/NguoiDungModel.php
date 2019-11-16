@@ -8,17 +8,13 @@ class NguoiDungModel extends MySQL{
             $passwordHash = $row["Password"];
 
             if (password_verify($password, $passwordHash)) {
-                $IdNguoiDung = $row["IdNguoiDung"];
-                $LoaiTaiKhoan = $row["LoaiTaiKhoan"];
-
-                return array("IdNguoiDung"=> $IdNguoiDung, "LoaiTaiKhoan"=> $LoaiTaiKhoan);
+                return $row;
             } else {
                 return false;
             }
         }
 
         return false;
-
     }
 
     public function getAllHocSinhInNhom($IdNhom) {
@@ -99,6 +95,38 @@ class NguoiDungModel extends MySQL{
         }
 
         return false;
+    }
+
+    public function setDiemTong($IdNguoiDung, $DiemTong) {
+        $qrResetMatKhau = "UPDATE nguoidung SET DiemTong=$DiemTong WHERE IdNguoiDung=$IdNguoiDung";
+        if (mysqli_query($this->con, $qrResetMatKhau)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function getHocSinhRanking_Nhom_Lop($IdNhom, $Lop) {
+        $qr = "SELECT * FROM nguoidung WHERE IdNhom=$IdNhom AND Lop=$Lop ORDER BY DiemTong DESC";
+        
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
+        }
+        return $output;
+
+    }
+
+    public function getHocSinhRanking_Lop($Lop) {
+        $qr = "SELECT * FROM nguoidung WHERE Lop=$Lop ORDER BY DiemTong DESC";
+        
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
+        }
+        return $output;
     }
 
 }
