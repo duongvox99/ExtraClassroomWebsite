@@ -4,7 +4,7 @@
                     <h3>Danh sách User</h3>
                 </div>
                 <div class="zvn-add-new pull-right">
-                    <a href="/form" class="btn btn-success"><i class="fas fa-stopwatch fa-2x"></i> Thêm mới</a>
+                    <a href="/form" class="btn btn-success"><i class="fas fa-plus-circle"></i> Thêm mới</a>
                 </div>
             </div>
             <div class="row">
@@ -136,7 +136,7 @@
                                                     href="/form/1"
                                                     type="button" class="btn btn-icon btn-success" data-toggle="tooltip"
                                                     data-placement="top" data-original-title="Edit">
-                                                <i class="fa fa-pencil"></i>
+                                                <i class="fas fa-pencil-alt"></i>
                                             </a><a href="/delete/1"
                                                    type="button" class="btn btn-icon btn-danger btn-delete"
                                                    data-toggle="tooltip" data-placement="top"
@@ -175,7 +175,7 @@
                                                     href="/form/2"
                                                     type="button" class="btn btn-icon btn-success" data-toggle="tooltip"
                                                     data-placement="top" data-original-title="Edit">
-                                                <i class="fa fa-pencil"></i>
+                                                <i class="fas fa-pencil-alt"></i>
                                             </a><a href="/delete/2"
                                                    type="button" class="btn btn-icon btn-danger btn-delete"
                                                    data-toggle="tooltip" data-placement="top"

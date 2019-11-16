@@ -9,6 +9,16 @@ img.zvn-thumb {
     max-width: 100%;
 }
 
+#footer
+{
+    background: #1F1E23;
+    color: #FFFFFF;
+    /*line-height: 2px;*/
+    text-align: center;
+    /*border: 1px solid red;*/
+    padding: 20px 0 20px 0;
+}
+
 .my-nav
 {
     background-color: darkgreen;

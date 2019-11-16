@@ -14,15 +14,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <!-- menu profile quick info -->
-                <div class="profile clearfix">
-                    <div class="profile_pic">
-                        <img src="/ExtraClassroomWebsite/public/admin/img/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
-                    </div>
-                </div>
+                
                 <!-- /menu profile quick info -->
                 <br/>
                 <!-- sidebar menu -->
@@ -30,11 +22,11 @@
                     <div class="menu_section my-side-menu">
                         <h3>General</h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> Home</a></li>
-                            <li><a><i class="fa fa-user"></i> User</a></li>
-                            <li><a><i class="fa fa fa-building-o"></i> Category</a></li>
-                            <li><a><i class="fa fa-newspaper-o"></i> Article</a></li>
-                            <li><a><i class="fa fa-sliders"></i> Silders</a></li>
+                            <li><a><i class="fas fa-home"></i>  Home</a></li>
+                            <li><a><i class="fas fa-user"></i>  User</a></li>
+                            <li><a><i class="far fa-building"></i>  Category</a></li>
+                            <li><a><i class="far fa-newspaper"></i>  Article</a></li>
+                            <li><a><i class="fas fa-sliders-h"></i>  Silders</a></li>
                         </ul>
                     </div>
                 </div>
@@ -52,7 +44,7 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="img/img.jpg" alt="">John Doe
+                                <img src="/ExtraClassroomWebsite/public/admin/img/img.jpg" alt="">John Doe
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -65,71 +57,6 @@
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
                                 <li><a href="/ExtraClassroomWebsite/TrangChu/DangXuat"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
-                            </ul>
-                        </li>
-                        <li role="presentation" class="dropdown">
-                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
-                               aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
-                            </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="img/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                                 <span>John Smith</span>
-                                 <span class="time">3 mins ago</span>
-                                 </span>
-                                        <span class="message">
-                                 Film festivals used to be do-or-die moments for movie makers. They were where...
-                                 </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="img/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                                 <span>John Smith</span>
-                                 <span class="time">3 mins ago</span>
-                                 </span>
-                                        <span class="message">
-                                 Film festivals used to be do-or-die moments for movie makers. They were where...
-                                 </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="img/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                                 <span>John Smith</span>
-                                 <span class="time">3 mins ago</span>
-                                 </span>
-                                        <span class="message">
-                                 Film festivals used to be do-or-die moments for movie makers. They were where...
-                                 </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="img/img.jpg" alt="Profile Image"/></span>
-                                        <span>
-                                 <span>John Smith</span>
-                                 <span class="time">3 mins ago</span>
-                                 </span>
-                                        <span class="message">
-                                 Film festivals used to be do-or-die moments for movie makers. They were where...
-                                 </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>See All Alerts</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -146,8 +73,8 @@
         <!-- /page content -->
         <!-- footer -->
         <footer>
-            <div class="pull-right">
-                Học lập trình online tại <a href="https://colorlib.com/">ZendVN.com</a>
+            <div id="footer">
+                <span class="text-muted"><b>Copyright ©: Duong Pham and Duong Vo</b></span>
             </div>
             <div class="clearfix"></div>
         </footer>
