@@ -38,36 +38,6 @@ class GiaoVien extends Controller{
 
     }
 
-    public function HandleString($str) {
-        
-    }
-
-    public function Convert_UploadImgCauHoi($data) {
-        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
-            $data = substr($data, strpos($data, ',') + 1);
-            $type = strtolower($type[1]); // jpg, png, gif
-            
-            if (!in_array($type, [ 'jpg', 'jpeg', 'gif', 'png' ])) {
-                throw new \Exception('invalid image type');
-            }
-        
-            $data = base64_decode($data);
-        
-            if ($data === false) {
-                throw new \Exception('base64_decode failed');
-            }
-        } else {
-            throw new \Exception('did not match data URI with image data');
-        }
-        
-        $nameFile = substr(md5(uniqid(mt_rand(), true)) , 0, 30);
-        $uri = "/ExtraClassroomWebsite/upload/nganhangcauhoi/" . $nameFile . "." . $type;
-
-        file_put_contents($uri, $data);
-
-        return $uri;
-    }
-
     // ####################################################################################
 
     public function XemTatCaNhomHocSinh() {
@@ -161,6 +131,48 @@ class GiaoVien extends Controller{
 
     // ####################################################################################
 
+    public function HandleString($str) {
+        if (preg_match_all('/src=".*?"/m', $str, $matches)) {
+            $matches = $matches[0];
+
+            for ($i = 0; $i < count($matches); $i++) {
+                $str = str_replace($matches[$i], 'src="' . Convert_UploadImgCauHoi($matches[$i]), $str) . '"';
+            }
+        }
+
+        return $str;
+    }
+
+    public function Convert_UploadImgCauHoi($data) {
+        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
+            $data = substr($data, strpos($data, ',') + 1);
+            $type = strtolower($type[1]); // jpg, png, gif
+            
+            if (!in_array($type, [ 'jpg', 'jpeg', 'gif', 'png' ])) {
+                throw new \Exception('invalid image type');
+            }
+        
+            $data = base64_decode($data);
+        
+            if ($data === false) {
+                throw new \Exception('base64_decode failed');
+            }
+        } else {
+            throw new \Exception('did not match data URI with image data');
+        }
+        
+        $nameFile = substr(md5(uniqid(mt_rand(), true)) , 0, 30);
+        $uri = "/ExtraClassroomWebsite/upload/nganhangcauhoi/" . $nameFile . "." . $type;
+        while (file_exists($uri)) {
+            $nameFile = substr(md5(uniqid(mt_rand(), true)) , 0, 30);
+            $uri = "/ExtraClassroomWebsite/upload/nganhangcauhoi/" . $nameFile . "." . $type;
+        }
+
+        file_put_contents($uri, $data);
+
+        return $uri;
+    }
+    
     public function ThemCauHoi() {
         if (!isset($_POST["btnSubmit"])) {
             $this->view("pages/ThemCauHoi", [
