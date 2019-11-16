@@ -7,6 +7,7 @@
 
 <body >
 	<?php require("pages/header.php") ?>
-	<?php require("pages/BaiLam.php") ?>
+	<?php require("pages/LamBai.php") ?>
 	<?php require("pages/footer.php") ?>
 </body>
+</html>
