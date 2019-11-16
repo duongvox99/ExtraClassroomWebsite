@@ -10,9 +10,9 @@ class App{
     function isLoginSessionExpired() {
         $login_session_duration = 120 * 60; // in second
         $current_time = time();
-        if (isset($_SESSION['loggedin_time']) && isset($_SESSION["logined_IdNguoiDung"]) && isset($_SESSION["logined_IdLoaiTaiKhoan"])) {  
+        if (isset($_SESSION['loggedin_time']) && isset($_SESSION["IdNguoiDung"]) && isset($_SESSION["LoaiTaiKhoan"])) {  
             if(((time() - $_SESSION['loggedin_time']) > $login_session_duration)){ 
-                return true; 
+                return true;
             }
             else {
                 return false;
@@ -31,10 +31,7 @@ class App{
         if (!$this->isLoginSessionExpired()) {
             // echo 'Da Dang Nhap';
             if ($arr[0] != "TrangChu") {
-                $IdNguoiDung = $_SESSION['logined_IdNguoiDung'];
-                $LoaiTaiKhoan = $_SESSION['logined_IdLoaiTaiKhoan'];
-
-                if ($LoaiTaiKhoan == "0") {
+                if ($_SESSION['LoaiTaiKhoan'] == "0") {
                     $arr[0] = "GiaoVien";
                 }
                 else {
@@ -50,7 +47,7 @@ class App{
             }
         }
 
-        // $arr = array("0" => "GiaoVien", "1" => "ThemCauHoi");
+        // $arr = array("0" => "GiaoVien", "1" => "uploadImgCauHoi");
 
         // print_r($arr);
 

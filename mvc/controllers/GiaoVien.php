@@ -5,11 +5,28 @@ class GiaoVien extends Controller{
     public $NguoiDungModel;
     public $NhomModel;
 
+    public $IdNguoiDung;
+    public $HoTen;
+    public $NamSinh;
+    public $Avatar;
+    public $Lop;
+    public $IdNhom;
+    public $Email;
+
     public function __construct() {
         // init model
         $this->NganHangCauHoiModel = $this->model("NganHangCauHoiModel");
         $this->NguoiDungModel = $this->model("NguoiDungModel");
         $this->NhomModel = $this->model("NhomModel");
+        
+        $this->IdNguoiDung = $_SESSION["IdNguoiDung"];
+        $this->HoTen = $_SESSION["HoTen"];
+        $this->NamSinh = $_SESSION["NamSinh"];
+        $this->Avatar = $_SESSION["Avatar"];
+        $this->Lop = $_SESSION["Lop"];
+        $this->IdNhom = $_SESSION["IdNhom"];
+        $this->Email = $_SESSION["Email"];
+        $this->DiemTong = $_SESSION["DiemTong"];
     }
 
     public function Default() {
@@ -17,9 +34,38 @@ class GiaoVien extends Controller{
         $this->view("BangDieuKhienGiaoVien");
     }
 
-    
     public function Fake() {
 
+    }
+
+    public function HandleString($str) {
+        
+    }
+
+    public function Convert_UploadImgCauHoi($data) {
+        if (preg_match('/^data:image\/(\w+);base64,/', $data, $type)) {
+            $data = substr($data, strpos($data, ',') + 1);
+            $type = strtolower($type[1]); // jpg, png, gif
+            
+            if (!in_array($type, [ 'jpg', 'jpeg', 'gif', 'png' ])) {
+                throw new \Exception('invalid image type');
+            }
+        
+            $data = base64_decode($data);
+        
+            if ($data === false) {
+                throw new \Exception('base64_decode failed');
+            }
+        } else {
+            throw new \Exception('did not match data URI with image data');
+        }
+        
+        $nameFile = substr(md5(uniqid(mt_rand(), true)) , 0, 30);
+        $uri = "/ExtraClassroomWebsite/upload/nganhangcauhoi/" . $nameFile . "." . $type;
+
+        file_put_contents($uri, $data);
+
+        return $uri;
     }
 
     // ####################################################################################
@@ -126,13 +172,13 @@ class GiaoVien extends Controller{
             // ]);
         }
         else {
-            $CauHoi = $_POST["CauHoi"];
-            $DapAn1 = $_POST["DapAn1"];
-            $DapAn2 = $_POST["DapAn2"];
-            $DapAn3 = $_POST["DapAn3"];
-            $DapAn4 = $_POST["DapAn4"];
+            $CauHoi = $this->HandleString($_POST["CauHoi"]);
+            $DapAn1 = $this->HandleString($_POST["DapAn1"]);
+            $DapAn2 = $this->HandleString($_POST["DapAn2"]);
+            $DapAn3 = $this->HandleString($_POST["DapAn3"]);
+            $DapAn4 = $this->HandleString($_POST["DapAn4"]);
             $DapAnDung = $_POST["DapAnDung"];
-            $LoiGiai = $_POST["LoiGiai"];
+            $LoiGiai = $this->HandleString($_POST["LoiGiai"]);
             $LoaiCauHoi = $_POST["LoaiCauHoi"];
             $Lop = $_POST["Lop"];
 

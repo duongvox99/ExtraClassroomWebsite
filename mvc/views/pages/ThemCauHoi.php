@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Them Cau Hoi Giao Dien So Sai</title>
-    <script type="text/javascript" src="../public/js/ckeditor.js"></script>
+    <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/ckeditor.js"></script>
 </head>
 
 <body>

@@ -28,9 +28,18 @@ class TrangChu extends Controller{
                 // Đăng nhập thành công sẽ trả về ID và Loại tài khoản
                 if ($result) {
                     // Lưu lại Session
-                    $_SESSION["logined_IdNguoiDung"] = $result["IdNguoiDung"];
-                    $_SESSION["logined_IdLoaiTaiKhoan"] = $result["LoaiTaiKhoan"];
+                    $_SESSION["IdNguoiDung"] = $result["IdNguoiDung"];
+                    $_SESSION["LoaiTaiKhoan"] = $result["LoaiTaiKhoan"];
                     $_SESSION['loggedin_time'] = time();
+
+
+                    $_SESSION["HoTen"] = $result["HoTen"];
+                    $_SESSION["NamSinh"] = $result["NamSinh"];
+                    $_SESSION["Avatar"] = $result["Avatar"];
+                    $_SESSION["Lop"] = $result["Lop"];
+                    $_SESSION["IdNhom"] = $result["IdNhom"];
+                    $_SESSION["Email"] = $result["Email"];
+                    $_SESSION["DiemTong"] = $result["DiemTong"];
 
                     // Đi tới trang chủ
                     header("Location: /ExtraClassroomWebsite");
