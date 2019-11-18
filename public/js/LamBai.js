@@ -84,8 +84,13 @@ $(document).ready(function createQuestion() {
 		activeQuestion(currenQuestion);
 	});
 
-	$("#answer-select-container").on("click","li", function () {
-		 completeQuestion($(this).parent().index());
+	$("#answer-select-container").on("click","input", function () {
+		if($(this).parent().find('input').is(':checked')) {
+			//alert($(this).parent().find('input').val)
+			// console.log($(this).parent().parent().parent().index());
+    		completeQuestion($(this).parent().parent().parent().index());
+		}
+		 
 		// alert($(this).parent().index());
 	});
 
