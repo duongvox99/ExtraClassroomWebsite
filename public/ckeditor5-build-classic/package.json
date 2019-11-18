@@ -89,6 +89,7 @@
     }
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-alignment": "^15.0.0",
     "@ckeditor/ckeditor5-upload": "^15.0.0",
     "@wiris/mathtype-ckeditor5": "^7.17.1"
   }

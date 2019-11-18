@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2019 at 03:49 PM
+-- Generation Time: Nov 18, 2019 at 02:37 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -96,15 +96,6 @@ CREATE TABLE `nganhangcauhoi` (
   `Tuan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `nganhangcauhoi`
---
-
-INSERT INTO `nganhangcauhoi` (`IdCauHoi`, `CauHoi`, `DapAn1`, `DapAn2`, `DapAn3`, `DapAn4`, `DapAnDung`, `LoiGiai`, `LoaiCauHoi`, `Lop`, `Tuan`) VALUES
-(1, '<p>Test+cau+hoi</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', 1, '<p><strong>Lời+giản+ádfasdf</strong>+ádf</p>', 1, 10, 46),
-(2, '<p>Test cau hoi</p>', '<p><strong>Dap án 1 ádfasdf</strong> ádf</p>', '<p><strong>Dap án 2 ádfasdf</strong> ádf</p>', '<p><strong>Dap án 3 ádfasdf</strong> ádf</p>', '<p><strong>Dap án 4 ádfasdf</strong> ádf</p>', 1, '<p><strong>Lời giản ádfasdf</strong> ádf</p>', 1, 10, 46),
-(3, '<p>Test+cau+hoi</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', '<p><strong>Dap+án+1+ádfasdf</strong>+ádf</p>', 1, '<p><strong>Lời+giản+ádfasdf</strong>+ádf</p>', 1, 10, 46);
-
 -- --------------------------------------------------------
 
 --
@@ -131,7 +122,7 @@ CREATE TABLE `nguoidung` (
 --
 
 INSERT INTO `nguoidung` (`IdNguoiDung`, `Username`, `Password`, `HoTen`, `NamSinh`, `Avatar`, `Lop`, `IdNhom`, `LoaiTaiKhoan`, `RandomCode`, `Email`, `DiemTong`) VALUES
-(1, 'admin1', '$2y$10$0hAJ4TS/HNQ/V/cX8F7xQebIG25vGCBUHmfciRka74MzY766begam', 'Võ Văn Dương', 1999, '', 0, 0, 0, '', 'duongvox99@gmail.com', 0),
+(1, 'admin1', '$2y$10$mA/Zkg0T16xdCu0IrDZe1eCGvDw.uNiP5tQ5lKjeHzmNusEDUG6ym', 'Võ Văn Dương', 1999, '', 0, 0, 0, '', 'duongvox99@gmail.com', 0),
 (2, 'admin2', '$2y$10$HBJgLtJLErByNdjHRpdOeuZR1Gwrp9jgXdqWJbGKqbK5Pe5JWMoz6', 'Phạm Minh Dương', 1999, '', 0, 0, 0, '', 'phamminhduong@gmail.com', 0),
 (3, 'huynhducvu', '$2y$10$6w.Hxafrj.zghrDhU4d6SeZ8tVHrrcDepcctomeq/oxZIRe6mve1q', 'Huỳnh Đức Vũ', 1980, '', 0, 0, 0, '', 'huynhducvu@gmail.com', 0),
 (4, 'hocsinh', '$2y$10$pzu1AEuXVvvvNu0PTB.hMOoaqjqsKS6rFH/t/HpTb5ozMKiZUaxKG', 'Vox Van Duwowng', 1999, '', 10, 1, 1, '', 'vovanduong3010@gmail.com', 0),
@@ -329,7 +320,7 @@ ALTER TABLE `de`
 -- AUTO_INCREMENT for table `nganhangcauhoi`
 --
 ALTER TABLE `nganhangcauhoi`
-  MODIFY `IdCauHoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdCauHoi` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nguoidung`

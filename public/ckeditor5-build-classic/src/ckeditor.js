@@ -30,6 +30,7 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import MathType from '@wiris/mathtype-ckeditor5';
 import Base64UploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -58,11 +59,15 @@ ClassicEditor.builtinPlugins = [
 	Table,
 	TableToolbar,
 	MathType,
-	Base64UploadAdapter
+	Base64UploadAdapter,
+	Alignment
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
+	alignment: {
+		options: [ 'left', 'center', 'right', 'justify']
+	},
 	toolbar: {
 		items: [
 			'heading',
@@ -72,6 +77,8 @@ ClassicEditor.defaultConfig = {
 			'link',
 			'bulletedList',
 			'numberedList',
+			'|',
+			'alignment',
 			'|',
 			'indent',
 			'outdent',
