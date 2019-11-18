@@ -132,11 +132,11 @@ class GiaoVien extends Controller{
     // ####################################################################################
 
     public function HandleString($str) {
-        if (preg_match_all('/src=".*?"/m', $str, $matches)) {
-            $matches = $matches[0];
+        if (preg_match_all('/src="(.*?)"/m', $str, $matches)) {
+            $matches = $matches[1];
 
             for ($i = 0; $i < count($matches); $i++) {
-                $str = str_replace($matches[$i], 'src="' . Convert_UploadImgCauHoi($matches[$i]), $str) . '"';
+                $str = str_replace($matches[$i], $this->Convert_UploadImgCauHoi($matches[$i]), $str);
             }
         }
 
@@ -167,8 +167,8 @@ class GiaoVien extends Controller{
             $nameFile = substr(md5(uniqid(mt_rand(), true)) , 0, 30);
             $uri = "/ExtraClassroomWebsite/upload/nganhangcauhoi/" . $nameFile . "." . $type;
         }
-
-        file_put_contents($uri, $data);
+        
+        file_put_contents(".." . $uri, $data);
 
         return $uri;
     }
@@ -193,8 +193,9 @@ class GiaoVien extends Controller{
             $LoiGiai = $this->HandleString($_POST["LoiGiai"]);
             $LoaiCauHoi = $_POST["LoaiCauHoi"];
             $Lop = $_POST["Lop"];
+            $Tuan = $_POST["Tuan"];
 
-            $result = $this->NganHangCauHoiModel->addCauHoi($CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop);
+            $result = $this->NganHangCauHoiModel->addCauHoi($CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop, $Tuan);
 
             $this->view("pages/ThemCauHoi", [
                 "subview" => "ThemCauHoi",
