@@ -29,13 +29,27 @@ class Hocsinh extends Controller{
     }
 
     public function Default(){
-        $data = $this->NganHangCauHoiModel->getCauHoi(5);
-        $this->view("BangDieuKhienHocSinh", $data);
+        $this->view("BangDieuKhienHocSinh");
     }
 
     public function LamBai(){
-        $data = $this->NganHangCauHoiModel->getCauHoi(4);
-        $this->view("LamBai", ["data" => $data]);
+        $data = $this->NganHangCauHoiModel->getCauHoi(1);
+        $this->view("BangDieuKhienHocSinh", [
+            "SubView" => "LamBai",
+            "DataAllCauHoi" => [
+                0 => $data,
+                1 => $data,
+                2 => $data,
+                3 => $data,
+                4 => $data,
+                5 => $data,
+                6 => $data,
+                7 => $data,
+                8 => $data,
+                9 => $data,
+                
+                ]
+        ]);
     }
 
     public function XemBangXepHangNhom() {

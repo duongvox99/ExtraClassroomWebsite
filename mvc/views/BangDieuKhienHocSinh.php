@@ -2,12 +2,26 @@
 <html lang="vi">
 
 <head>
-	<?php require("heads/BaiLam.php") ?>
+	<?php
+		if (isset($data["SubView"])) {
+			require("heads/" . $data["SubView"] . ".php");
+		}
+		else {
+			require("heads/ThongBao.php");
+		}
+	?>
 </head>
 
 <body >
-	<?php require("pages/header.php") ?>
-	<?php require("pages/LamBai.php") ?>
-	<?php require("pages/footer.php") ?>
+	<?php 
+		require("pages/header.php");
+		if (isset($data["SubView"])) {
+			require("pages/" .$data["SubView"] . ".php");
+		}
+		else {
+			require("pages/ThongBao.php");
+		}
+		require("pages/footer.php");
+	?>
 </body>
 </html>

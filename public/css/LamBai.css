@@ -34,13 +34,6 @@ body {
 
 }
 
-.my-nav ul li
-{
-	/*margin: auto;*/
-	/*float: left;*/
-	/*display: inline-block;*/
-}
-
 .my-nav .my-nav-menu li a:hover
 {
 	background-color: #005000;
@@ -86,14 +79,18 @@ body {
 	/*border: 1px solid red;*/
 	padding: 20px 0 20px 0;
 }
-.question-num-list
+
+#question-num-list li 
 {
-	list-style-type: none;
+    padding-top: 5px;
+	display:inline-table;
 }
 
-.question-num-list li 
-{
-	display:inline-table;
+@media screen and (max-width: 980px) {
+    #question-num-list li {
+        padding: 5px;
+        display:inline-table;
+    }
 }
 
 ul

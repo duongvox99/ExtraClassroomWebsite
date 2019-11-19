@@ -1,186 +1,130 @@
-// alert(0);
-var currenQuestion = 0;
-var responsiveMode = false;
 
-$(document).ready(function(){
-	$(window).resize(function(){
-	 
-	    // Lấy thông số
-	    var width = $(window).width();
-	    var height = $(window).height();
-	    console.log(width+" "+height);
-	    if(width<=980)
-	    {	
-	    	//console.log("true");
-	    	$(".question-num-list").addClass("pagination");
-	    	$(".question-num-list").removeClass("justify-content-center");
-	    	//paginationQButton(currenQuestion);
-	    	$(".question-num-list").addClass("overflow-auto");
-			responsiveMode = true;
-	    }else{
-	    	$(".question-num-list").removeClass("pagination");
-	    	$(".question-num-list").addClass("justify-content-center");
-	    	$(".question-num-list").removeClass("overflow-auto");
-	    	$(".q_btn").show();
-	    	responsiveMode = false;
-	    }
-	     
+$(document).ready(function () {
+	// Số câu hỏi
+	var totalQuestion = $(".question-content-item").length;
+
+	var currenQuestion = 0;
+
+	showQuestion(currenQuestion);
+
+	$(window).resize(function () {
+
+		// Lấy thông số
+		var width = $(window).width();
+		var height = $(window).height();
+		console.log(width + " " + height);
+		if (width <= 980) {
+			$("#question-num-list").addClass("pagination");
+			$("#question-num-list").removeClass("justify-content-center");
+			$("#question-num-list").addClass("overflow-auto");
+		} else {
+			$("#question-num-list").removeClass("pagination");
+			$("#question-num-list").addClass("justify-content-center");
+			$("#question-num-list").removeClass("overflow-auto");
+		}
 	});
 
-	var li = "<li><input type='button' id='q_btn_"+ 1 +"' class='btn btn-outline-info active boder6 q_btn' value=' "+"Câu 0"+ 1 +"'></li>";	
-	$('.question-num-list').append(li);
-	for (var i = 2; i <= 50; i++) 
-	{
-		if (i<10) 
-		{
-			li = "<li><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu 0"+ i +"'></li>";
+	$("#question-num-list").on("click", "li", function () {
+		currenQuestion = $(this).index();
+		console.log($(this));
+		showQuestion(currenQuestion);
+	});
+
+
+	$(".pre").click(function () {
+		if (currenQuestion > 0) {
+			currenQuestion = currenQuestion - 1;
 		}
-		else
-		{
-			li = "<li><input type='button' id='q_btn_"+ i +"' class='btn btn-outline-info boder6 q_btn' value=' "+"Câu "+ i +"'></li>";		
+		showQuestion(currenQuestion);
+	});
+
+	$(".next").click(function () {
+		if (currenQuestion < totalQuestion - 1) { 
+			currenQuestion = currenQuestion + 1;
 		}
-		
-		
-		$('.question-num-list').append(li);
+		showQuestion(currenQuestion);
+	});
+
+	//event click answer
+	$(".answer-select-list").on("click", "input", function () {
+		if ($(this).parent().find("input").is(":checked")) {
+			$ul_answer_select_list = $(this).parent().parent().parent();
+			completeQuestion($ul_answer_select_list.attr("id"));
+		}
+	});
+
+	//======================== Show Question and update state of Question Button when click ======
+	function showQuestion(numQuestion) {
+		for (var i = 0; i < $(".question-content-item").length; i++) {
+			$("#question-container_" + i).hide();
+			$("#q_btn_" + i).removeClass("active");
+
+		}
+
+		$("#question-container_" + numQuestion).show();
+		$("#q_btn_" + numQuestion).addClass("active");
+		$("#q_btn_" + numQuestion).focus();
 	}
-	
 
-	$('.question-num-list').on('click','li',function()
-		{
-			//$('.question-num-list li input.active').removeClass('active');
-			//$(this).find('input').addClass('active');
-			currenQuestion = $(this).index();
-			activeQuestion(currenQuestion);
-		});
-});
-
-
-// data of question
-$(document).ready(function createQuestion() {
-	for (var i = 1; i <= 50; i++) {
-		$('#question-content').append('<div class="question-content-item"><h4><i class="fas fa-question-circle"></i> Câu hỏi số ' + i+ '</h4><p>Question content ' + i +'</p></div>');
-		$('#answer-select-container').append("<ul class='answer-select-list_" + i +"'></ul>");
-		for(var j = 1; j<=4; j++)
-		{
-		 	$(".answer-select-list_"+i).append("<li>  <div class='custom-control custom-radio'><input type='radio' class='custom-control-input' id='customRadio_"+j+"_"+i+"' name='answerOfQuestion_"+i+"' value='selectAns_"+j+"'><label class='custom-control-label' for='customRadio_"+j+"_"+i+"'>answer of question "+ i+"</label></div></li>");
-		}
+	//======================= Update state of Question Button when the answer is selected ========
+	function completeQuestion(numQuestion) {
+		$("#q_btn_" + numQuestion).removeClass("btn-outline-info");
+		$("#q_btn_" + numQuestion).addClass("btn-success");
+		$("#q_btn_" + numQuestion).focus();
 	}
-		
-	activeQuestion(0);
-
-
-	$('.pre').click(function() {
-		
-		if (currenQuestion > 0) {currenQuestion = currenQuestion -1;}
-		//if (responsiveMode == true && currenQuestion>0) 
-
-		activeQuestion(currenQuestion);
-	});
-
-	$('.next').click(function() {
-		
-		if (currenQuestion <49 ) {currenQuestion = currenQuestion +1;}
-		//if (currenQuestion % 5 == 0 && responsiveMode == true) { paginationQButton(currenQuestion); }	
-		activeQuestion(currenQuestion);
-	});
-
-	$("#answer-select-container").on("click","input", function () {
-		if($(this).parent().find('input').is(':checked')) {
-			//alert($(this).parent().find('input').val)
-			// console.log($(this).parent().parent().parent().index());
-    		completeQuestion($(this).parent().parent().parent().index());
-		}
-		 
-		// alert($(this).parent().index());
-	});
-
-	
 });
 
 //=============================================================function of clock
-
-$( document ).ready(function() {
+$(document).ready(function () {
 	var seconds = 0;
-    var minutes = 90;
-    var hours = 0;
-    refreshClock();
-    countdown();
+	var minutes = 90;
+	var hours = 0;
+	refreshClock();
+	countdown();
 	function countdown() {
-        hasStarted = true
-        interval = setInterval(() => {
-            // if(hasEnded == false) {
-            if (seconds <= 11 && minutes == 0 && hours == 0) {
-              $(timer).find('span').addClass('red')
-            }
+		hasStarted = true
+		interval = setInterval(() => {
+			// if(hasEnded == false) {
+			if (seconds <= 11 && minutes == 0 && hours == 0) {
+				$(timer).find("span").addClass("red")
+			}
 
-            if(seconds == 0 && minutes == 0 || (hours > 0  && minutes == 0 && seconds == 0)) {
-                hours--
-                minutes = 59
-                seconds = 60
-                refreshClock()
-            }
+			if (seconds == 0 && minutes == 0 || (hours > 0 && minutes == 0 && seconds == 0)) {
+				hours--
+				minutes = 59
+				seconds = 60
+				refreshClock()
+			}
 
-            if(seconds > 0) {
-                seconds--
-                refreshClock()
-            }
-            else if (seconds == 0) {
-                minutes--
-                seconds = 59
-                refreshClock()
-            }
-        // }
-        //     else {
-        //         //restartClock()
-        //     }
+			if (seconds > 0) {
+				seconds--
+				refreshClock()
+			}
+			else if (seconds == 0) {
+				minutes--
+				seconds = 59
+				refreshClock()
+			}
+			// }
+			//     else {
+			//         //restartClock()
+			//     }
 
-        }, 1000)
-    }
-
-//======================= update display 0[9] when number of time < 10    
-    function pad(d) {
-        return (d < 10) ? '0' + d.toString() : d.toString()
-    }
-
-// ====================== Update display clock ========================
-    function refreshClock()
-    {
-    	jQuery('#countdown #hour').html(pad(hours));
-		jQuery('#countdown #min').html(pad(minutes));
-		jQuery('#countdown #sec').html(pad(seconds));
-		if (hours == 0 && minutes == 0 && seconds == 0 && hasStarted == true) {
-            location.reload();
-        }
-    }
-});
-
-
-//======================== Active Question and Pagination Question Button ====================
-
-//======================== Show Question and update state of Question Button when click ======
-function activeQuestion(numQuestion)
-{
-	for (var i = 0; i < $('.question-content-item').length; i++) {
-		$('.question-content-item')[i].style.display = "none";
-		$('.answer-select-list_'+(i+1)).hide();
+		}, 1000)
 	}
-	$('.question-num-list li input.active').removeClass('active');
-	$('.question-content-item')[numQuestion].style.display = "block";
-	$('.answer-select-list_'+(numQuestion+1)).show();
-	//alert($('.q_btn')[numQuestion].value);
-	$('.q_btn')[numQuestion].className += " "+"active";
-}
 
-//======================= Update state of Question Button when the answer is selected ========
-function completeQuestion(numQuestion) {
-	$(".q_btn")[numQuestion].classList.remove("btn-outline-info");
-	$(".q_btn")[numQuestion].className += " " + "btn btn-success";
-}
+	//======================= update display 0[9] when number of time < 10    
+	function pad(d) {
+		return (d < 10) ? "0" + d.toString() : d.toString()
+	}
 
-
-
-
-		
-
-
-
+	// ====================== Update display clock ========================
+	function refreshClock() {
+		jQuery("#countdown #hour").html(pad(hours));
+		jQuery("#countdown #min").html(pad(minutes));
+		jQuery("#countdown #sec").html(pad(seconds));
+		if (hours == 0 && minutes == 0 && seconds == 0 && hasStarted == true) {
+			location.reload();
+		}
+	}
+});

@@ -1,7 +1,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Project</title>
+	<title>Thông báo | Bảng điều khiển học sinh</title>
 
 	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/LamBai.css" />
