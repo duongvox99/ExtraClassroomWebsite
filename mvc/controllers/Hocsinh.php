@@ -29,7 +29,7 @@ class Hocsinh extends Controller{
     }
 
     public function Default(){
-        $this->view("BangDieuKhienHocSinh");
+        $this->ThongBao(1);
     }
 
     public function LamBai(){
@@ -70,6 +70,29 @@ class Hocsinh extends Controller{
         $result = $this->NguoiDungModel->getHocSinhRanking_Lop($this->Lop);
 
         print_r($result);
+    }
+
+    public function ThongBao($page) {
+        $this->view("BangDieuKhienHocSinh", [
+            "SubView" => "ThongBao",
+            "Title" => "Thông báo",
+            // "DataNguoiDung" => $DataNguoiDung
+        ]);
+    }
+
+    public function KenhThaoLuanChung() {
+        $this->view("BangDieuKhienHocSinh", [
+            "SubView" => "KenhThaoLuanChung",
+            "Title" => "Kênh thảo luận chung",
+            // "DataNguoiDung" => $DataNguoiDung
+        ]);
+    }
+
+    public function BangXepHang() {
+        $this->view("BangDieuKhienHocSinh", [
+            "SubView" => "BangXepHang",
+            // "DataNguoiDung" => $DataNguoiDung
+        ]);
     }
 }
 ?>

@@ -110,9 +110,9 @@ class TrangChu extends Controller{
         }
     }
 
-    public function CapNhatTaiKhoan() {
+    public function ThayDoiThongTin() {
         if (!isset($_POST["btnSubmit"])) {
-            $this->view("CapNhatTaiKhoan");
+            $this->view("ThayDoiThongTin");
         }
         else {
             $IdNguoiDung = $_SESSION["logined_IdNguoiDung"];
@@ -128,7 +128,7 @@ class TrangChu extends Controller{
                 header("Location: /ExtraClassroomWebsite");
             }
             else {
-                $this->view("CapNhatTaiKhoan", [
+                $this->view("ThayDoiThongTin", [
                     "result" => $result,
                 ]);
             }

@@ -39,6 +39,29 @@
                 });            
             </script>";
         }
+        else {
+            echo 
+            "<script type='text/javascript'>
+                $.confirm({
+                    theme: 'modern',
+                    title: 'Kết quả',
+                    content: 'Cập nhật thông tin tài khoản thành công!',
+                    type: 'red',
+                    typeAnimated: true,
+                    autoClose: 'tryAgain|5000',
+                    buttons: {
+                        ok: {
+                            text: 'OK',
+                            btnClass: 'btn-green',
+                            action: function(){
+                                location.href = 'http://localhost/ExtraClassroomWebsite'; 
+                            }
+                        }
+                    },
+                });            
+            </script>";
+        }
+
     }
     ?>
     <div class="wrapper fadeInDown">
@@ -59,6 +82,7 @@
                 <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Họ tên" value="">
                 <input type="password" id="password" class="fadeIn third" name="Password" placeholder="Mật khẩu">
                 <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Họ tên" value="">
+                <input type="file" id="username" class="fadeIn third" name="Avatar" placeholder="third" value="">
                 <input type="submit" class="fadeIn fourth" value="Cập nhật" name="btnSubmit">
             </form>
 
