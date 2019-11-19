@@ -14,14 +14,14 @@
 
 <body >
 	<?php 
-		require("pages/header.php");
+		require("pages/headerHocSinh.php");
 		if (isset($data["SubView"])) {
 			require("pages/" .$data["SubView"] . ".php");
 		}
 		else {
 			require("pages/ThongBao.php");
 		}
-		require("pages/footer.php");
+		require("pages/footerHocSinh.php");
 	?>
 </body>
 </html>

@@ -16,7 +16,7 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav my-nav-menu">			      
 					<li class="nav-item">
-						<a class="nav-link" href="#">Bài kiểm tra</a>
+						<a class="nav-link" href="#">Thông báo</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">Kênh thảo luận chung</a>
@@ -29,7 +29,7 @@
 				<div class="ml-auto">
 					<form class="form-inline  my-2 my-lg-0" action="/action_page.php">
 
-						<span><input class="form-control mr-sm-2" type="text" placeholder="Bài kiểm tra"></span>
+						<span><input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm"></span>
 						<button class="btn btn-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
 					</form>
 				</div>
