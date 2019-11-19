@@ -36,9 +36,9 @@
         <h1>LoiGiai</h1>
         <textarea name="LoiGiai" id="editorLoiGiai"></textarea>
         <h1>LoaiCauHoi</h1>
-        <textarea name="LoaiCauHoi" class="editor">1</textarea>
+        <textarea name="LoaiCauHoi" class="editor">5</textarea>
         <h1>Lop</h1>
-        <textarea name="Lop" class="editor">11</textarea>
+        <textarea name="Lop" class="editor">12</textarea>
         <h1>Tuan</h1>
         <textarea name="Tuan" class="editor">47</textarea>
         <p><input type="submit" name="btnSubmit" value="Submit"></p>
