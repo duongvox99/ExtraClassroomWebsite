@@ -16,11 +16,12 @@
 
 	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/font-awesome/css/all.css" />
-	
+	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/KenhThaoLuanChung.css">
 	<link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/HocSinh.css" />
 	
 	<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/jquery-3.4.1.js'></script>
 	<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/bootstrap.js'></script>
+	
 
 </head>
 
