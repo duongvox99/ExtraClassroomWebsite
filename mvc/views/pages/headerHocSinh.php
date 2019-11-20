@@ -8,7 +8,7 @@
 		<!-- Navigation Bar my-nav-->
 		<nav class="navbar navbar-default navbar-expand-md my-nav">
 			<div class="container">
-				<a class="navbar-brand" href="#"><img src="/ExtraClassroomWebsite/public/img/math-logo.png" alt="Logo" style="width:40px;"></a>
+				<a class="navbar-brand" href="/ExtraClassroomWebsite"><img src="/ExtraClassroomWebsite/public/img/math-logo.png" alt="Logo" style="width:40px;"></a>
 				<!-- Toggler/collapsibe Button -->
 				<button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 					<span class="navbar-toggler-icon"></span>
@@ -16,13 +16,13 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav my-nav-menu">			      
 					<li class="nav-item">
-						<a class="nav-link" href="#">Thông báo</a>
+						<a class="nav-link" href="/ExtraClassroomWebsite/ThongBao/1">Thông báo</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Kênh thảo luận chung</a>
+						<a class="nav-link" href="/ExtraClassroomWebsite/HocSinh/KenhThaoLuanChung">Kênh thảo luận chung</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Bảng xếp hạng</a>
+						<a class="nav-link" href="/ExtraClassroomWebsite/HocSinh/BangXepHang">Bảng xếp hạng</a>
 					</li>				
 				</ul>
 				<!-- Search -->
@@ -38,13 +38,12 @@
 					<!-- Dropdown -->
 					<li class="nav-item dropdown ">
 
-						<a class="nav-link dropdown-toggle account" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<a class="nav-link dropdown-toggle account" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img src="/ExtraClassroomWebsite/public/img/avt-icon.jpg" alt="Avatar" class="avatar"> 
 							<span>Jason Phạm</span> 
 						</a>
 						<div class="dropdown-menu dropdown-menu-right dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="/ExtraClassroomWebsite/TrangChu/ThayDoiThongTin">Thay đổi thông tin</a>
 							<a class="dropdown-item" href="/ExtraClassroomWebsite/TrangChu/DangXuat">Đăng xuất</a>
 						</div>
 					</li>

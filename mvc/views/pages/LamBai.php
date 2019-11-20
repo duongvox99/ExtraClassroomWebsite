@@ -1,3 +1,6 @@
+<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/LamBai.js'></script>
+<script id="MathJax-script" async src="/ExtraClassroomWebsite/public/js/tex-mml-chtml.js"></script>
+
 <div class="container bg-light">
 	<div id="wrapper" class="row">
 		<div id="left" class="col col-lg-3 col-md-12">
@@ -22,9 +25,7 @@
 								</div>
 							</div>
 							<div class="card-footer">
-								<!-- <a href="#" class="btn btn-primary">Book now</a> -->
 								<a href="#" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Nộp bài</a>
-								<!-- <a href="#" class="btn btn-danger">14 remaining</a> -->
 							</div>
 						</div>
 					</div>
