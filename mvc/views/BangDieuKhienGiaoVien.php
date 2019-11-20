@@ -7,9 +7,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="/ExtraClassroomWebsite/public/admin/img/favicon.ico" type="image/ico" />
+    <link rel="icon" href="/ExtraClassroomWebsite/public/img/icon.ico" type="image/ico" />
 
-    <title>Admin | Index</title>
+    <!-- NEED to do ICON -->
+	<title>
+		<?php
+		if (isset($data["Title"])) {
+			echo $data["Title"] . " | ";
+        }
+		?>Bảng điều khiển giáo viên</title>
 
     <!-- Bootstrap -->
     <link href="/ExtraClassroomWebsite/public/admin/asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -46,13 +52,14 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section my-side-menu">
-                            <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li><a><i class="fas fa-home"></i> Home</a></li>
-                                <li><a><i class="fas fa-user"></i> User</a></li>
-                                <li><a><i class="far fa-building"></i> Category</a></li>
-                                <li><a><i class="far fa-newspaper"></i> Article</a></li>
-                                <li><a><i class="fas fa-sliders-h"></i> Silders</a></li>
+                                <li><a><i class="fas fa-home"></i> Tổng quan</a></li>
+                                <li><a><i class="fas fa-users"></i> Nhóm lớp học</a></li>
+                                <li><a><i class="fas fa-user"></i> Học sinh</a></li>
+
+                                <li><a><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a></li>
+                                <li><a><i class="fas fa-trophy"></i> Bảng xếp hạng</a></li>
+                                <li><a><i class="fas fa-comment-dots"></i> Kênh thảo luận chung</a></li>
                             </ul>
                         </div>
                     </div>
@@ -69,7 +76,16 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="/ExtraClassroomWebsite/public/admin/img/img.jpg" alt="">John Doe
+                                    <img src="
+                                        <?php
+                                        if ($data["DataNguoiDung"]["Avatar"] != "") {
+                                            echo $data["DataNguoiDung"]["Avatar"];
+                                        }
+                                        else {
+                                            echo "/ExtraClassroomWebsite/public/img/no-avatar.png";
+                                        }
+                                        ?>" alt="Avatar">
+                                    <?php	echo $data["DataNguoiDung"]["HoTen"];?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">

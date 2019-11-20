@@ -5,13 +5,7 @@ class GiaoVien extends Controller{
     public $NguoiDungModel;
     public $NhomModel;
 
-    public $IdNguoiDung;
-    public $HoTen;
-    public $NamSinh;
-    public $Avatar;
-    public $Lop;
-    public $IdNhom;
-    public $Email;
+    public $DataNguoiDung;
 
     public function __construct() {
         // init model
@@ -19,19 +13,21 @@ class GiaoVien extends Controller{
         $this->NguoiDungModel = $this->model("NguoiDungModel");
         $this->NhomModel = $this->model("NhomModel");
         
-        $this->IdNguoiDung = $_SESSION["IdNguoiDung"];
-        $this->HoTen = $_SESSION["HoTen"];
-        $this->NamSinh = $_SESSION["NamSinh"];
-        $this->Avatar = $_SESSION["Avatar"];
-        $this->Lop = $_SESSION["Lop"];
-        $this->IdNhom = $_SESSION["IdNhom"];
-        $this->Email = $_SESSION["Email"];
-        $this->DiemTong = $_SESSION["DiemTong"];
+        $this->DataNguoiDung = array("IdNguoiDung" => $_SESSION["IdNguoiDung"],
+                                "HoTen" => $_SESSION["HoTen"],
+                                "NamSinh" => $_SESSION["NamSinh"],
+                                "Avatar" => $_SESSION["Avatar"],
+                                "Lop" => $_SESSION["Lop"],
+                                "IdNhom" => $_SESSION["IdNhom"],
+                                "Email" => $_SESSION["Email"],
+                                "DiemTong" => $_SESSION["DiemTong"]
+                            );
     }
 
     public function Default() {
         // Can goi model cho trang dashboard
-        $this->view("BangDieuKhienGiaoVien");
+        $this->view("BangDieuKhienGiaoVien",
+                    ["DataNguoiDung" => $this->DataNguoiDung]);
     }
 
     public function Fake() {

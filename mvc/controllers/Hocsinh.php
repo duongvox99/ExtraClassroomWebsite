@@ -4,28 +4,22 @@ class Hocsinh extends Controller{
     public $NganHangCauHoiModel;
     public $NguoiDungModel;
 
-    public $IdNguoiDung;
-    public $HoTen;
-    public $NamSinh;
-    public $Avatar;
-    public $Lop;
-    public $IdNhom;
-    public $Email;
-    public $DiemTong;
-
+    public $DataNguoiDung;
+    
     public function __construct() {
         // init model
         $this->NganHangCauHoiModel = $this->model("NganHangCauHoiModel");
         $this->NguoiDungModel = $this->model("NguoiDungModel");
         
-        $this->IdNguoiDung = $_SESSION["IdNguoiDung"];
-        $this->HoTen = $_SESSION["HoTen"];
-        $this->NamSinh = $_SESSION["NamSinh"];
-        $this->Avatar = $_SESSION["Avatar"];
-        $this->Lop = $_SESSION["Lop"];
-        $this->IdNhom = $_SESSION["IdNhom"];
-        $this->Email = $_SESSION["Email"];
-        $this->DiemTong = $_SESSION["DiemTong"];
+        $this->DataNguoiDung = array("IdNguoiDung" => $_SESSION["IdNguoiDung"],
+                                "HoTen" => $_SESSION["HoTen"],
+                                "NamSinh" => $_SESSION["NamSinh"],
+                                "Avatar" => $_SESSION["Avatar"],
+                                "Lop" => $_SESSION["Lop"],
+                                "IdNhom" => $_SESSION["IdNhom"],
+                                "Email" => $_SESSION["Email"],
+                                "DiemTong" => $_SESSION["DiemTong"]
+                            );
     }
 
     public function Default(){
@@ -76,7 +70,7 @@ class Hocsinh extends Controller{
         $this->view("BangDieuKhienHocSinh", [
             "SubView" => "ThongBao",
             "Title" => "Thông báo",
-            // "DataNguoiDung" => $DataNguoiDung
+            "DataNguoiDung" => $this->DataNguoiDung
         ]);
     }
 
