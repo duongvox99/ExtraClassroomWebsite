@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/DangNhap.css" />
 
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
+    <script type='text/javascript' src='/ExtraClassroomWebsite/public/js/QuenMatKhau.js'></script>
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
 </head>
 
@@ -73,7 +74,7 @@
             <form action="" method="POST">
                 <input type="text" id="username" class="fadeIn second" name="username" placeholder="Tên đăng nhập">
                 <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
-                <input type="submit" class="fadeIn fourth" value="Reset mật khẩu" name="btnSubmit">
+                <input type="submit" id="btnSubmit" class="fadeIn fourth" value="Reset mật khẩu" name="btnSubmit">
             </form>
 
             <!-- Remind Passowrd -->
