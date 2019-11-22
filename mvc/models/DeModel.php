@@ -41,13 +41,27 @@ class DeModel extends MySQL{
         return mysqli_num_rows($result);
     }
 
+    public function getDeNhom() {
+        // NEED TO DO
+        // Chỉ trả về đề cho nhóm lớp
+        
+        $qr = "SELECT * FROM de";
+        
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, $row);
+        }
+        return $output;
+    }
+
     public function getDe($IdDe){
         $qr = "SELECT * FROM de WHERE IdDe=$IdDe";
         return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
     }
 
     public function getIdDe($TenDe){
-        $qr = "SELECT IdDe FROM de WHERE TenDe=$TenDe";
+        $qr = "SELECT IdDe FROM de WHERE TenDe='$TenDe'";
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {

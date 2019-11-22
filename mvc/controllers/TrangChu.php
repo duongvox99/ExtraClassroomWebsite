@@ -9,7 +9,7 @@ class TrangChu extends Controller{
     }
 
     function Default(){
-        echo "Welcome";
+        $this->DangNhap();
     }
 
     public function DangNhap(){

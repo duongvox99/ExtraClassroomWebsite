@@ -10,119 +10,104 @@
     <link rel="icon" href="/ExtraClassroomWebsite/public/img/icon.ico" type="image/ico" />
 
     <!-- NEED to do ICON -->
-	<title>
-		<?php
-		if (isset($data["Title"])) {
-			echo $data["Title"] . " | ";
+    <title>
+        <?php
+        if (isset($data["Title"])) {
+            echo $data["Title"] . " | ";
         }
-		?>Bảng điều khiển giáo viên</title>
-
-    <link href="/ExtraClassroomWebsite/public/admin/asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="/ExtraClassroomWebsite/public/admin/css/custom.min.css" rel="stylesheet">
+        ?>Bảng điều khiển giáo viên</title>
 
     <!-- Font Awesome -->
     <link href="/ExtraClassroomWebsite/public/font-awesome/css/all.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="/ExtraClassroomWebsite/public/admin/css/custom.min.css" rel="stylesheet">
-    <!-- Custom Theme Style -->
-    <link href="/ExtraClassroomWebsite/public/admin/css/mycss.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
 
+    <link href="/ExtraClassroomWebsite/public/css/BangDieuKhienGiaoVien.css" rel="stylesheet">
+
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
+    <script type='text/javascript' src='/ExtraClassroomWebsite/public/js/bootstrap.js'></script>
 </head>
 
-<body class="nav-md">
-    <div class="container body">
-        <div class="main_container">
-            <div class="col-md-3 left_col">
-                <div class="left_col scroll-view">
-                    <div class="navbar nav_title" style="border: 0;">
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 left_col">
+                <nav class="nav flex-column my-nav">
+                    <div class="navbar navbar-brand nav_title" style="border: 0;">
                         <a href="/ExtraClassroomWebsite" class="site_title"><img src="/ExtraClassroomWebsite/public/img/math-logo.png" alt="Logo" style="width:40px;"> <span><strong>ExtraClassroom</strong></span></a>
                     </div>
-                    <div class="clearfix"></div>
-                    <!-- menu profile quick info -->
-
-                    <!-- /menu profile quick info -->
-                    <br />
-                    <!-- sidebar menu -->
-                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-                        <div class="menu_section my-side-menu">
-                            <ul class="nav side-menu">
-                                <li><a><i class="fas fa-home"></i> Tổng quan</a></li>
-                                <li><a><i class="fas fa-users"></i> Nhóm lớp học</a></li>
-
-                                <li><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1"><i class="fas fa-user"></i> Đề kiểm tra</a></li>
-                                
-                                <li><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1"><i class="fas fa-user"></i> Người dùng</a></li>
-
-                                <li><a href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1"><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a></li>
-                                <li><a><i class="fas fa-trophy"></i> Bảng xếp hạng</a></li>
-                                <li><a><i class="fas fa-comment-dots"></i> Kênh thảo luận chung</a></li>
-                            </ul>
-                        </div>
+                    <ul class="nav flex-column my-nav-menu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNhomHocSinh"><i class="fas fa-users"></i> Nhóm lớp học</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1"><i class="fas fa-user"></i> Đề kiểm tra</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1"><i class="fas fa-user"></i> Người dùng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1"><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-trophy"></i> Bảng xếp hạng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-comment-dots"></i> Kênh thảo luận chung</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-10 right_col" role="main">
+                <!-- top navigation -->
+                <nav class="navbar navbar-default navbar-expand-md my-nav">
+                    <div class="nav toggle pl-2">
+                        <a id="menu_toggle" class="bar-ico-custom-color"><i class="fas fa-bars fa-2x"></i></a>
                     </div>
-                    <!-- /sidebar menu -->
-                </div>
-            </div>
-            <!-- top navigation -->
-            <div class="top_nav">
-                <div class="nav_menu my-nav">
-                    <nav>
-                        <div class="nav toggle">
-                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                        </div>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="">
-                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="
-                                        <?php
-                                        if ($data["DataNguoiDung"]["Avatar"] != "") {
-                                            echo $data["DataNguoiDung"]["Avatar"];
-                                        }
-                                        else {
-                                            echo "/ExtraClassroomWebsite/public/img/no-avatar.png";
-                                        }
-                                        ?>" alt="Avatar">
-                                    <?php echo $data["DataNguoiDung"]["HoTen"];?>
-                                    <span class=" fa fa-angle-down"></span>
-                                </a>
-                                <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="/ExtraClassroomWebsite/TrangChu/ThayDoiThongTin/<?php echo $data["DataNguoiDung"]["IdNguoiDung"];?>"> Thay đổi thông tin</a></li>
-                                    <li><a href="/ExtraClassroomWebsite/TrangChu/DangXuat"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- /top navigation -->
-            <!-- page content -->
-            <div class="right_col" role="main">
-                <?php 
-                    if (isset($data["SubView"])) {
-                        require("pages/" .$data["SubView"] . ".php");
-                    }
-                    else {
-                        require("pages/DanhSachNguoiDung.php");
-                    }
+                    <ul class="navbar-nav ml-auto account">
+                        <!-- Dropdown -->
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle account" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="
+                                <?php
+                                if ($data["DataNguoiDung"]["Avatar"] != "") {
+                                    echo $data["DataNguoiDung"]["Avatar"];
+                                } else {
+                                    echo "/ExtraClassroomWebsite/public/img/no-avatar.png";
+                                }
+                                ?>" alt="Avatar" class="avatar">
+
+                                <span><?php echo $data["DataNguoiDung"]["HoTen"]; ?></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-custom" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/ExtraClassroomWebsite/TrangChu/ThayDoiThongTin/<?php echo $data["DataNguoiDung"]["IdNguoiDung"] ?>">Thay đổi thông tin</a>
+                                <a class="dropdown-item" href="/ExtraClassroomWebsite/TrangChu/DangXuat">Đăng xuất</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /top navigation -->
+                <!-- page content -->
+                <?php
+                if (isset($data["SubView"])) {
+                    require("pages/" . $data["SubView"] . ".php");
+                } else {
+                    require("pages/DanhSachNguoiDung.php");
+                }
                 ?>
 
             </div>
             <!-- /page content -->
-            <!-- footer -->
-            <footer>
-                <div id="footer">
-                    <span class="text-muted"><b>Copyright © <a href="https://www.facebook.com/duongvox" target="_blank">Dương Võ</a> & <a href="https://www.facebook.com/duong.pm.1100011" target="_blank">Dương Phạm</b></span>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer -->
         </div>
+
+
+    </div>
+    <div id="footer">
+        <footer>
+            <span class="text-muted"><b>Copyright © <a href="https://www.facebook.com/duongvox" target="_blank">Dương Võ</a> & <a href="https://www.facebook.com/duong.pm.1100011" target="_blank">Dương Phạm</b></span>
+        </footer>
     </div>
 </body>
 

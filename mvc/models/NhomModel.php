@@ -30,8 +30,8 @@ class NhomModel extends MySQL{
         return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
     }
     
-    public function addNhom($TenNhom, $SoLuong, $Lop) {
-        $qr = "INSERT INTO nhom VALUES (null, '$TenNhom', $SoLuong, $Lop)";
+    public function addNhom($TenNhom, $Lop) {
+        $qr = "INSERT INTO nhom VALUES (null, '$TenNhom', $Lop)";
         
         $result = false;
         if (mysqli_query($this->con, $qr)) {
@@ -40,8 +40,8 @@ class NhomModel extends MySQL{
         return $result;
     }
 
-    public function editNhom($IdNhom, $TenNhom, $SoLuong, $Lop) {
-        $qr = "UPDATE nhom SET TenNhom='$TenNhom', SoLuong='$SoLuong', Lop='$Lop' WHERE IdNhom=$IdNhom";
+    public function editNhom($IdNhom, $TenNhom, $Lop) {
+        $qr = "UPDATE nhom SET TenNhom='$TenNhom', Lop='$Lop' WHERE IdNhom=$IdNhom";
         
         $result = false;
         if (mysqli_query($this->con, $qr)) {

@@ -4,6 +4,8 @@ $SoCauHoi = $_POST["SoCauHoi"];
 $HienDapAn = $_POST["HienDapAn"];
 $NgayTaoDe = $_POST["NgayTaoDe"];
 $Lop = $_POST["Lop"]; -->
+<script type="text/javascript" src="/ExtraClassroomWebsite/public/js/DeleteButton.js"></script>
+
 <?php
 if (isset($data["result"])) {
     $title = $data["action"] . " " . $data["type"];
@@ -201,7 +203,7 @@ if (isset($data["result"])) {
                                             }
                                             ?>
                                         <tr class="even pointer">
-                                            <td class=""><?php echo ($i + 50 * ($data["Page"] - 1) + 1); ?></td>
+                                            <td class=""><?php echo ($i + 1); ?></td>
                                             <td><?php echo $LoaiCauHoi; ?></td>
                                             <td><?php echo $data["DanhSachCauHoi_De"][$i]["Lop"]; ?></td>
                                             <td><?php echo $data["DanhSachCauHoi_De"][$i]["Tuan"]; ?></td>
@@ -214,11 +216,8 @@ if (isset($data["result"])) {
                                             <td><?php echo $data["DanhSachCauHoi_De"][$i]["LoiGiai"]; ?></td>
                                             <td class="last">
                                                 <div class="zvn-box-btn-filter">
-                                                    <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaCauHoi/<?php echo $data["DanhSachCauHoi_De"][$i]["IdCauHoi"]; ?>" type="button" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </a>
-                                                    <a href="/ExtraClassroomWebsite/GiaoVien/XoaCauHoi/<?php echo $data["DanhSachCauHoi_De"][$i]["IdCauHoi"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
-                                                        <i class="fa fa-trash"></i>
+                                                    <a href="/ExtraClassroomWebsite/GiaoVien/XoaCauHoi_De/<?php echo $data["DanhSachCauHoi_De"][$i]["IdDe"]; ?>/<?php echo $data["DanhSachCauHoi_De"][$i]["IdCauHoi"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
+                                                        <i class="fas fa-minus"></i>
                                                     </a>
                                                 </div>
                                             </td>

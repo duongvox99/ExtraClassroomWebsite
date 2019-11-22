@@ -6,6 +6,9 @@ class GiaoVien extends Controller{
     public $NhomModel;
     public $DeModel;
     public $De_CauHoiModel;
+    public $De_NhomModel;
+    public $ThongBaoNhomModel;
+
     public $DataNguoiDung;
 
     public function __construct() {
@@ -15,7 +18,9 @@ class GiaoVien extends Controller{
         $this->NhomModel = $this->model("NhomModel");
         $this->DeModel = $this->model("DeModel");
         $this->De_CauHoiModel = $this->model("De_CauHoiModel");
-        
+        $this->ThongBaoNhomModel = $this->model("ThongBaoNhomModel");
+        $this->De_NhomModel = $this->model("De_NhomModel");
+
         $this->DataNguoiDung = array("IdNguoiDung" => $_SESSION["IdNguoiDung"],
                                 "HoTen" => $_SESSION["HoTen"],
                                 "NamSinh" => $_SESSION["NamSinh"],
@@ -28,11 +33,10 @@ class GiaoVien extends Controller{
     }
 
     public function Default() {
-        // Can goi model cho trang dashboard
-        $this->view("BangDieuKhienGiaoVien",[
-            "DataNguoiDung" => $this->DataNguoiDung
-        ]);
+        $this->DanhSachNhomHocSinh();
     }
+
+    // #######################################################################################
 
     public function DanhSachNguoiDung($category, $page) {
         if (is_null($page)) {
@@ -187,19 +191,19 @@ class GiaoVien extends Controller{
 
             $result = $this->DeModel->addDe($TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho);
             if ($result) {
-                $IdDe = $this->DeModel->getIdDe($TenDe)[0];
+                $IdDe = $this->DeModel->getIdDe($TenDe)[0]["IdDe"];
 
                 $DanhSachCauHoi_De = $this->NganHangCauHoiModel->getAllCauHoi_Tuan_Lop($Lop, $Tuan, 1, $SoCauDe);
                 for ($i = 0; $i < count($DanhSachCauHoi_De); $i++) {
-                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_De[$i]);
+                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_De[$i]["IdCauHoi"]);
                 }
                 $DanhSachCauHoi_TrungBinh = $this->NganHangCauHoiModel->getAllCauHoi_Tuan_Lop($Lop, $Tuan, 2, $SoCauTrungBinh);
                 for ($i = 0; $i < count($DanhSachCauHoi_TrungBinh); $i++) {
-                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_TrungBinh[$i]);
+                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_TrungBinh[$i]["IdCauHoi"]);
                 }
                 $DanhSachCauHoi_Kho = $this->NganHangCauHoiModel->getAllCauHoi_Tuan_Lop($Lop, $Tuan, 3, $SoCauKho);
                 for ($i = 0; $i < count($DanhSachCauHoi_Kho); $i++) {
-                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_Kho[$i]);
+                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_Kho[$i]["IdCauHoi"]);
                 }
             }
             $this->view("BangDieuKhienGiaoVien", [
@@ -227,12 +231,15 @@ class GiaoVien extends Controller{
         else {
             $TenDe = $_POST["TenDe"];
             $LoaiDe = $_POST["LoaiDe"];
-            $SoCauHoi = $_POST["SoCauHoi"];
+            $SoCauDe = $_POST["SoCauDe"];
+            $SoCauTrungBinh = $_POST["SoCauTrungBinh"];
+            $SoCauKho = $_POST["SoCauKho"];
             $HienDapAn = $_POST["HienDapAn"];
             $NgayTaoDe = $_POST["NgayTaoDe"];
             $Lop = $_POST["Lop"];
+            $Tuan = $_POST["Tuan"];
             
-            $result = $this->DeModel->editDe($IdDe, $TenDe, $LoaiDe, $SoCauHoi, $HienDapAn, $NgayTaoDe, $Lop);
+            $result = $this->DeModel->editDe($IdDe, $TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho);
 
             $this->view("BangDieuKhienGiaoVien", [
                 "DataNguoiDung" => $this->DataNguoiDung,
@@ -251,14 +258,13 @@ class GiaoVien extends Controller{
         header("Location: /ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1");
     }
 
-    // ####################################################################################
+    public function XoaCauHoi_De($IdDe, $IdCauHoi) {
+        // NEED TO DO
+        // Tự thêm lại câu hỏi
 
-    public function XemTatCaNhomHocSinh() {
-        $data = $this->NhomModel->getAllNhomHocSinh();
-    }
+        $result = $this->NganHangCauHoiModel->deleteCauHoi($IdCauHoi);
 
-    public function XemHocSinhTrongNhom($IdNhom) {
-        $data = $this->NguoiDungModel->getAllHocSinhInNhom($IdNhom);
+        header("Location: /ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1");
     }
 
     // ####################################################################################
@@ -406,21 +412,171 @@ class GiaoVien extends Controller{
     }
 
     // ####################################################################################
+    public function ThemDeNhom($IdNhom) {
+        $DataDe = $this->DeModel->getDeNhom();
+        if (!isset($_POST["btnSubmit"])) {
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemDeNhom",
+                "DataDe" => $DataDe
+            ]);
+        }
+        else {
+            $IdDe = $_POST["IdDe"];
+            $ThoiGianMo = $_POST["ThoiGianMo"];
+            $ThoiGianDong = $_POST["ThoiGianDong"];
+
+            $result = $this->De_NhomModel->addDe_Nhom($IdNhom, $IdDe, $ThoiGianMo, $ThoiGianDong);
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemDeNhom",
+                "Title" => "Thêm đề kiểm tra cho nhóm",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "DataDe" => $DataDe,
+                "result" => $result,
+                "action" => "Thêm",
+                "type" => "đề kiểm tra cho nhóm"
+            ]);
+        }
+    }
+
+    public function ChinhSuaDeNhom($IdDe, $IdNhom) {
+        $DataDe = $this->DeModel->getDeNhom();
+        if (!isset($_POST["btnSubmit"])) {
+            $DataDeNhomChinhSua = $this->De_NhomModel->getDeNhom($IdDe, $IdNhom);
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemDeNhom",
+                "Title" => "Chỉnh sửa nhóm",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "DataDeNhomChinhSua" => $DataDeNhomChinhSua[0],
+                "DataDe" => $DataDe
+            ]);
+        }
+        else {
+            $ThoiGianMo = $_POST["ThoiGianMo"];
+            $ThoiGianDong = $_POST["ThoiGianDong"];
+
+            $result = $this->De_NhomModel->editDe_Nhom($IdNhom, $IdDe, $ThoiGianMo, $ThoiGianDong);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNhom",
+                "Title" => "Chỉnh sửa đề kiểm tra cho nhóm",
+                "result" => $result,
+                "action" => "Chỉnh sửa",
+                "type" => "đề kiểm tra cho nhóm"
+            ]);
+        }
+    }
+
+    public function XoaDeNhom($IdDe, $IdNhom) {
+        $result = $this->De_NhomModel->deleteDeNhom($IdDe, $IdNhom);
+
+        header("Location: /ExtraClassroomWebsite/GiaoVien/NhomHocSinh/$IdNhom");
+    }
+
+    // ####################################################################################
+
+    public function ThemThongBaoNhom($IdNhom) {
+        if (!isset($_POST["btnSubmit"])) {
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemThongBaoNhom",
+            ]);
+        }
+        else {
+            $TieuDe = $_POST["TieuDe"];
+            $NoiDung = $_POST["NoiDung"];
+            $NgayTao = $_POST["NgayTao"];
+
+            $result = $this->ThongBaoNhomModel->addThongBaoNhom($IdNhom, $TieuDe, $NoiDung, $NgayTao);
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemThongBaoNhom",
+                "Title" => "Thêm thông báo nhóm",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "result" => $result,
+                "action" => "Thêm",
+                "type" => "thông báo nhóm"
+            ]);
+        }
+    }
+
+    public function ChinhSuaThongBaoNhom($IdThongBao, $IdNhom) {
+        if (!isset($_POST["btnSubmit"])) {
+            $DataThongBaoNhomChinhSua = $this->ThongBaoNhomModel->getThongBaoNhom($IdThongBao, $IdNhom);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemThongBaoNhom",
+                "Title" => "Chỉnh sửa nhóm",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "DataThongBaoNhomChinhSua" => $DataThongBaoNhomChinhSua
+            ]);
+        }
+        else {
+            $TieuDe = $_POST["TieuDe"];
+            $NoiDung = $_POST["NoiDung"];
+            $NgayTao = $_POST["NgayTao"];
+
+            $result = $this->ThongBaoNhomModel->editThongBaoNhom($IdThongBao, $IdNhom, $TieuDe, $NoiDung, $NgayTao);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNhom",
+                "Title" => "Chỉnh sửa thông báo nhóm",
+                "result" => $result,
+                "action" => "Chỉnh sửa",
+                "type" => "thông báo nhóm"
+            ]);
+        }
+    }
+
+    public function XoaThongBaoNhom($IdThongBao, $IdNhom) {
+        $result = $this->ThongBaoNhomModel->deleteThongBaoNhom($IdThongBao, $IdNhom);
+
+        header("Location: /ExtraClassroomWebsite/GiaoVien/NhomHocSinh/$IdNhom");
+    }
+
+    // ####################################################################################
+    public function NhomHocSinh($IdNhom) {
+        $DataNhom = $this->NhomModel->getNhom($IdNhom);
+        $DanhSachThongBaoNhom = $this->ThongBaoNhomModel->getAllThongBaoNhom($IdNhom);
+        $DanhSachDeNhom = $this->De_NhomModel->getAllDeNhom($IdNhom);
+        $this->view("BangDieuKhienGiaoVien", [
+            "SubView" => "NhomHocSinh",
+            "Title" => $DataNhom["TenNhom"],
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "DataNhom" => $DataNhom,
+            "DanhSachThongBaoNhom" => $DanhSachThongBaoNhom,
+            "DanhSachDeNhom" => $DanhSachDeNhom
+        ]);
+    }
+
+    public function DanhSachNhomHocSinh() {
+        $DanhSachNhomHocSinh = $this->NhomModel->getAllNhomHocSinh();
+
+        $this->view("BangDieuKhienGiaoVien",[
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "DanhSachNhomHocSinh",
+            "Title" => "Danh sách người dùng",
+            "DanhSachNhomHocSinh" => $DanhSachNhomHocSinh,
+        ]);
+    }
+
     public function ThemNhom() {
         if (!isset($_POST["btnSubmit"])) {
             $this->view("BangDieuKhienGiaoVien", [
-                "subview" => "ThemNhom",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNhom",
             ]);
         }
         else {
             $TenNhom = $_POST["TenNhom"];
-            $SoLuong = $_POST["SoLuong"];
             $Lop = $_POST["Lop"];
 
-            $result = $this->NhomModel->addNhom($TenNhom, $SoLuong, $Lop);
-
+            $result = $this->NhomModel->addNhom($TenNhom, $Lop);
             $this->view("BangDieuKhienGiaoVien", [
-                "subview" => "ThemNhom",
+                "SubView" => "ThemNhom",
+                "Title" => "Thêm nhóm học sinh",
+                "DataNguoiDung" => $this->DataNguoiDung,
                 "result" => $result,
                 "action" => "Thêm",
                 "type" => "nhóm"
@@ -430,47 +586,52 @@ class GiaoVien extends Controller{
 
     public function ChinhSuaNhom($IdNhom) {
         if (!isset($_POST["btnSubmit"])) {
-            $DataNhom = $this->NhomModel->getNhom($IdNhom);
-        
+            $DataNhomChinhSua = $this->NhomModel->getNhom($IdNhom);
+
             $this->view("BangDieuKhienGiaoVien", [
-                "subview" => "ThemNhom",
-                "DataNhom" => $DataNhom,
+                "SubView" => "ThemNhom",
+                "Title" => "Chỉnh sửa nhóm",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "DataNhomChinhSua" => $DataNhomChinhSua
             ]);
         }
         else {
             $TenNhom = $_POST["TenNhom"];
-            $SoLuong = $_POST["SoLuong"];
             $Lop = $_POST["Lop"];
 
-            $result = $this->NhomModel->editNhom($IdNhom, $TenNhom, $SoLuong, $Lop);
+            $result = $this->NhomModel->editNhom($IdNhom, $TenNhom, $Lop);
 
             $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNhom",
+                "Title" => "Chỉnh sửa nhóm",
                 "result" => $result,
                 "action" => "Chỉnh sửa",
-                "type" => "nhóm",
-                "IdNhom" => $IdNhom
-            ]);
-        }
-    }
-
-    // Xoá một nhóm với ID câu hỏi từ POST
-    public function XoaNhom() {
-        if (!isset($_POST["btnSubmit"])) {
-            $this->view("BangDieuKhienGiaoVien");
-        }
-        else {
-            $IdNhom = $_POST["IdNhom"];
-            
-            $result = $this->NhomModel->deleteNhom($IdNhom);
-
-            $this->view("BangDieuKhienGiaoVien", [
-                "result" => $result,
-                "action" => "Xoá",
                 "type" => "nhóm"
             ]);
         }
     }
 
+    public function XoaNhom($IdNhom) {
+        $result = $this->NhomModel->deleteNhom($IdNhom);
+
+        header("Location: /ExtraClassroomWebsite/GiaoVien/DanhSachNhomHocSinh");
+    }
+
+    public function XemHocSinhTrongNhom($IdNhom) {
+        $DanhSachNguoiDung = $this->NguoiDungModel->getAllHocSinhInNhom($IdNhom);
+        $TongSoNguoiDung = count($DanhSachNguoiDung);
+        
+        $this->view("BangDieuKhienGiaoVien",[
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "DanhSachNguoiDung",
+            "Title" => "Danh sách người dùng",
+            "DanhSachNguoiDung" => $DanhSachNguoiDung,
+            "TongSoNguoiDung" => $TongSoNguoiDung,
+            "Page" => "1"
+        ]);
+
+    }
     // ####################################################################################
 }
 ?>

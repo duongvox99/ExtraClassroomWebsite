@@ -18,12 +18,12 @@ class NguoiDungModel extends MySQL{
     }
 
     public function getAllHocSinhInNhom($IdNhom) {
-        $qr = "SELECT * FROM nguoidung WHERE IdNhom='$IdNhom'";
+        $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom WHERE nguoidung.IdNhom='$IdNhom'";
 
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("IdNguoiDung" => $row["IdNguoiDung"], "HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"]));
+            array_push($output, $row);
         }
         return $output;
     }

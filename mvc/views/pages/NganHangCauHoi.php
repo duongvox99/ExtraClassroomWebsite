@@ -19,13 +19,13 @@
             <div class="x_content">
                 <div class="row">
                     <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1" type="button" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
-                            Tất cả <span class="badge bg-white"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoCauHoi"] : ""; ?></span>
+                            Tất cả <span class="badge bg-danger"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoCauHoi"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/Lop10/1" type="button" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 10 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoCauHoi"] : ""; ?></span>
+                            Lớp 10 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoCauHoi"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/Lop11/1" type="button" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 11 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoCauHoi"] : ""; ?></span>
+                            Lớp 11 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoCauHoi"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/Lop12/1" type="button" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 12 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoCauHoi"] : ""; ?></span>
+                            Lớp 12 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoCauHoi"] : ""; ?></span>
                         </a>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
     <div class="x_content">
         <div class="row">
             <div class="col-md-6">
-                <p class="m-b-0">Tổng cộng: <span class="label label-success"><?php echo $data["TongSoCauHoi"] ?></span> người dùng</p>
+                <p class="m-b-0">Tổng cộng: <span class="badge badge-success"><?php echo $data["TongSoCauHoi"] ?></span> câu hỏi</p>
             </div>
             <div class="col-md-6">
                 <ul class="pagination zvn-pagination">

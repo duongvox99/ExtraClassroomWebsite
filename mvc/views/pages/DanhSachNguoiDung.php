@@ -8,6 +8,7 @@
         <a href="/ExtraClassroomWebsite/GiaoVien/ThemNguoiDung/" class="btn btn-success"><i class="fas fa-plus-circle"></i> Thêm người dùng mới</a>
     </div>
 </div>
+<?php if (isset($data["Category"])) { ?>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -34,6 +35,7 @@
         </div>
     </div>
 </div>
+<?php } ?>
 <!--box-lists-->
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -110,6 +112,7 @@
 </div>
 <!--end-box-lists-->
 <!--box-pagination-->
+<?php if (isset($data["Category"])) { ?>
 <div class="x_panel">
     <div class="x_title">
         <h2>Phân trang</h2>
@@ -142,4 +145,5 @@
         </div>
     </div>
 </div>
+<?php } ?>
 <!--end-box-pagination-->

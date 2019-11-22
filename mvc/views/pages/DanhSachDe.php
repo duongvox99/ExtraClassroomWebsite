@@ -92,7 +92,7 @@
                                     <td class="last">
                                         <div class="zvn-box-btn-filter">
                                             <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaDe/<?php echo $data["DanhSachDe"][$i]["IdDe"]; ?>" type="button" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
-                                                <i class="fas fa-pencil-alt"></i>
+                                                <i class="fas fa-eye"></i>
                                             </a>
                                             <a href="/ExtraClassroomWebsite/GiaoVien/XoaDe/<?php echo $data["DanhSachDe"][$i]["IdDe"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
                                                 <i class="fa fa-trash"></i>
