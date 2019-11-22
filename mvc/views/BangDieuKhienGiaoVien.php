@@ -90,6 +90,7 @@
                 </nav>
                 <!-- /top navigation -->
                 <!-- page content -->
+                <div class="container-content">
                 <?php
                 if (isset($data["SubView"])) {
                     require("pages/" . $data["SubView"] . ".php");
@@ -97,6 +98,7 @@
                     require("pages/DanhSachNguoiDung.php");
                 }
                 ?>
+                </div>
 
             </div>
             <!-- /page content -->

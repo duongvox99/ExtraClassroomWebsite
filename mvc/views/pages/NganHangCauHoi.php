@@ -48,7 +48,7 @@
                         <thead>
                             <tr class="headings">
                                 <th class="column-title">STT</th>
-                                <th class="column-title">Loại câu hỏi</th>
+                                <th class="column-title">Loại</th>
                                 <th class="column-title">Lớp</th>
                                 <th class="column-title">Tuần</th>
                                 <th class="column-title">Câu hỏi</th>
@@ -56,7 +56,7 @@
                                 <th class="column-title">Đáp án 2</th>
                                 <th class="column-title">Đáp án 3</th>
                                 <th class="column-title">Đáp án 4</th>
-                                <th class="column-title">Đáp án đúng</th>
+                                <th class="column-title">ĐA</th>
                                 <th class="column-title">Lời giải</th>
                                 <th class="column-title">#</th>
                             </tr>

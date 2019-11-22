@@ -13,7 +13,7 @@
     <?php
     for ($i = 0; $i < count($data["DanhSachNhomHocSinh"]); $i++) {
         ?>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
             <div class="card h-100 <?php
                                         if ($data["DanhSachNhomHocSinh"][$i]["Lop"] == 10) {
                                             echo "text-success border-success";
@@ -34,10 +34,10 @@
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-success" href="/ExtraClassroomWebsite/GiaoVien/NhomHocSinh/<?php echo $data["DanhSachNhomHocSinh"][$i]["IdNhom"]; ?>">Chi tiết</a>
-                    <a href="/ExtraClassroomWebsite/GiaoVien/XoaNhom/<?php echo $data["DanhSachNhomHocSinh"][$i]["IdNhom"]; ?>" class="deleteButton btn btn-danger pull-right">
+                    <a href="/ExtraClassroomWebsite/GiaoVien/XoaNhom/<?php echo $data["DanhSachNhomHocSinh"][$i]["IdNhom"]; ?>" class="deleteButton btn btn-danger float-right" style="margin-left: 10px">
                         <i class="fas fa-trash"></i>
                     </a>
-                    <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaNhom/<?php echo $data["DanhSachNhomHocSinh"][$i]["IdNhom"]; ?>" class="btn btn-secondary pull-right">
+                    <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaNhom/<?php echo $data["DanhSachNhomHocSinh"][$i]["IdNhom"]; ?>" class="btn btn-secondary float-right">
                         <i class="fas fa-pencil-alt"></i>
                     </a>
                     

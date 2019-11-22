@@ -19,15 +19,15 @@
             <div class="x_content">
                 <div class="row">
                     <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1" type="button" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
-                            Tất cả <span class="badge bg-white"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoNguoiDung"] : ""; ?></span>
+                            Tất cả <span class="badge bg-danger"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoNguoiDung"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/QuanTriVien/1" type="button" class="btn <?php echo ($data["Category"] == "QuanTriVien") ? "btn-primary" : "btn-success"; ?>">
-                            Quản trị viên <span class="badge bg-white"><?php echo ($data["Category"] == "QuanTriVien") ? $data["TongSoNguoiDung"] : ""; ?></span>
+                            Quản trị viên <span class="badge bg-danger"><?php echo ($data["Category"] == "QuanTriVien") ? $data["TongSoNguoiDung"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop10/1" type="button" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 10 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoNguoiDung"] : ""; ?></span>
+                            Lớp 10 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoNguoiDung"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop11/1" type="button" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 11 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoNguoiDung"] : ""; ?></span>
+                            Lớp 11 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoNguoiDung"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop12/1" type="button" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 12 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoNguoiDung"] : ""; ?></span>
+                            Lớp 12 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoNguoiDung"] : ""; ?></span>
                         </a>
                     </div>
                 </div>

@@ -1,3 +1,43 @@
+table, th, td {
+    border: 1px solid rgba(221, 221, 221, .78)
+}
+
+.form-group>label {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.x_title>h2 {
+    float: left;
+}
+
+.x_title>.zvn-add-new {
+    float: right;
+}
+
+.x_content>.row>div>a {
+    margin-right: 10px;
+}
+
+.zvn-page-header {
+    padding: 10px 10px;
+    border: 3px solid rgb(201, 206, 212);
+    margin-bottom: 10px;
+    background-color: #E6E9ED;
+}
+
+.zvn-page-header-title {
+    float: left;
+}
+
+.zvn-add-new {
+    float: right;
+}
+
+.container-content {
+    padding: 10px;
+}
+
 .x_panel {
     width: 100%;
     padding: 10px 17px;
@@ -6,14 +46,14 @@
     border: 1px solid #E6E9ED;
     opacity: 1;
     transition: all .2s ease;
-    /* margin: 10px */
+    margin-bottom: 10px;
 }
 
 /*MY CSS*/
 
-* {
-    padding: 0;
-    margin: 0;
+body {
+    overflow-x: hidden;
+    width: 100%
 }
 
 .table>tbody>tr>td {
@@ -193,9 +233,4 @@ a {
 span.highlight {
     background: yellow;
     font-weight: bold;
-}
-
-.radio-inline {
-    padding-left: 0;
-    padding-right: 20px;
 }
