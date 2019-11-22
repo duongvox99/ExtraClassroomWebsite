@@ -56,7 +56,7 @@
                                 <li><a><i class="fas fa-home"></i> Tổng quan</a></li>
                                 <li><a><i class="fas fa-users"></i> Nhóm lớp học</a></li>
 
-                                <li><a><i class="fas fa-user"></i> Đề kiểm tra</a></li>
+                                <li><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1"><i class="fas fa-user"></i> Đề kiểm tra</a></li>
                                 
                                 <li><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1"><i class="fas fa-user"></i> Người dùng</a></li>
 
@@ -108,7 +108,7 @@
                         require("pages/" .$data["SubView"] . ".php");
                     }
                     else {
-                        require("pages/DanhsachNguoiDung.php");
+                        require("pages/DanhSachNguoiDung.php");
                     }
                 ?>
 

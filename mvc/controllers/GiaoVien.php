@@ -4,7 +4,8 @@ class GiaoVien extends Controller{
     public $NganHangCauHoiModel;
     public $NguoiDungModel;
     public $NhomModel;
-
+    public $DeModel;
+    public $De_CauHoiModel;
     public $DataNguoiDung;
 
     public function __construct() {
@@ -12,6 +13,8 @@ class GiaoVien extends Controller{
         $this->NganHangCauHoiModel = $this->model("NganHangCauHoiModel");
         $this->NguoiDungModel = $this->model("NguoiDungModel");
         $this->NhomModel = $this->model("NhomModel");
+        $this->DeModel = $this->model("DeModel");
+        $this->De_CauHoiModel = $this->model("De_CauHoiModel");
         
         $this->DataNguoiDung = array("IdNguoiDung" => $_SESSION["IdNguoiDung"],
                                 "HoTen" => $_SESSION["HoTen"],
@@ -53,7 +56,7 @@ class GiaoVien extends Controller{
             "TongSoNguoiDung" => $TongSoNguoiDung,
             "Category" => $category,
             "Page" => $page,
-            "MaxPage" => ceil($TongSoNguoiDung / 50)
+            "MaxPage" => (ceil($TongSoNguoiDung / 50) > 0) ? ceil($TongSoNguoiDung / 50) : 1
         ]);
     }
 
@@ -136,26 +139,116 @@ class GiaoVien extends Controller{
     }
 
     // ####################################################################################
-    public function TaoDe() {
+
+    public function DanhSachDe($category, $page) {
+        if (is_null($page)) {
+            if (!is_numeric($page)) {
+                $page = 1;
+            }
+        }
+
+        if (!($category == "TatCa" || $category == "Lop10" || $category == "Lop11" || $category == "Lop12" || $category == "QuanTriVien")) {
+            $category = "TatCa";
+        }
+
+        $DanhSachDe = $this->DeModel->getAllDe($category, $page);
+        $TongSoDe = $this->DeModel->getTotalNumberDe($category);
+
+        $this->view("BangDieuKhienGiaoVien",[
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "DanhSachDe",
+            "Title" => "Danh sách người dùng",
+            "DanhSachDe" => $DanhSachDe,
+            "TongSoDe" => $TongSoDe,
+            "Category" => $category,
+            "Page" => $page,
+            "MaxPage" => (ceil($TongSoDe / 50) > 0) ? ceil($TongSoDe / 50) : 1
+        ]);
+    }
+
+    public function ThemDe() {
         if (!isset($_POST["btnSubmit"])) {
-            $this->view("BangDieuKhienGiaoVien", ["subview" => "TaoDe"]);
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemDe",
+                "DanhSachCauHoi_De" => array(),
+            ]);
+        }
+        else {
+            $TenDe = $_POST["TenDe"];
+            $LoaiDe = $_POST["LoaiDe"];
+            $SoCauDe = $_POST["SoCauDe"];
+            $SoCauTrungBinh = $_POST["SoCauTrungBinh"];
+            $SoCauKho = $_POST["SoCauKho"];
+            $HienDapAn = $_POST["HienDapAn"];
+            $NgayTaoDe = $_POST["NgayTaoDe"];
+            $Lop = $_POST["Lop"];
+            $Tuan = $_POST["Tuan"];
+
+            $result = $this->DeModel->addDe($TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho);
+            if ($result) {
+                $IdDe = $this->DeModel->getIdDe($TenDe)[0];
+
+                $DanhSachCauHoi_De = $this->NganHangCauHoiModel->getAllCauHoi_Tuan_Lop($Lop, $Tuan, 1, $SoCauDe);
+                for ($i = 0; $i < count($DanhSachCauHoi_De); $i++) {
+                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_De[$i]);
+                }
+                $DanhSachCauHoi_TrungBinh = $this->NganHangCauHoiModel->getAllCauHoi_Tuan_Lop($Lop, $Tuan, 2, $SoCauTrungBinh);
+                for ($i = 0; $i < count($DanhSachCauHoi_TrungBinh); $i++) {
+                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_TrungBinh[$i]);
+                }
+                $DanhSachCauHoi_Kho = $this->NganHangCauHoiModel->getAllCauHoi_Tuan_Lop($Lop, $Tuan, 3, $SoCauKho);
+                for ($i = 0; $i < count($DanhSachCauHoi_Kho); $i++) {
+                    $this->De_CauHoiModel->addDe_CauHoi($IdDe, $DanhSachCauHoi_Kho[$i]);
+                }
+            }
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemDe",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "result" => $result,
+                "action" => "Thêm",
+                "type" => "đề kiểm tra"
+            ]);
+        }
+    }
+
+    public function ChinhSuaDe($IdDe) {
+        if (!isset($_POST["btnSubmit"])) {
+            $DataDeChinhSua = $this->DeModel->getDe($IdDe);
+            $DanhSachCauHoi_De = $this->De_CauHoiModel->getAllCauHoi_DapAn_De($IdDe);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemDe",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "DataDeChinhSua" => $DataDeChinhSua,
+                "DanhSachCauHoi_De" => $DanhSachCauHoi_De
+            ]);
         }
         else {
             $TenDe = $_POST["TenDe"];
             $LoaiDe = $_POST["LoaiDe"];
             $SoCauHoi = $_POST["SoCauHoi"];
             $HienDapAn = $_POST["HienDapAn"];
+            $NgayTaoDe = $_POST["NgayTaoDe"];
             $Lop = $_POST["Lop"];
-
-            $result = $this->DeModel->addDe($TenDe, $LoaiDe, $SoCauHoi, $HienDapAn, $Lop);
+            
+            $result = $this->DeModel->editDe($IdDe, $TenDe, $LoaiDe, $SoCauHoi, $HienDapAn, $NgayTaoDe, $Lop);
 
             $this->view("BangDieuKhienGiaoVien", [
-                "SubView" => "TaoDe",
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemDe",
+                "Title" => "Chỉnh sửa người dùng",
                 "result" => $result,
-                "action" => "Tạo",
-                "type" => "đề"
+                "action" => "Chỉnh sửa",
+                "type" => "đề kiểm tra"
             ]);
         }
+    }
+
+    public function XoaDe($IdDe) {
+        $result = $this->DeModel->deleteDe($IdDe);
+
+        header("Location: /ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1");
     }
 
     // ####################################################################################
@@ -234,7 +327,7 @@ class GiaoVien extends Controller{
             "TongSoCauHoi" => $TongSoCauHoi,
             "Category" => $category,
             "Page" => $page,
-            "MaxPage" => ceil($TongSoCauHoi / 50)
+            "MaxPage" => (ceil($TongSoCauHoi / 50) > 0) ? ceil($TongSoCauHoi / 50) : 1
         ]);
     }
 
