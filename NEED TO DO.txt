@@ -20,19 +20,24 @@ API (Chỉ chọn 2):
 
     Login with facebook -> sau đó lấy avatar để set
     * Tương tác firebase -> làm live chat
-    * Thống kê lưu lượng truy cập với google Analytics
-
+    Thống kê lưu lượng truy cập với google Analytics
+    * email validate
 	recaptcha
     Gửi mail xác thực quên mật khẩu
 
 
-(Có từ 4 container )
-(Định nghĩa @media cho kích cỡ màn hình khác)
+
+
+
 Sử dụng Grid có từ 12 col - cho kích cỡ màn hình thứ nhất.
 Sử dụng Grid có từ 12 col - cho kích cỡ màn hình thứ hai.
 *Có đủ 6 kiểu heading
-(Có sử dụng từ 10 icon)
+
 (Sử dụng đủ 5 kiểu màu Alert.)
+
+* Có từ 4 container 
+* Định nghĩa @media cho kích cỡ màn hình khác
+* Có sử dụng từ 10 icon
 *Có từ 1 responsive table
 *Sử dụng từ 10 components (bao gồm button, Carousel, Forms, Dropdown, Modal, Input Group, …..)
 

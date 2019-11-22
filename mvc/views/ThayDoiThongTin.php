@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cập nhật tài khoản</title>
 
+    <link rel="icon" href="/ExtraClassroomWebsite/public/img/icon.ico" type="image/ico" />
+    
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/DangNhap.css" />
@@ -79,10 +81,12 @@
             $Avatar = "";
             $Lop = $_POST["Lop"];
             $Email = $_POST["Email"]' -->
-                <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Họ tên" value="">
+                <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Tên đăng nhập" value="<?php echo $data["DataNguoiDung"]["Username"];?>">
                 <input type="password" id="password" class="fadeIn third" name="Password" placeholder="Mật khẩu">
-                <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Họ tên" value="">
-                <input type="file" id="username" class="fadeIn third" name="Avatar" placeholder="third" value="">
+                <input type="text" id="hoten" class="fadeIn second" name="Username" placeholder="Họ tên" value="<?php echo $data["DataNguoiDung"]["HoTen"];?>">
+                <input type="number" min="1950" max="2019" id="namsinh" class="fadeIn third" name="NamSinh" placeholder="Năm sinh" value="<?php echo $data["DataNguoiDung"]["NamSinh"];?>">
+                <input type="file" id="avatar" class="fadeIn second" name="Avatar" placeholder="Avatar" value="<?php echo $data["DataNguoiDung"]["Avatar"];?>">
+                <input type="text" id="email" class="fadeIn third" name="Email" placeholder="Email" value="<?php echo $data["DataNguoiDung"]["Email"];?>">
                 <input type="submit" class="fadeIn fourth" value="Cập nhật" name="btnSubmit">
             </form>
 

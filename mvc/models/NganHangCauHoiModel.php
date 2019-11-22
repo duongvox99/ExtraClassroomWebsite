@@ -1,5 +1,47 @@
 <?php
 class NganHangCauHoiModel extends MySQL{
+
+    public function getAllCauHoi($category, $page){
+        $offset = 50 * ($page - 1);
+        if ($category == "TatCa") {
+            $qr = "SELECT * FROM nganhangcauhoi LIMIT 50 OFFSET $offset";
+        }
+        else if ($category == "Lop10") {
+            $qr = "SELECT * FROM nganhangcauhoi WHERE nganhangcauhoi.Lop=10 LIMIT 50 OFFSET $offset";
+        }
+        else if ($category == "Lop11") {
+            $qr = "SELECT * FROM nganhangcauhoi WHERE nganhangcauhoi.Lop=11 LIMIT 50 OFFSET $offset";
+        }
+        else if ($category == "Lop12") {
+            $qr = "SELECT * FROM nganhangcauhoi WHERE nganhangcauhoi.Lop=12 LIMIT 50 OFFSET $offset";
+        }
+        
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, $row);
+        }
+        return $output;
+    }
+
+    public function getTotalNumberCauHoi($category){
+        if ($category == "TatCa") {
+            $qr = "SELECT * FROM nganhangcauhoi";
+        }
+        else if ($category == "Lop10") {
+            $qr = "SELECT * FROM nganhangcauhoi WHERE nganhangcauhoi.Lop=10";
+        }
+        else if ($category == "Lop11") {
+            $qr = "SELECT * FROM nganhangcauhoi WHERE nganhangcauhoi.Lop=11";
+        }
+        else if ($category == "Lop12") {
+            $qr = "SELECT * FROM nganhangcauhoi WHERE nganhangcauhoi.Lop=12";
+        }
+
+        $result = mysqli_query($this->con, $qr);
+        return mysqli_num_rows($result);
+    }
+
     public function getCauHoi($IdCauHoi){
         $qr = "SELECT * FROM nganhangcauhoi WHERE IdCauHoi=$IdCauHoi";
         return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);

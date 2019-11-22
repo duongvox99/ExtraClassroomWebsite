@@ -110,20 +110,21 @@ class TrangChu extends Controller{
         }
     }
 
-    public function ThayDoiThongTin() {
+    public function ThayDoiThongTin($IdNguoiDung) {
         if (!isset($_POST["btnSubmit"])) {
-            $this->view("ThayDoiThongTin");
+            $DataNguoiDung = $this->NguoiDungModel->getNguoiDung($IdNguoiDung);
+            $this->view("ThayDoiThongTin", ["DataNguoiDung" => $DataNguoiDung]);
         }
         else {
-            $IdNguoiDung = $_SESSION["logined_IdNguoiDung"];
+            $IdNguoiDung = $_SESSION["IdNguoiDung"];
             $Password = $_POST["Password"];
             $HoTen = $_POST["HoTen"];
             $NamSinh = $_POST["NamSinh"];
             $Avatar = "";
-            $Lop = $_POST["Lop"];
+            $Lop = $_SESSION["Lop"]; // Không tồn tại trong post
             $Email = $_POST["Email"];
 
-            $result = $this->NguoiDungModel->editNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email);
+            $result = $this->NguoiDungModel->editThongtinNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email);
             if ($result) {
                 header("Location: /ExtraClassroomWebsite");
             }

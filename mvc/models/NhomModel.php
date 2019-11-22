@@ -14,6 +14,17 @@ class NhomModel extends MySQL{
         return $output;
     }
 
+    public function getAllNhom() {
+        $qr = "SELECT * FROM nhom";
+        $result = mysqli_query($this->con, $qr);
+
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, $row);
+        }
+        return $output;
+    }
+
     public function getNhom($IdNhom){
         $qr = "SELECT * FROM nhom WHERE IdNhom=$IdNhom";
         return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);

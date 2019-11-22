@@ -23,40 +23,86 @@ class NguoiDungModel extends MySQL{
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"]));
+            array_push($output, array("IdNguoiDung" => $row["IdNguoiDung"], "HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"]));
         }
         return $output;
     }
 
-    public function addHocSinh($Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $RandomCode, $Email) {
+    public function addNguoiDung($Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $Email) {
         $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
-        $qr = "INSERT INTO nguoidung VALUES (null, '$Username', '$PasswordHash', '$HoTen', $NamSinh, '$Avatar', $Lop, $IdNhom, $LoaiTaiKhoan, '$RandomCode', '$Email')";
+        $qr = "INSERT INTO nguoidung VALUES (null, '$Username', '$PasswordHash', '$HoTen', $NamSinh, '$Avatar', $Lop, $IdNhom, $LoaiTaiKhoan, '', '$Email', 0)";
         
         $result = false;
         if (mysqli_query($this->con, $qr)) {
             $result = true;
         }
+        else {
+            echo mysqli_error($this->con);
+        }
         return $result;
     }
 
-    public function editHocSinh($IdNguoiDung, $Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $RandomCode, $Email) {
+    public function editNguoiDung($IdNguoiDung, $Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $Email) {
         $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
-        $qr = "UPDATE nguoidung SET Username='$Username', Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, IdNhom=$IdNhom, LoaiTaiKhoan=$LoaiTaiKhoan, RandomCode='$RandomCode', Email=$Email WHERE IdNguoiDung=$IdNguoiDung";
+        $qr = "UPDATE nguoidung SET Username='$Username', Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, IdNhom=$IdNhom, LoaiTaiKhoan=$LoaiTaiKhoan, RandomCode='', Email='$Email' WHERE IdNguoiDung=$IdNguoiDung";
 
         $result = false;
         if (mysqli_query($this->con, $qr)) {
             $result = true;
         }
+        else {
+            echo $qr;
+            echo "<br>";
+            echo mysqli_error($this->con);
+        }
         return $result;
     }
 
-    public function deleteHocSinh($IdNguoiDung) {
-        $qr = "DELETE FROM nguoidung WHERE IdNguoiDung=$IdNguoiDung AND LoaiTaiKhoan=1";
-
-        if (mysqli_query($this->con, $qr)) {
-            return true;
+    public function getAllNguoiDung($category, $page){
+        $offset = 50 * ($page - 1);
+        if ($category == "TatCa") {
+            $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom LIMIT 50 OFFSET $offset";
         }
-        return false;
+        else if ($category == "Lop10") {
+            $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom WHERE nguoidung.Lop=10 LIMIT 50 OFFSET $offset";
+        }
+        else if ($category == "Lop11") {
+            $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom WHERE nguoidung.Lop=11 LIMIT 50 OFFSET $offset";
+        }
+        else if ($category == "Lop12") {
+            $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom WHERE nguoidung.Lop=12 LIMIT 50 OFFSET $offset";
+        }
+        else {
+            $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom WHERE nguoidung.Lop=0 LIMIT 50 OFFSET $offset";
+        }
+        
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, $row);
+        }
+        return $output;
+    }
+
+    public function getTotalNumberNguoiDung($category){
+        if ($category == "TatCa") {
+            $qr = "SELECT * FROM nguoidung";
+        }
+        else if ($category == "Lop10") {
+            $qr = "SELECT * FROM nguoidung WHERE nguoidung.Lop=10";
+        }
+        else if ($category == "Lop11") {
+            $qr = "SELECT * FROM nguoidung WHERE nguoidung.Lop=11";
+        }
+        else if ($category == "Lop12") {
+            $qr = "SELECT * FROM nguoidung WHERE nguoidung.Lop=12";
+        }
+        else {
+            $qr = "SELECT * FROM nguoidung WHERE nguoidung.Lop=0";
+        }
+
+        $result = mysqli_query($this->con, $qr);
+        return mysqli_num_rows($result);
     }
 
     public function getNguoiDung($IdNguoiDung){
@@ -64,7 +110,7 @@ class NguoiDungModel extends MySQL{
         return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
     }
 
-    public function editNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email) {
+    public function editThongtinNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email) {
         $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
         $qr = "UPDATE nguoidung SET Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, Email=$Email WHERE IdNguoiDung=$IdNguoiDung";
         
@@ -73,6 +119,15 @@ class NguoiDungModel extends MySQL{
             $result = true;
         }
         return $result;
+    }
+
+    public function deleteNguoiDung($IdNguoiDung) {
+        $qr = "DELETE FROM nguoidung WHERE IdNguoiDung=$IdNguoiDung";
+
+        if (mysqli_query($this->con, $qr)) {
+            return true;
+        }
+        return false;
     }
 
     public function setRandomCode($username, $email, $randomCode) {
@@ -112,7 +167,7 @@ class NguoiDungModel extends MySQL{
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
+            array_push($output, array("IdNguoiDung" => $row["IdNguoiDung"], "HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
         }
         return $output;
 
@@ -124,7 +179,7 @@ class NguoiDungModel extends MySQL{
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
+            array_push($output, array("IdNguoiDung" => $row["IdNguoiDung"], "HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
         }
         return $output;
     }

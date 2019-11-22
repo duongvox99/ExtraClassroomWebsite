@@ -26,12 +26,136 @@ class GiaoVien extends Controller{
 
     public function Default() {
         // Can goi model cho trang dashboard
-        $this->view("BangDieuKhienGiaoVien",
-                    ["DataNguoiDung" => $this->DataNguoiDung]);
+        $this->view("BangDieuKhienGiaoVien",[
+            "DataNguoiDung" => $this->DataNguoiDung
+        ]);
     }
 
-    public function Fake() {
+    public function DanhSachNguoiDung($category, $page) {
+        if (is_null($page)) {
+            if (!is_numeric($page)) {
+                $page = 1;
+            }
+        }
 
+        if (!($category == "TatCa" || $category == "Lop10" || $category == "Lop11" || $category == "Lop12" || $category == "QuanTriVien")) {
+            $category = "TatCa";
+        }
+
+        $DanhSachNguoiDung = $this->NguoiDungModel->getAllNguoiDung($category, $page);
+        $TongSoNguoiDung = $this->NguoiDungModel->getTotalNumberNguoiDung($category);
+
+        $this->view("BangDieuKhienGiaoVien",[
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "DanhSachNguoiDung",
+            "Title" => "Danh sách người dùng",
+            "DanhSachNguoiDung" => $DanhSachNguoiDung,
+            "TongSoNguoiDung" => $TongSoNguoiDung,
+            "Category" => $category,
+            "Page" => $page,
+            "MaxPage" => ceil($TongSoNguoiDung / 50)
+        ]);
+    }
+
+    public function ThemNguoiDung() {
+        $DataNhom = $this->NhomModel->getAllNhom();
+        if (!isset($_POST["btnSubmit"])) {
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNguoiDung",
+                "DataNhom" => $DataNhom
+            ]);
+        }
+        else {
+            $Username = $_POST["Username"];
+            $Password = $_POST["Password"];
+            $HoTen = $_POST["HoTen"];
+            $NamSinh = $_POST["NamSinh"];
+            $Avatar = "";
+            $Lop = $_POST["Lop"];
+            $IdNhom = $_POST["IdNhom"];
+            $LoaiTaiKhoan = $_POST["LoaiTaiKhoan"];
+            $Email = $_POST["Email"];
+
+            $result = $this->NguoiDungModel->addNguoiDung($Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $Email);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNguoiDung",
+                "Title" => "Thêm người dùng",
+                "DataNhom" => $DataNhom,
+                "result" => $result,
+                "action" => "Thêm",
+                "type" => "học sinh"
+            ]);
+        }
+    }
+
+    public function ChinhSuaNguoiDung($IdNguoiDung) {
+        $DataNhom = $this->NhomModel->getAllNhom();
+        if (!isset($_POST["btnSubmit"])) {
+            $DataNguoiDungChinhSua = $this->NguoiDungModel->getNguoiDung($IdNguoiDung);
+            
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "ThemNguoiDung",
+                "DataNhom" => $DataNhom,
+                "DataNguoiDungChinhSua" => $DataNguoiDungChinhSua,
+                "DataNguoiDung" => $this->DataNguoiDung,
+            ]);
+        }
+        else {
+            $Username = $_POST["Username"];
+            $Password = $_POST["Password"];
+            $HoTen = $_POST["HoTen"];
+            $NamSinh = $_POST["NamSinh"];
+            $Avatar = "";
+            $Lop = $_POST["Lop"];
+            $IdNhom = $_POST["IdNhom"];
+            $LoaiTaiKhoan = $_POST["LoaiTaiKhoan"];
+            $Email = $_POST["Email"];
+            
+            $result = $this->NguoiDungModel->editNguoiDung($IdNguoiDung, $Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $Email);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemNguoiDung",
+                "Title" => "Chỉnh sửa người dùng",
+                "DataNhom" => $DataNhom,
+                "result" => $result,
+                "action" => "Chỉnh sửa",
+                "type" => "người dùng"
+            ]);
+        }
+    }
+
+    // Xoá một người dùng với ID người dùng
+    public function XoaNguoiDung($IdNguoiDung) {
+        $result = $this->NguoiDungModel->deleteNguoiDung($IdNguoiDung);
+
+        header("Location: /ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1");
+    }
+
+    // ####################################################################################
+    public function TaoDe() {
+        if (!isset($_POST["btnSubmit"])) {
+            $this->view("BangDieuKhienGiaoVien", ["subview" => "TaoDe"]);
+        }
+        else {
+            $TenDe = $_POST["TenDe"];
+            $LoaiDe = $_POST["LoaiDe"];
+            $SoCauHoi = $_POST["SoCauHoi"];
+            $HienDapAn = $_POST["HienDapAn"];
+            $Lop = $_POST["Lop"];
+
+            $result = $this->DeModel->addDe($TenDe, $LoaiDe, $SoCauHoi, $HienDapAn, $Lop);
+
+            $this->view("BangDieuKhienGiaoVien", [
+                "SubView" => "TaoDe",
+                "result" => $result,
+                "action" => "Tạo",
+                "type" => "đề"
+            ]);
+        }
     }
 
     // ####################################################################################
@@ -42,87 +166,6 @@ class GiaoVien extends Controller{
 
     public function XemHocSinhTrongNhom($IdNhom) {
         $data = $this->NguoiDungModel->getAllHocSinhInNhom($IdNhom);
-    }
-
-    // ####################################################################################
-    public function ThemHocSinh() {
-        if (!isset($_POST["btnSubmit"])) {
-            $this->view("BangDieuKhienGiaoVien", ["subview" => "ThemHocSinh"]);
-        }
-        else {
-            $Username = $_POST["Username"];
-            $Password = $_POST["Password"];
-            $HoTen = $_POST["HoTen"];
-            $NamSinh = $_POST["NamSinh"];
-            $Avatar = "";
-            $Lop = $_POST["Lop"];
-            $IdNhom = $_POST["IdNhom"];
-            $LoaiTaiKhoan = 1;
-            $RandomCode = "";
-            $Email = $_POST["Email"];
-
-            $result = $this->NguoiDungModel->addHocSinh($Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $RandomCode, $Email);
-
-            $this->view("BangDieuKhienGiaoVien", [
-                "result" => $result,
-                "action" => "Thêm",
-                "type" => "học sinh"
-            ]);
-        }
-    }
-    
-    public function ChinhSuaHocSinh($IdNguoiDung) {
-        if (!isset($_POST["btnSubmit"])) {
-            $DataNguoiDung = $this->NguoiDungModel->getNguoiDung($IdNguoiDung);
-            
-            if ($DataNguoiDung["LoaiTaiKhoan"] == 1) {
-                $this->view("BangDieuKhienGiaoVien", [
-                    "subview" => "ThemHocSinh",
-                    "DataNguoiDung" => $DataNguoiDung
-                ]);
-            }
-            else {
-                $this->view("BangDieuKhienGiaoVien");
-            }
-        }
-        else {
-            $Username = $_POST["Username"];
-            $Password = $_POST["Password"];
-            $HoTen = $_POST["HoTen"];
-            $NamSinh = $_POST["NamSinh"];
-            $Avatar = "";
-            $Lop = $_POST["Lop"];
-            $IdNhom = $_POST["IdNhom"];
-            $LoaiTaiKhoan = 1;
-            $RandomCode = "";
-            $Email = $_POST["Email"];
-
-            $result = $this->NguoiDungModel->editHocSinh($IdNguoiDung, $Username, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $IdNhom, $LoaiTaiKhoan, $RandomCode, $Email);
-
-            $this->view("BangDieuKhienGiaoVien", [
-                "result" => $result,
-                "action" => "Chỉnh sửa",
-                "type" => "học sinh"
-            ]);
-        }
-    }
-
-    // Xoá một học sinh với ID người dùng từ POST
-    public function XoaHocSinh() {
-        if (!isset($_POST["btnSubmit"])) {
-            $this->view("BangDieuKhienGiaoVien");
-        }
-        else {
-            $IdCauHoi = $_POST["IdNguoiDung"];
-            
-            $result = $this->NguoiDungModel->deleteHocSinh($IdCauHoi);
-
-            $this->view("BangDieuKhienGiaoVien", [
-                "result" => $result,
-                "action" => "Xoá",
-                "type" => "học sinh"
-            ]);
-        }
     }
 
     // ####################################################################################
@@ -169,15 +212,38 @@ class GiaoVien extends Controller{
         return $uri;
     }
     
+    public function NganHangCauHoi($category, $page) {
+        if (is_null($page)) {
+            if (!is_numeric($page)) {
+                $page = 1;
+            }
+        }
+
+        if (!($category == "TatCa" || $category == "Lop10" || $category == "Lop11" || $category == "Lop12")) {
+            $category = "TatCa";
+        }
+
+        $DanhSachCauHoi = $this->NganHangCauHoiModel->getAllCauHoi($category, $page);
+        $TongSoCauHoi = $this->NganHangCauHoiModel->getTotalNumberCauHoi($category);
+
+        $this->view("BangDieuKhienGiaoVien",[
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "NganHangCauHoi",
+            "Title" => "Ngân hàng câu hỏi",
+            "DanhSachCauHoi" => $DanhSachCauHoi,
+            "TongSoCauHoi" => $TongSoCauHoi,
+            "Category" => $category,
+            "Page" => $page,
+            "MaxPage" => ceil($TongSoCauHoi / 50)
+        ]);
+    }
+
     public function ThemCauHoi() {
         if (!isset($_POST["btnSubmit"])) {
-            $this->view("pages/ThemCauHoi", [
-                "subview" => "ThemCauHoi"
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemCauHoi",
             ]);
-
-            // $this->view("BangDieuKhienGiaoVien", [
-            //     "subview" => "ThemCauHoi"
-            // ]);
         }
         else {
             $CauHoi = $this->HandleString($_POST["CauHoi"]);
@@ -193,29 +259,25 @@ class GiaoVien extends Controller{
 
             $result = $this->NganHangCauHoiModel->addCauHoi($CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop, $Tuan);
 
-            $this->view("pages/ThemCauHoi", [
-                "subview" => "ThemCauHoi",
+            $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemCauHoi",
+                "Title" => "Thêm câu hỏi",
                 "result" => $result,
                 "action" => "Thêm",
                 "type" => "câu hỏi"
             ]);
-
-            // $this->view("BangDieuKhienGiaoVien", [
-            //     "subview" => "ThemCauHoi",
-            //     "result" => $result,
-            //     "action" => "Thêm",
-            //     "type" => "câu hỏi"
-            // ]);
         }
     }
 
     public function ChinhSuaCauHoi($IdCauHoi) {
         if (!isset($_POST["btnSubmit"])) {
-            $DataCauHoi = $this->NganHangCauHoiModel->getCauHoi($IdCauHoi);
+            $DataCauHoiChinhSua = $this->NganHangCauHoiModel->getCauHoi($IdCauHoi);
         
             $this->view("BangDieuKhienGiaoVien", [
-                "subview" => "ThemCauHoi",
-                "DataCauHoi" => $DataCauHoi
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemCauHoi",
+                "DataCauHoiChinhSua" => $DataCauHoiChinhSua
             ]);
         }
         else {
@@ -232,30 +294,22 @@ class GiaoVien extends Controller{
             $result = $this->NganHangCauHoiModel->editCauHoi($IdCauHoi, $CauHoi, $DapAn1, $DapAn2, $DapAn3, $DapAn4, $DapAnDung, $LoiGiai, $LoaiCauHoi, $Lop);
 
             $this->view("BangDieuKhienGiaoVien", [
+                "DataNguoiDung" => $this->DataNguoiDung,
+                "SubView" => "ThemCauHoi",
+                "Title" => "Chỉnh sửa câu hỏi",
                 "result" => $result,
                 "action" => "Chỉnh sửa",
-                "type" => "câu hỏi",
-                "IdCauHoi" => $IdCauHoi
+                "type" => "câu hỏi"
             ]);
         }
     }
 
-    // Xoá một câu hỏi với ID câu hỏi từ POST
-    public function XoaCauHoi() {
-        if (!isset($_POST["btnSubmit"])) {
-            $this->view("BangDieuKhienGiaoVien");
-        }
-        else {
-            $IdCauHoi = $_POST["IdCauHoi"];
-            
-            $result = $this->NganHangCauHoiModel->deleteCauHoi($IdCauHoi);
+    // Xoá một câu hỏi với ID câu hỏi
+    public function XoaCauHoi($IdCauHoi) {
 
-            $this->view("BangDieuKhienGiaoVien", [
-                "result" => $result,
-                "action" => "Xoá",
-                "type" => "câu hỏi"
-            ]);
-        }
+        $result = $this->NganHangCauHoiModel->deleteCauHoi($IdCauHoi);
+
+        header("Location: /ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1");
     }
 
     // ####################################################################################

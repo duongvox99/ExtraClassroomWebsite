@@ -17,23 +17,23 @@
         }
 		?>Bảng điều khiển giáo viên</title>
 
-    <!-- Bootstrap -->
     <link href="/ExtraClassroomWebsite/public/admin/asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="/ExtraClassroomWebsite/public/admin/css/custom.min.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link href="/ExtraClassroomWebsite/public/font-awesome/css/all.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="/ExtraClassroomWebsite/public/admin/asset/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="/ExtraClassroomWebsite/public/admin/asset/iCheck/skins/flat/green.css" rel="stylesheet">
-    <!-- bootstrap-progressbar -->
-    <link href="/ExtraClassroomWebsite/public/admin/asset/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    
+
     <!-- Custom Theme Style -->
     <link href="/ExtraClassroomWebsite/public/admin/css/custom.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="/ExtraClassroomWebsite/public/admin/css/mycss.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
 
+    <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
 </head>
 
 <body class="nav-md">
@@ -55,9 +55,12 @@
                             <ul class="nav side-menu">
                                 <li><a><i class="fas fa-home"></i> Tổng quan</a></li>
                                 <li><a><i class="fas fa-users"></i> Nhóm lớp học</a></li>
-                                <li><a><i class="fas fa-user"></i> Học sinh</a></li>
 
-                                <li><a><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a></li>
+                                <li><a><i class="fas fa-user"></i> Đề kiểm tra</a></li>
+                                
+                                <li><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1"><i class="fas fa-user"></i> Người dùng</a></li>
+
+                                <li><a href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1"><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a></li>
                                 <li><a><i class="fas fa-trophy"></i> Bảng xếp hạng</a></li>
                                 <li><a><i class="fas fa-comment-dots"></i> Kênh thảo luận chung</a></li>
                             </ul>
@@ -85,11 +88,11 @@
                                             echo "/ExtraClassroomWebsite/public/img/no-avatar.png";
                                         }
                                         ?>" alt="Avatar">
-                                    <?php	echo $data["DataNguoiDung"]["HoTen"];?>
+                                    <?php echo $data["DataNguoiDung"]["HoTen"];?>
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="/ExtraClassroomWebsite/TrangChu/ThayDoiThongTin"> Thay đổi thông tin</a></li>
+                                    <li><a href="/ExtraClassroomWebsite/TrangChu/ThayDoiThongTin/<?php echo $data["DataNguoiDung"]["IdNguoiDung"];?>"> Thay đổi thông tin</a></li>
                                     <li><a href="/ExtraClassroomWebsite/TrangChu/DangXuat"><i class="fa fa-sign-out pull-right"></i> Đăng xuất</a></li>
                                 </ul>
                             </li>
@@ -105,7 +108,7 @@
                         require("pages/" .$data["SubView"] . ".php");
                     }
                     else {
-                        require("pages/DanhSachUser.php");
+                        require("pages/DanhsachNguoiDung.php");
                     }
                 ?>
 
@@ -121,20 +124,6 @@
             <!-- /footer -->
         </div>
     </div>
-    <!-- jQuery -->
-    <script src="/ExtraClassroomWebsite/public/admin/js/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="/ExtraClassroomWebsite/public/admin/asset/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="/ExtraClassroomWebsite/public/admin/js/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="/ExtraClassroomWebsite/public/admin/asset/nprogress/nprogress.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="/ExtraClassroomWebsite/public/admin/asset/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="/ExtraClassroomWebsite/public/admin/asset/iCheck/icheck.min.js"></script>
-    <!-- Custom Theme Scripts -->
-    <script src="/ExtraClassroomWebsite/public/admin/js/custom.min.js"></script>
 </body>
 
 </html>
