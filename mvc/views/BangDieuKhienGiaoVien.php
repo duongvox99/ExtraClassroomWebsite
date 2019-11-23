@@ -36,7 +36,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 left_col position-relative">
+            <div class="col-lg-2 left_col position-relative">
                 
                 <nav class="nav flex-column my-nav">
                     <div class="navbar navbar-brand nav_title" style="border: 0;">
@@ -64,7 +64,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="col-md-10 right_col" role="main">
+            <div class="col-lg-10 right_col" role="main">
                 <!-- top navigation -->
                 <nav class="navbar navbar-default navbar-expand-md my-nav">
                     <ul class="navbar-nav ml-auto account">
