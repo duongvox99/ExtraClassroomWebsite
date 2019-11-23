@@ -36,7 +36,8 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-2 left_col">
+            <div class="col-md-2 left_col position-relative">
+                
                 <nav class="nav flex-column my-nav">
                     <div class="navbar navbar-brand nav_title" style="border: 0;">
                         <a href="/ExtraClassroomWebsite" class="site_title"><img src="/ExtraClassroomWebsite/public/img/math-logo.png" alt="Logo" style="width:40px;"> <span><strong>ExtraClassroom</strong></span></a>
@@ -66,9 +67,6 @@
             <div class="col-md-10 right_col" role="main">
                 <!-- top navigation -->
                 <nav class="navbar navbar-default navbar-expand-md my-nav">
-                    <div class="nav toggle pl-2">
-                        <a id="menu_toggle" class="bar-ico-custom-color"><i class="fas fa-bars fa-2x"></i></a>
-                    </div>
                     <ul class="navbar-nav ml-auto account">
                         <!-- Dropdown -->
                         <li class="nav-item dropdown ">

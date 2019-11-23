@@ -16,16 +16,16 @@
 				<div class="collapse navbar-collapse" id="collapsibleNavbar">
 					<ul class="navbar-nav my-nav-menu">
 						<li class="nav-item">
-							<a class="nav-link" href="/ExtraClassroomWebsite/HocSinh/DeKiemTra/TatCa" <?php echo ($data["SubView"] == "DeKiemTra") ? 'style="background-color: green;"' : ""; ?>>Đề kiểm tra</a>
+							<a class="nav-link <?php echo ($data["SubView"] == "DeKiemTra") ? 'my-active' : ""; ?>" href="/ExtraClassroomWebsite/HocSinh/DeKiemTra/TatCa">Đề kiểm tra</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/ExtraClassroomWebsite/HocSinh/ThongBao/TatCa" <?php echo ($data["SubView"] == "ThongBao") ? 'style="background-color: green;"' : ""; ?>>Thông báo</a>
+							<a class="nav-link <?php echo ($data["SubView"] == "ThongBao") ? 'my-active' : ""; ?>" href="/ExtraClassroomWebsite/HocSinh/ThongBao/TatCa">Thông báo</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/ExtraClassroomWebsite/HocSinh/KenhThaoLuanChung" <?php echo ($data["SubView"] == "KenhThaoLuanChung") ? 'style="background-color: green;"' : ""; ?>>Kênh thảo luận chung</a>
+							<a class="nav-link <?php echo ($data["SubView"] == "KenhThaoLuanChung") ? 'my-active' : ""; ?>" href="/ExtraClassroomWebsite/HocSinh/KenhThaoLuanChung">Kênh thảo luận chung</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="/ExtraClassroomWebsite/HocSinh/BangXepHang/Nhom/1" <?php echo ($data["SubView"] == "BangXepHang") ? 'style="background-color: green;"' : ""; ?>>Bảng xếp hạng</a>
+							<a class="nav-link <?php echo ($data["SubView"] == "BangXepHang") ? 'my-active' : ""; ?>" href="/ExtraClassroomWebsite/HocSinh/BangXepHang/Nhom/1">Bảng xếp hạng</a>
 						</li>
 					</ul>
 					<!-- Search -->
