@@ -18,15 +18,15 @@
             </div>
             <div class="x_content">
                 <div class="row">
-                    <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1" type="button" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
+                    <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1" type="input" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
                             Tất cả <span class="badge bg-danger"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/QuanTriVien/1" type="button" class="btn <?php echo ($data["Category"] == "QuanTriVien") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/QuanTriVien/1" type="input" class="btn <?php echo ($data["Category"] == "QuanTriVien") ? "btn-primary" : "btn-success"; ?>">
                             Quản trị viên <span class="badge bg-danger"><?php echo ($data["Category"] == "QuanTriVien") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop10/1" type="button" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop10/1" type="input" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
                             Lớp 10 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop11/1" type="button" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop11/1" type="input" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
                             Lớp 11 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoNguoiDung"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop12/1" type="button" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/Lop12/1" type="input" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
                             Lớp 12 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoNguoiDung"] : ""; ?></span>
                         </a>
                     </div>
@@ -91,10 +91,10 @@
                                     <td><?php echo $loaiTaiKhoan; ?></td>
                                     <td class="last">
                                         <div class="zvn-box-btn-filter">
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaNguoiDung/<?php echo $data["DanhSachNguoiDung"][$i]["IdNguoiDung"]; ?>" type="button" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaNguoiDung/<?php echo $data["DanhSachNguoiDung"][$i]["IdNguoiDung"]; ?>" type="input" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaNguoiDung/<?php echo $data["DanhSachNguoiDung"][$i]["IdNguoiDung"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaNguoiDung/<?php echo $data["DanhSachNguoiDung"][$i]["IdNguoiDung"]; ?>" type="input" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </div>

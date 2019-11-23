@@ -17,13 +17,13 @@
             </div>
             <div class="x_content">
                 <div class="row">
-                    <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1" type="button" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
+                    <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1" type="input" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
                             Tất cả <span class="badge bg-danger"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoDe"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop10/1" type="button" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop10/1" type="input" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
                             Lớp 10 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoDe"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop11/1" type="button" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop11/1" type="input" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
                             Lớp 11 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoDe"] : ""; ?></span>
-                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop12/1" type="button" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
+                        </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop12/1" type="input" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
                             Lớp 12 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoDe"] : ""; ?></span>
                         </a>
                     </div>
@@ -93,10 +93,10 @@
                                     <td><?php echo $data["DanhSachDe"][$i]["NgayTaoDe"]; ?></td>
                                     <td class="last">
                                         <div class="zvn-box-btn-filter">
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaDe/<?php echo $data["DanhSachDe"][$i]["IdDe"]; ?>" type="button" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaDe/<?php echo $data["DanhSachDe"][$i]["IdDe"]; ?>" type="input" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaDe/<?php echo $data["DanhSachDe"][$i]["IdDe"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaDe/<?php echo $data["DanhSachDe"][$i]["IdDe"]; ?>" type="input" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </div>

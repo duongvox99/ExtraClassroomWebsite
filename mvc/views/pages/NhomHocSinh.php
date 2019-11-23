@@ -43,10 +43,10 @@
                                     <td><?php echo $data["DanhSachThongBaoNhom"][$i]["NgayTao"]; ?></td>
                                     <td class="last">
                                         <div class="zvn-box-btn-filter">
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaThongBaoNhom/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdThongBao"]; ?>/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdNhom"]; ?>" type="button" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaThongBaoNhom/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdThongBao"]; ?>/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdNhom"]; ?>" type="input" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaThongBaoNhom/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdThongBao"]; ?>/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdNhom"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaThongBaoNhom/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdThongBao"]; ?>/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdNhom"]; ?>" type="input" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </div>
@@ -125,10 +125,10 @@
                                     <td><?php echo $data["DanhSachDeNhom"][$i]["NgayTaoDe"]; ?></td>
                                     <td class="last">
                                         <div class="zvn-box-btn-filter">
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaDeNhom/<?php echo $data["DanhSachDeNhom"][$i]["IdDe"]; ?>/<?php echo $data["DataNhom"]["IdNhom"]; ?>" type="button" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/ChinhSuaDeNhom/<?php echo $data["DanhSachDeNhom"][$i]["IdDe"]; ?>/<?php echo $data["DataNhom"]["IdNhom"]; ?>" type="input" class="btn btn-icon btn-success" data-toggle="tooltip" data-placement="top" data-original-title="Chỉnh sửa">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
-                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaDeNhom/<?php echo $data["DanhSachDeNhom"][$i]["IdDe"]; ?>/<?php echo $data["DataNhom"]["IdNhom"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
+                                            <a href="/ExtraClassroomWebsite/GiaoVien/XoaDeNhom/<?php echo $data["DanhSachDeNhom"][$i]["IdDe"]; ?>/<?php echo $data["DataNhom"]["IdNhom"]; ?>" type="input" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
                                                 <i class="fa fa-trash"></i>
                                             </a>
                                         </div>

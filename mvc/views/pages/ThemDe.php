@@ -221,7 +221,7 @@ if (isset($data["result"])) {
                                             <td><?php echo $data["DanhSachCauHoi_De"][$i]["LoiGiai"]; ?></td>
                                             <td class="last">
                                                 <div class="zvn-box-btn-filter">
-                                                    <a href="/ExtraClassroomWebsite/GiaoVien/XoaCauHoi_De/<?php echo $data["DanhSachCauHoi_De"][$i]["IdDe"]; ?>/<?php echo $data["DanhSachCauHoi_De"][$i]["IdCauHoi"]; ?>" type="button" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
+                                                    <a href="/ExtraClassroomWebsite/GiaoVien/XoaCauHoi_De/<?php echo $data["DanhSachCauHoi_De"][$i]["IdDe"]; ?>/<?php echo $data["DanhSachCauHoi_De"][$i]["IdCauHoi"]; ?>" type="input" class="deleteButton btn btn-icon btn-danger btn-delete" data-toggle="tooltip" data-placement="top" data-original-title="Xóa">
                                                         <i class="fas fa-minus"></i>
                                                     </a>
                                                 </div>
