@@ -59,7 +59,7 @@
 					</div>
 					<div class="card-footer">
 						<textarea name="InputMessage" id="editorInputMessage"></textarea>
-						<span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+						<button class="btn btn-success ml-auto btn-block">Gửi tin nhắn <i class="fas fa-location-arrow"></i></button>
 					</div>
 				</div>
 			</div>
