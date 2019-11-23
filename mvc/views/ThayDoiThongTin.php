@@ -68,7 +68,7 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Login Form -->
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
 
                 <h5><b>Họ và tên</b></h5>
 
@@ -80,7 +80,7 @@
 
                 <br><br>
                 <h5><b>Ảnh đại diện mới</b></h5>
-                <input type="file" id="avatar" class="fadeIn second" name="Avatar" placeholder="Avatar" value="<?php echo $data["DataNguoiDung"]["Avatar"]; ?>">
+                <input type="file" id="Avatar" class="fadeIn second" name="Avatar" placeholder="Avatar">
 
                 <br><br>
                 <h5><b>Email</b></h5>

@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 19, 2019 lúc 04:00 PM
--- Phiên bản máy phục vụ: 10.4.8-MariaDB
--- Phiên bản PHP: 7.3.10
+-- Host: 127.0.0.1
+-- Generation Time: Nov 23, 2019 at 02:48 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `extraclassroom`
+-- Database: `extraclassroom`
 --
 CREATE DATABASE IF NOT EXISTS `extraclassroom` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `extraclassroom`;
@@ -27,23 +27,35 @@ USE `extraclassroom`;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `de`
+-- Table structure for table `de`
 --
 
 CREATE TABLE `de` (
   `IdDe` int(11) NOT NULL,
   `TenDe` varchar(1000) NOT NULL,
   `LoaiDe` int(11) NOT NULL,
-  `SoCauHoi` int(11) NOT NULL,
   `HienDapAn` int(11) NOT NULL,
   `NgayTaoDe` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `Lop` int(11) NOT NULL
+  `Lop` int(11) NOT NULL,
+  `Tuan` int(11) NOT NULL,
+  `SoCauDe` int(11) NOT NULL,
+  `SoCauTrungBinh` int(11) NOT NULL,
+  `SoCauKho` int(11) NOT NULL,
+  `ThoiGian` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `de`
+--
+
+INSERT INTO `de` (`IdDe`, `TenDe`, `LoaiDe`, `HienDapAn`, `NgayTaoDe`, `Lop`, `Tuan`, `SoCauDe`, `SoCauTrungBinh`, `SoCauKho`, `ThoiGian`) VALUES
+(2, 'Đề kiểm tra lớp 10 tuần 47', 0, 1, '2019-11-22 19:30:40', 10, 47, 5, 3, 2, 15),
+(4, 'Test lop 12', 0, 1, '2019-11-22 23:53:53', 12, 47, 5, 3, 2, 90);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `de_cauhoi`
+-- Table structure for table `de_cauhoi`
 --
 
 CREATE TABLE `de_cauhoi` (
@@ -51,10 +63,36 @@ CREATE TABLE `de_cauhoi` (
   `IdCauHoi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `de_cauhoi`
+--
+
+INSERT INTO `de_cauhoi` (`IdDe`, `IdCauHoi`) VALUES
+(2, 5),
+(2, 9),
+(2, 14),
+(2, 19),
+(2, 65),
+(2, 77),
+(2, 102),
+(2, 105),
+(2, 106),
+(2, 127),
+(4, 102),
+(4, 103),
+(4, 107),
+(4, 108),
+(4, 109),
+(4, 112),
+(4, 114),
+(4, 121),
+(4, 122),
+(4, 125);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `de_nhom`
+-- Table structure for table `de_nhom`
 --
 
 CREATE TABLE `de_nhom` (
@@ -64,10 +102,19 @@ CREATE TABLE `de_nhom` (
   `ThoiGianDong` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `de_nhom`
+--
+
+INSERT INTO `de_nhom` (`IdNhom`, `IdDe`, `ThoiGianMo`, `ThoiGianDong`) VALUES
+(1, 2, '2019-11-22 16:15:06', '2019-11-24 00:00:00'),
+(7, 2, '2019-11-23 06:54:44', '2019-11-24 06:54:44'),
+(7, 4, '2019-11-23 06:54:29', '2019-11-23 06:54:29');
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diem_de`
+-- Table structure for table `diem_de`
 --
 
 CREATE TABLE `diem_de` (
@@ -76,10 +123,21 @@ CREATE TABLE `diem_de` (
   `Diem` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `diem_de`
+--
+
+INSERT INTO `diem_de` (`IdNguoiDung`, `IdDe`, `Diem`) VALUES
+(4, 2, 2),
+(5, 2, 1),
+(6, 2, 2),
+(101, 2, 0),
+(101, 4, 0);
+
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nganhangcauhoi`
+-- Table structure for table `nganhangcauhoi`
 --
 
 CREATE TABLE `nganhangcauhoi` (
@@ -97,7 +155,7 @@ CREATE TABLE `nganhangcauhoi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `nganhangcauhoi`
+-- Dumping data for table `nganhangcauhoi`
 --
 
 INSERT INTO `nganhangcauhoi` (`IdCauHoi`, `CauHoi`, `DapAn1`, `DapAn2`, `DapAn3`, `DapAn4`, `DapAnDung`, `LoiGiai`, `LoaiCauHoi`, `Lop`, `Tuan`) VALUES
@@ -252,11 +310,10 @@ INSERT INTO `nganhangcauhoi` (`IdCauHoi`, `CauHoi`, `DapAn1`, `DapAn2`, `DapAn3`
 (148, '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/450d9f999cec74d00208f632923137.png\"></figure>', '<p>z = 1</p>', '<p>z = 1 - i&nbsp;</p>', '<p>z = -1 - i</p>', '<p>z = 2 - i</p>', 3, '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/189a6e83e77ea0d20846eed5222e77.png\"></figure>', 5, 12, 47),
 (149, '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/fc691e41904da95bfbc8ec67a1a568.png\"></figure>', '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/98bbf8dc52be91de9b0247241c3845.png\"></figure>', '<p>2</p>', '<p>1</p>', '<p>3</p>', 2, '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/1ca10ffd3b37629f09e8612bd3abe3.png\"></figure>', 5, 12, 47),
 (150, '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/fe7fc12f857952196cb055552d93ce.png\"></figure>', '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/bc61d024d7283f3089ff37dc4ab0e6.png\"></figure>', '<p>4</p>', '<p>6</p>', '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/84f0115d3c1aaaa3acb5fecabd6daf.png\"></figure>', 4, '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/531efe15677bd36080c2aa44d35846.png\"></figure>', 5, 12, 47);
-
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoidung`
+-- Table structure for table `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -275,16 +332,16 @@ CREATE TABLE `nguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `nguoidung`
+-- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`IdNguoiDung`, `Username`, `Password`, `HoTen`, `NamSinh`, `Avatar`, `Lop`, `IdNhom`, `LoaiTaiKhoan`, `RandomCode`, `Email`, `DiemTong`) VALUES
-(1, 'admin1', '$2y$10$mA/Zkg0T16xdCu0IrDZe1eCGvDw.uNiP5tQ5lKjeHzmNusEDUG6ym', 'Võ Văn Dương', 1999, '', 0, 0, 0, '', 'duongvox99@gmail.com', 0),
+(1, 'admin1', '$2y$10$LWQ/8ql/wj0FNKI2rEAlqeEK4Bt10ZpWuk0HWNWGUAf4R128x0OPe', 'Võ Văn Dương', 1999, '/ExtraClassroomWebsite/upload/avatar/4d245a0c668b297b0fc697be5e5403.jpg', 0, 0, 0, '', 'duongvox99@gmail.com', 0),
 (2, 'admin2', '$2y$10$HBJgLtJLErByNdjHRpdOeuZR1Gwrp9jgXdqWJbGKqbK5Pe5JWMoz6', 'Phạm Minh Dương', 1999, '', 0, 0, 0, '', 'phamminhduong@gmail.com', 0),
 (3, 'huynhducvu', '$2y$10$6w.Hxafrj.zghrDhU4d6SeZ8tVHrrcDepcctomeq/oxZIRe6mve1q', 'Huỳnh Đức Vũ', 1980, '', 0, 0, 0, '', 'huynhducvu@gmail.com', 0),
-(4, 'hocsinh', '$2y$10$pzu1AEuXVvvvNu0PTB.hMOoaqjqsKS6rFH/t/HpTb5ozMKiZUaxKG', 'Vox Van Duwowng', 1999, '', 10, 1, 1, '', 'vovanduong3010@gmail.com', 0),
-(5, 'hocsinh1', '$2y$10$RDUGgF0chJD2V4n.rfKq0uJElP5FtbwUCDdXGgyKwGuRbcZzrQYgG', 'Học Sinh 1', 2004, '', 10, 1, 1, '', 'hocsinh1@gmail.com', 0),
-(6, 'hocsinh2', '$2y$10$AwP9SIhP6e7.sxEzsvPIret/AJCRydSIoWt8p0CWDIkUAVer2Elmy', 'Học Sinh 2', 2004, '', 10, 1, 1, '', 'hocsinh2@gmail.com', 0),
+(4, 'hocsinh', '$2y$10$pzu1AEuXVvvvNu0PTB.hMOoaqjqsKS6rFH/t/HpTb5ozMKiZUaxKG', 'Vox Van Duwowng', 1999, '', 10, 1, 1, '', 'vovanduong3010@gmail.com', 3),
+(5, 'hocsinh1', '$2y$10$RDUGgF0chJD2V4n.rfKq0uJElP5FtbwUCDdXGgyKwGuRbcZzrQYgG', 'Học Sinh 1', 2004, '', 10, 1, 1, '', 'hocsinh1@gmail.com', 1),
+(6, 'hocsinh2', '$2y$10$AwP9SIhP6e7.sxEzsvPIret/AJCRydSIoWt8p0CWDIkUAVer2Elmy', 'Học Sinh 2', 2004, '', 10, 1, 1, '', 'hocsinh2@gmail.com', 2),
 (7, 'hocsinh3', '$2y$10$DzU0edxldesedcEInpyQoeN0mkAdXvGoE5m7lM6.0z7DSD5dm6o7W', 'Học Sinh 3', 2004, '', 10, 1, 1, '', 'hocsinh3@gmail.com', 0),
 (8, 'hocsinh4', '$2y$10$civ6EH1fTznPSmlRMIZxnONtLHUBivVUv7XKfDLRDRvrfs5BqMsDS', 'Học Sinh 4', 2004, '', 10, 1, 1, '', 'hocsinh4@gmail.com', 0),
 (9, 'hocsinh5', '$2y$10$PnM8mZHrM6urjpNuIbtJcuPVBwwm3LpPS8LhiZrnnMxfRs38/V15G', 'Học Sinh 5', 2004, '', 10, 1, 1, '', 'hocsinh5@gmail.com', 0),
@@ -313,16 +370,16 @@ INSERT INTO `nguoidung` (`IdNguoiDung`, `Username`, `Password`, `HoTen`, `NamSin
 (32, 'hocsinh28', '$2y$10$cJXlh2/UiNLw99/3E4hHjuHi77jAlb1ZdGt.IZv.BA1AUETfyGRU6', 'Học Sinh 28', 2004, '', 10, 1, 1, '', 'hocsinh28@gmail.com', 0),
 (33, 'hocsinh29', '$2y$10$YVSZYScx3DRTx6/R6/erUubCL34FRfvWoMt/fA4HvrosnDosY9qLG', 'Học Sinh 29', 2004, '', 10, 1, 1, '', 'hocsinh29@gmail.com', 0),
 (34, 'hocsinh30', '$2y$10$1WxVDa4Wq6empbwG9vUBK.w7ygoFRP7AmNa9ITuZvHzSZo6/xPRLe', 'Học Sinh 30', 2004, '', 10, 1, 1, '', 'hocsinh30@gmail.com', 0),
-(35, 'hocsinh31', '$2y$10$3xrNtteCR7Q9FLEl/qQ0NuBapQm7rIN7FheT11YN4Uwm3w329nRbu', 'Học Sinh 31', 2003, '', 11, 1, 1, '', 'hocsinh31@gmail.com', 0),
-(36, 'hocsinh32', '$2y$10$KqVNLabLLCmXaztKDZtCMOffYDcVQEDd3PBG0W40bPrUvV0.7BZE.', 'Học Sinh 32', 2003, '', 11, 1, 1, '', 'hocsinh32@gmail.com', 0),
-(37, 'hocsinh33', '$2y$10$znr3yLGTk7cFhDAI6sl.w.Xb4eYWyDZ0XOBCw2z9qPc1CpPNjKMPK', 'Học Sinh 33', 2003, '', 11, 1, 1, '', 'hocsinh33@gmail.com', 0),
-(38, 'hocsinh34', '$2y$10$BVmkw6855Gpv5M/3C6KKMOwJTORoWtzl9t8oK..76g/ZH2uuBNQz.', 'Học Sinh 34', 2003, '', 11, 1, 1, '', 'hocsinh34@gmail.com', 0),
-(39, 'hocsinh35', '$2y$10$mqBqXglUTRwuaPim/./gF.wpC4VWjX.7Z4wlrUftP9gm7NKl1ydf.', 'Học Sinh 35', 2003, '', 11, 1, 1, '', 'hocsinh35@gmail.com', 0),
-(40, 'hocsinh36', '$2y$10$js9Xk/dYBuopRciX6IY3z.cz0o4oOyBCVUtldTQdCEsuqbDhG/jtW', 'Học Sinh 36', 2003, '', 11, 1, 1, '', 'hocsinh36@gmail.com', 0),
-(41, 'hocsinh37', '$2y$10$G8dNcbgn0lVr.2dU2bBbS.lNp25rUr0fFdaBsQ1amcaH8YKn6gL8O', 'Học Sinh 37', 2003, '', 11, 1, 1, '', 'hocsinh37@gmail.com', 0),
-(42, 'hocsinh38', '$2y$10$lrwP342QJHYz41jYR7aYnuNFCmBbDsQIYf1zv8I6oBS2PDfnkAJFm', 'Học Sinh 38', 2003, '', 11, 1, 1, '', 'hocsinh38@gmail.com', 0),
-(43, 'hocsinh39', '$2y$10$SEx2haoOl64u2NMG7CVno.sBHH.f/zBumH0gBzC40irsAGBrm7VaW', 'Học Sinh 39', 2003, '', 11, 1, 1, '', 'hocsinh39@gmail.com', 0),
-(44, 'hocsinh40', '$2y$10$.P6dvoVX3j8jLpjr7iQKzeTSu.NDXLamqkPCPHiIdynEYcNYIv7de', 'Học Sinh 40', 2003, '', 11, 1, 1, '', 'hocsinh40@gmail.com', 0),
+(35, 'hocsinh31', '$2y$10$3xrNtteCR7Q9FLEl/qQ0NuBapQm7rIN7FheT11YN4Uwm3w329nRbu', 'Học Sinh 31', 2003, '', 11, 4, 1, '', 'hocsinh31@gmail.com', 0),
+(36, 'hocsinh32', '$2y$10$KqVNLabLLCmXaztKDZtCMOffYDcVQEDd3PBG0W40bPrUvV0.7BZE.', 'Học Sinh 32', 2003, '', 11, 4, 1, '', 'hocsinh32@gmail.com', 0),
+(37, 'hocsinh33', '$2y$10$znr3yLGTk7cFhDAI6sl.w.Xb4eYWyDZ0XOBCw2z9qPc1CpPNjKMPK', 'Học Sinh 33', 2003, '', 11, 4, 1, '', 'hocsinh33@gmail.com', 0),
+(38, 'hocsinh34', '$2y$10$BVmkw6855Gpv5M/3C6KKMOwJTORoWtzl9t8oK..76g/ZH2uuBNQz.', 'Học Sinh 34', 2003, '', 11, 4, 1, '', 'hocsinh34@gmail.com', 0),
+(39, 'hocsinh35', '$2y$10$mqBqXglUTRwuaPim/./gF.wpC4VWjX.7Z4wlrUftP9gm7NKl1ydf.', 'Học Sinh 35', 2003, '', 11, 4, 1, '', 'hocsinh35@gmail.com', 0),
+(40, 'hocsinh36', '$2y$10$js9Xk/dYBuopRciX6IY3z.cz0o4oOyBCVUtldTQdCEsuqbDhG/jtW', 'Học Sinh 36', 2003, '', 11, 4, 1, '', 'hocsinh36@gmail.com', 0),
+(41, 'hocsinh37', '$2y$10$G8dNcbgn0lVr.2dU2bBbS.lNp25rUr0fFdaBsQ1amcaH8YKn6gL8O', 'Học Sinh 37', 2003, '', 11, 4, 1, '', 'hocsinh37@gmail.com', 0),
+(42, 'hocsinh38', '$2y$10$lrwP342QJHYz41jYR7aYnuNFCmBbDsQIYf1zv8I6oBS2PDfnkAJFm', 'Học Sinh 38', 2003, '', 11, 4, 1, '', 'hocsinh38@gmail.com', 0),
+(43, 'hocsinh39', '$2y$10$SEx2haoOl64u2NMG7CVno.sBHH.f/zBumH0gBzC40irsAGBrm7VaW', 'Học Sinh 39', 2003, '', 11, 4, 1, '', 'hocsinh39@gmail.com', 0),
+(44, 'hocsinh40', '$2y$10$.P6dvoVX3j8jLpjr7iQKzeTSu.NDXLamqkPCPHiIdynEYcNYIv7de', 'Học Sinh 40', 2003, '', 11, 4, 1, '', 'hocsinh40@gmail.com', 0),
 (45, 'hocsinh41', '$2y$10$Lu/cr.02n0APq6RctSu2/OVIRfgFZNPfOYo4.X64Z4H8RhbmWGZQC', 'Học Sinh 41', 2004, '', 11, 3, 1, '', 'hocsinh41@gmail.com', 0),
 (46, 'hocsinh42', '$2y$10$kpUUwnAFTaFkROxxs6yUa.eCkga4d0Vo/DJSWMIZVD/RohN2i6k5W', 'Học Sinh 42', 2004, '', 11, 3, 1, '', 'hocsinh42@gmail.com', 0),
 (47, 'hocsinh43', '$2y$10$daDColJDbNI4tEAq59KZpOpYdzAxM8Cdf.y0o1cLnQuz0ZXEobFfi', 'Học Sinh 43', 2004, '', 11, 3, 1, '', 'hocsinh43@gmail.com', 0),
@@ -382,12 +439,13 @@ INSERT INTO `nguoidung` (`IdNguoiDung`, `Username`, `Password`, `HoTen`, `NamSin
 (101, 'hocsinh97', '$2y$10$gPOu7Dwj8QSL/nSli.HLp.q8y2u/fo5K85rqsqhjOOYQKmq0MlcDa', 'Học Sinh 97', 2004, '', 12, 7, 1, '', 'hocsinh97@gmail.com', 0),
 (102, 'hocsinh98', '$2y$10$DFmZ3YkmHoCQLhUX.vFOpuQeS/qZHje.49jk1uIlW3e9FG3JbvfvG', 'Học Sinh 98', 2004, '', 12, 7, 1, '', 'hocsinh98@gmail.com', 0),
 (103, 'hocsinh99', '$2y$10$PecAGnxm4i.nRTxycPJqp.Jm6Tg9EUk28AxGqkkVRpxC8oEA8g9MK', 'Học Sinh 99', 2004, '', 12, 7, 1, '', 'hocsinh99@gmail.com', 0),
-(104, 'hocsinh100', '$2y$10$eYAj61JukNIYilsgi4OzIuazK6tMurVNDSpWs9R6RuYpDKTYsMx2W', 'Học Sinh 100', 2004, '', 12, 7, 1, '', 'hocsinh100@gmail.com', 0);
+(104, 'hocsinh100', '$2y$10$eYAj61JukNIYilsgi4OzIuazK6tMurVNDSpWs9R6RuYpDKTYsMx2W', 'Học Sinh 100', 2004, '', 12, 7, 1, '', 'hocsinh100@gmail.com', 0),
+(105, 'phaihaiyen', '$2y$10$okRTvNYKhpn5YghBl6faJulcKc2OcTito59Bvf5wiq.1zOV8e4iGC', 'Phan Hải Yến', 2002, '', 12, 7, 1, '', 'test@gmail.com', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhom`
+-- Table structure for table `nhom`
 --
 
 CREATE TABLE `nhom` (
@@ -397,7 +455,7 @@ CREATE TABLE `nhom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `nhom`
+-- Dumping data for table `nhom`
 --
 
 INSERT INTO `nhom` (`IdNhom`, `TenNhom`, `Lop`) VALUES
@@ -410,32 +468,55 @@ INSERT INTO `nhom` (`IdNhom`, `TenNhom`, `Lop`) VALUES
 (6, 'Toán lớp 12 3-5-7 (1)', 12),
 (7, 'Toán lớp 12 3-5-7 (2)', 12);
 
+-- --------------------------------------------------------
+
 --
--- Chỉ mục cho các bảng đã đổ
+-- Table structure for table `thongbaonhom`
+--
+
+CREATE TABLE `thongbaonhom` (
+  `IdThongBao` int(11) NOT NULL,
+  `IdNhom` int(11) NOT NULL,
+  `TieuDe` varchar(1000) NOT NULL,
+  `NoiDung` varchar(1000) NOT NULL,
+  `NgayTao` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `thongbaonhom`
+--
+
+INSERT INTO `thongbaonhom` (`IdThongBao`, `IdNhom`, `TieuDe`, `NoiDung`, `NgayTao`) VALUES
+(3, 1, '<p>Đây là thông báo mẫu</p>', '<p>Chuẩn bị bài tập chương 2</p><p>ád</p><p>fa</p><p>sd</p><p>f</p><p>á</p><p>df</p><p>a</p><p>sd</p><p>fas</p>', '2019-11-22 19:55:14'),
+(5, 1, '<p>Demo Hình ảnh</p>', '<figure class=\"image\"><img src=\"/ExtraClassroomWebsite/upload/nganhangcauhoi/b447add6dc81b6bfff00bc83b1ee63.jpeg\"></figure>', '2019-11-22 20:02:36');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `de`
+-- Indexes for table `de`
 --
 ALTER TABLE `de`
-  ADD PRIMARY KEY (`IdDe`);
+  ADD PRIMARY KEY (`IdDe`),
+  ADD UNIQUE KEY `TenDe` (`TenDe`);
 
 --
--- Chỉ mục cho bảng `de_cauhoi`
+-- Indexes for table `de_cauhoi`
 --
 ALTER TABLE `de_cauhoi`
   ADD PRIMARY KEY (`IdDe`,`IdCauHoi`),
   ADD KEY `cst_nganhangcauhoi_de_cauhoi` (`IdCauHoi`);
 
 --
--- Chỉ mục cho bảng `de_nhom`
+-- Indexes for table `de_nhom`
 --
 ALTER TABLE `de_nhom`
   ADD PRIMARY KEY (`IdNhom`,`IdDe`),
   ADD KEY `cst_de_de_nhom` (`IdDe`);
 
 --
--- Chỉ mục cho bảng `diem_de`
+-- Indexes for table `diem_de`
 --
 ALTER TABLE `diem_de`
   ADD PRIMARY KEY (`IdNguoiDung`,`IdDe`),
@@ -443,84 +524,104 @@ ALTER TABLE `diem_de`
   ADD KEY `IdDe` (`IdDe`);
 
 --
--- Chỉ mục cho bảng `nganhangcauhoi`
+-- Indexes for table `nganhangcauhoi`
 --
 ALTER TABLE `nganhangcauhoi`
   ADD PRIMARY KEY (`IdCauHoi`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
+-- Indexes for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`IdNguoiDung`),
   ADD UNIQUE KEY `Username` (`Username`),
+  ADD UNIQUE KEY `Email` (`Email`),
   ADD KEY `cst_nhom_nguoidung` (`IdNhom`);
 
 --
--- Chỉ mục cho bảng `nhom`
+-- Indexes for table `nhom`
 --
 ALTER TABLE `nhom`
   ADD PRIMARY KEY (`IdNhom`),
   ADD UNIQUE KEY `TenNhom` (`TenNhom`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Indexes for table `thongbaonhom`
+--
+ALTER TABLE `thongbaonhom`
+  ADD PRIMARY KEY (`IdThongBao`,`IdNhom`),
+  ADD KEY `cst_nhom_thongbaonhom` (`IdNhom`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `de`
+-- AUTO_INCREMENT for table `de`
 --
 ALTER TABLE `de`
-  MODIFY `IdDe` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `IdDe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `nganhangcauhoi`
+-- AUTO_INCREMENT for table `nganhangcauhoi`
 --
 ALTER TABLE `nganhangcauhoi`
-  MODIFY `IdCauHoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+  MODIFY `IdCauHoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
+-- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
-  MODIFY `IdNguoiDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `IdNguoiDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
--- AUTO_INCREMENT cho bảng `nhom`
+-- AUTO_INCREMENT for table `nhom`
 --
 ALTER TABLE `nhom`
-  MODIFY `IdNhom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `IdNhom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for table `thongbaonhom`
+--
+ALTER TABLE `thongbaonhom`
+  MODIFY `IdThongBao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `de_cauhoi`
+-- Constraints for table `de_cauhoi`
 --
 ALTER TABLE `de_cauhoi`
   ADD CONSTRAINT `cst_de_de_cauhoi` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cst_nganhangcauhoi_de_cauhoi` FOREIGN KEY (`IdCauHoi`) REFERENCES `nganhangcauhoi` (`IdCauHoi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `de_nhom`
+-- Constraints for table `de_nhom`
 --
 ALTER TABLE `de_nhom`
   ADD CONSTRAINT `cst_de_de_nhom` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cst_nhom_de_nhom` FOREIGN KEY (`IdNhom`) REFERENCES `nhom` (`IdNhom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `diem_de`
+-- Constraints for table `diem_de`
 --
 ALTER TABLE `diem_de`
   ADD CONSTRAINT `cst_de_diem_de` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cst_nguoidung_diem_de` FOREIGN KEY (`IdNguoiDung`) REFERENCES `nguoidung` (`IdNguoiDung`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `nguoidung`
+-- Constraints for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD CONSTRAINT `cst_nhom_nguoidung` FOREIGN KEY (`IdNhom`) REFERENCES `nhom` (`IdNhom`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `thongbaonhom`
+--
+ALTER TABLE `thongbaonhom`
+  ADD CONSTRAINT `cst_nhom_thongbaonhom` FOREIGN KEY (`IdNhom`) REFERENCES `nhom` (`IdNhom`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

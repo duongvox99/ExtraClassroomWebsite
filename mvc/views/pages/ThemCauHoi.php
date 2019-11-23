@@ -85,7 +85,7 @@ if (isset($data["result"])) {
     </div>
 
     <div class="form-group">
-        <label for="loaitaikhoan">Loại tài khoản</label>
+        <label for="loaitaikhoan">Đáp án đúng</label>
         <select class="form-control" id="loaitaikhoan" name="DapAnDung">
             <option value="1">Đáp án 1</option>
             <option value="2">Đáp án 2</option>

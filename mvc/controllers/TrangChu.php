@@ -10,10 +10,10 @@ class TrangChu extends Controller
         $this->NguoiDungModel = $this->model("NguoiDungModel");
     }
 
-    function
-    Default()
+    public function Default()
     {
-        $this->DangNhap();
+        // $this->DangNhap();
+        $this->CallAPICheckExistEmail("vovanduong3010@gmail.com");
     }
 
     public function DangNhap()
@@ -127,15 +127,25 @@ class TrangChu extends Controller
                 $result = $this->NguoiDungModel->editPasswordNguoiDung($IdNguoiDung, $NewPassword);
             }
 
-            $Avatar = $_POST["Avatar"];
-            if ($Avatar != "") {
-                $target_dir = "/ExtraClassroomWebsite/uploads/";
-                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                $uploadOk = 1;
+            if ($_FILES["Avatar"]["tmp_name"] != "") {
+                $target_dir = getcwd() . DIRECTORY_SEPARATOR . "upload/avatar/";
+                // $target_dir = "../ExtraClassroomWebsite/upload/avatar/";
+                $target_file = $target_dir . basename($_FILES["Avatar"]["name"]);
                 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                $nameFile = substr(md5(uniqid(mt_rand(), true)), 0, 30);
+                $target_file = $target_dir . $nameFile . "." . $imageFileType;
+                while (file_exists($target_file)) {
+                    $nameFile = substr(md5(uniqid(mt_rand(), true)), 0, 30);
+                    $target_file = $target_dir . $nameFile . "." . $imageFileType;
+                }
+                $Avatar = "/ExtraClassroomWebsite/upload/avatar/" . $nameFile . "." . $imageFileType;
+
+                $uploadOk = 1;
+
                 // Check if image file is a actual image or fake image
-                if (isset($_POST["submit"])) {
-                    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                if (isset($_POST["btnSubmit"])) {
+                    $check = getimagesize($_FILES["Avatar"]["tmp_name"]);
                     if ($check !== false) {
                         echo "File is an image - " . $check["mime"] . ".";
                         $uploadOk = 1;
@@ -144,20 +154,14 @@ class TrangChu extends Controller
                         $uploadOk = 0;
                     }
                 }
-                // Check if file already exists
-                if (file_exists($target_file)) {
-                    echo "Sorry, file already exists.";
-                    $uploadOk = 0;
-                }
                 // Check file size
-                if ($_FILES["fileToUpload"]["size"] > 500000) {
+                if ($_FILES["Avatar"]["size"] > 5000000) {
                     echo "Sorry, your file is too large.";
                     $uploadOk = 0;
                 }
                 // Allow certain file formats
                 if (
-                    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                    && $imageFileType != "gif"
+                    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif"
                 ) {
                     echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                     $uploadOk = 0;
@@ -167,14 +171,13 @@ class TrangChu extends Controller
                     echo "Sorry, your file was not uploaded.";
                     // if everything is ok, try to upload file
                 } else {
-                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                        echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+                    echo $_FILES["Avatar"]["tmp_name"];
+                    if (move_uploaded_file($_FILES["Avatar"]["tmp_name"], $target_file)) {
+                        $result = $this->NguoiDungModel->editAvatarNguoiDung($IdNguoiDung, $Avatar);
                     } else {
                         echo "Sorry, there was an error uploading your file.";
                     }
                 }
-
-                $result = $this->NguoiDungModel->editAvatarNguoiDung($IdNguoiDung, $Avatar);
             }
 
             $HoTen = $_POST["HoTen"];
@@ -204,7 +207,41 @@ class TrangChu extends Controller
     // API
     public function CallAPICheckExistEmail($Email)
     {
-        return true;
+        $API_KEY = "d3a6f5d235msh284e580a017fb9cp1330cdjsn204396154982";
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://pozzad-email-validator.p.rapidapi.com/emailvalidator/validateEmail/" . $Email,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "x-rapidapi-host: pozzad-email-validator.p.rapidapi.com",
+                "x-rapidapi-key: " . $API_KEY,
+            ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            // print_r(json_decode($response, true));
+            if (json_decode($response, true)["isValid"] == 1) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
     public function DangXuat()
