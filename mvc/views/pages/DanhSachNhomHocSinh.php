@@ -13,7 +13,7 @@
     <?php
     for ($i = 0; $i < count($data["DanhSachNhomHocSinh"]); $i++) {
         ?>
-        <div class="col-lg-3 col-md-6 mb-4">
+        <div class="col col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
             <div class="card h-100 <?php
                                         if ($data["DanhSachNhomHocSinh"][$i]["Lop"] == 10) {
                                             echo "text-success border-success";
