@@ -3,13 +3,16 @@
 		<div class="col col-lg-8 col-md-12 col-sm-12 col-12">
 
 			<?php
-			for ($i = 0; $i < count($data["DanhSachThongBaoNhom"]); $i++) {
+			for ($i = 0; $i < count($data["DanhSachDeNhom"]); $i++) {
 				?>
 				<div class="card border-0 shadow my-5 new-banner position-relative">
 					<div class="card-body p-5">
-						<h1 class="font-weight-light"><b><?php echo $data["DanhSachThongBaoNhom"][$i]["TieuDe"]; ?></b></h1>
-						<p class="lead"><?php echo $data["DanhSachThongBaoNhom"][$i]["NoiDung"];?></p>
-						<p class="lead mb-0"><i>Ngày tạo: <?php echo $data["DanhSachThongBaoNhom"][$i]["NgayTao"]; ?></i></p>
+						<h1 class="font-weight-light"><b><?php echo $data["DanhSachDeNhom"][$i]["TenDe"]; ?></b></h1>
+						<p class="lead mb-0"><i>Thời gian mở: <?php echo $data["DanhSachDeNhom"][$i]["ThoiGianMo"]; ?></i></p>
+						<p class="lead mb-0"><i>Thời gian đóng: <?php echo $data["DanhSachDeNhom"][$i]["ThoiGianDong"]; ?></i></p>
+						<p></p>
+						<a href="/ExtraClassroomWebsite/HocSinh/LamBai/<?php echo $data["DanhSachDeNhom"][$i]["IdDe"]; ?>" class="btn btn-success" role="button">Làm bài kiểm tra</a>
+						<a href="/ExtraClassroomWebsite/HocSinh/BangXepHang/De/<?php echo $data["DanhSachDeNhom"][$i]["IdDe"]; ?>" class="btn btn-warning" role="button">Xem kết quả xếp hạng</a>
 					</div>
 				</div>
 			<?php
@@ -21,7 +24,7 @@
 				<div class="card-header bg-success" id="headingOne" data-parent="custom-collapse">
 					<h5 class="mb-0">
 						<a class="collapse-toggle visible-xs" data-toggle="collapse" aria-expanded="true" aria-controls="side-menu-collapse" data-target="#side-menu-collapse">
-							Loại thông báo
+							Loại đề kiểm tra
 						</a>
 					</h5>
 				</div>

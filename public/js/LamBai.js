@@ -39,7 +39,7 @@ $(document).ready(function () {
 	});
 
 	$(".next").click(function () {
-		if (currenQuestion < totalQuestion - 1) { 
+		if (currenQuestion < totalQuestion - 1) {
 			currenQuestion = currenQuestion + 1;
 		}
 		showQuestion(currenQuestion);
@@ -76,9 +76,7 @@ $(document).ready(function () {
 
 //=============================================================function of clock
 $(document).ready(function () {
-	var seconds = 0;
-	var minutes = 90;
-	var hours = 0;
+
 	refreshClock();
 	countdown();
 	function countdown() {
@@ -124,7 +122,7 @@ $(document).ready(function () {
 		jQuery("#countdown #min").html(pad(minutes));
 		jQuery("#countdown #sec").html(pad(seconds));
 		if (hours == 0 && minutes == 0 && seconds == 0 && hasStarted == true) {
-			location.reload();
+			document.getElementById("formLamBai").submit();
 		}
 	}
 });

@@ -1,1 +1,3 @@
-alert('Test');
+$( document ).ready(function() {
+    $("#NhomLopHoc").focus();
+});

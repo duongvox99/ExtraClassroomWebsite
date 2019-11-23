@@ -1,7 +1,7 @@
 <?php
 class Diem_DeModel extends MySQL{
-    public function addDiem_De($IdNguoiDung, $IdDe, $LanLam, $Diem) {
-        $qr = "INSERT INTO diem_de VALUES ($IdNguoiDung, $IdDe, $LanLam, $Diem)";
+    public function addDiem_De($IdNguoiDung, $IdDe, $Diem) {
+        $qr = "INSERT INTO diem_de VALUES ($IdNguoiDung, $IdDe, $Diem)";
         
         $result = false;
         if (mysqli_query($this->con, $qr)) {
@@ -10,26 +10,26 @@ class Diem_DeModel extends MySQL{
         return $result;
     }
 
-    public function getHocSinhRanking_De($IdDe) {
-        $qr = "SELECT * FROM diem_de INNER JOIN nguoidung ON diem_de.IdNguoiDung=nguoidung.IdNguoiDung WHERE IdDe=$IdDe ORDER BY Diem DESC";
+    public function getHocSinhDiem_De($IdDe, $IdNguoiDung) {
+        $qr = "SELECT * FROM diem_de WHERE IdDe=$IdDe AND IdNguoiDung=$IdNguoiDung";
 
         $result = mysqli_query($this->con, $qr);
 
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "Diem" => $row["Diem"]));
+            array_push($output, $row);
         }
         return $output;
-    }
+    } 
 
-    public function getHocSinhRanking_De_Nhom($IdDe, $IdNhom) {
-        $qr = "SELECT * FROM diem_de INNER JOIN nguoidung ON diem_de.IdNguoiDung=nguoidung.IdNguoiDung WHERE IdDe=$IdDe AND IdNhom=$IdNhom ORDER BY Diem DESC";
+    public function getHocSinhRanking_De($IdDe) {
+        $qr = "SELECT * FROM diem_de INNER JOIN nguoidung ON diem_de.IdNguoiDung=nguoidung.IdNguoiDung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom WHERE diem_de.IdDe=$IdDe ORDER BY diem_de.Diem DESC";
 
         $result = mysqli_query($this->con, $qr);
 
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "Diem" => $row["Diem"]));
+            array_push($output, $row);
         }
         return $output;
     }

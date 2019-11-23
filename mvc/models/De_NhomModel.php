@@ -1,7 +1,7 @@
 <?php
 class De_NhomModel extends MySQL{
     public function getAllDeNhom($IdNhom) {
-        $qr = "SELECT * FROM de_nhom INNER JOIN de ON de_nhom.IdDe=de.IdDe WHERE de_nhom.IdNhom=$IdNhom";
+        $qr = "SELECT * FROM de_nhom INNER JOIN de ON de_nhom.IdDe=de.IdDe WHERE de_nhom.IdNhom=$IdNhom ORDER BY de_nhom.ThoiGianMo DESC";
 
         $result = mysqli_query($this->con, $qr);
         $output = array();

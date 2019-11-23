@@ -70,8 +70,8 @@ class DeModel extends MySQL{
         return $output;
     }
     
-    public function addDe($TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho) {
-        $qr = "INSERT INTO de VALUES (null, '$TenDe', $LoaiDe, $HienDapAn, '$NgayTaoDe', $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho)";
+    public function addDe($TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho, $ThoiGian) {
+        $qr = "INSERT INTO de VALUES (null, '$TenDe', $LoaiDe, $HienDapAn, '$NgayTaoDe', $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho, $ThoiGian)";
         
         $result = false;
         if (mysqli_query($this->con, $qr)) {

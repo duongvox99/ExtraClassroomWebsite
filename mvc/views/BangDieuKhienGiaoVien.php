@@ -22,12 +22,15 @@
 
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
-
+    
+    <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/KenhThaoLuanChung.css">
     <link href="/ExtraClassroomWebsite/public/css/BangDieuKhienGiaoVien.css" rel="stylesheet">
 
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
     <script type='text/javascript' src='/ExtraClassroomWebsite/public/js/bootstrap.js'></script>
+
+    <script type='text/javascript' src='/ExtraClassroomWebsite/public/js/test.js'></script>
 </head>
 
 <body>
@@ -40,22 +43,22 @@
                     </div>
                     <ul class="nav flex-column my-nav-menu">
                         <li class="nav-item">
-                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNhomHocSinh"><i class="fas fa-users"></i> Nhóm lớp học</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNhomHocSinh" <?php echo ($data["SubView"] == "DanhSachNhomHocSinh") ? 'style="background-color: green;"' : "";?>><i class="fas fa-users"></i> Nhóm lớp học</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1"><i class="fas fa-user"></i> Đề kiểm tra</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1" <?php echo ($data["SubView"] == "DanhSachDe") ? 'style="background-color: green;"' : "";?>><i class="fas fa-user"></i> Đề kiểm tra</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1"><i class="fas fa-user"></i> Người dùng</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1" <?php echo ($data["SubView"] == "DanhSachNguoiDung") ? 'style="background-color: green;"' : "";?>><i class="fas fa-user"></i> Người dùng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1"><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/NganHangCauHoi/TatCa/1" <?php echo ($data["SubView"] == "NganHangCauHoi") ? 'style="background-color: green;"' : "";?>><i class="fas fa-stream"></i> Ngân hàng câu hỏi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-trophy"></i> Bảng xếp hạng</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/BangXepHangHocSinh/Lop/12" <?php echo ($data["SubView"] == "BangXepHangHocSinh") ? 'style="background-color: green;"' : "";?>><i class="fas fa-trophy"></i> Bảng xếp hạng</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-comment-dots"></i> Kênh thảo luận chung</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/KenhThaoLuanChung" <?php echo ($data["SubView"] == "KenhThaoLuanChung") ? 'style="background-color: green;"' : "";?>><i class="fas fa-comment-dots"></i> Kênh thảo luận chung</a>
                         </li>
                     </ul>
                 </nav>

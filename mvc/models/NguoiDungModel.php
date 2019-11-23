@@ -153,7 +153,7 @@ class NguoiDungModel extends MySQL{
     }
 
     public function setDiemTong($IdNguoiDung, $DiemTong) {
-        $qrResetMatKhau = "UPDATE nguoidung SET DiemTong=$DiemTong WHERE IdNguoiDung=$IdNguoiDung";
+        $qrResetMatKhau = "UPDATE nguoidung SET DiemTong=DiemTong+$DiemTong WHERE IdNguoiDung=$IdNguoiDung";
         if (mysqli_query($this->con, $qrResetMatKhau)) {
             return true;
         }
@@ -162,27 +162,25 @@ class NguoiDungModel extends MySQL{
     }
 
     public function getHocSinhRanking_Nhom_Lop($IdNhom, $Lop) {
-        $qr = "SELECT * FROM nguoidung WHERE IdNhom=$IdNhom AND Lop=$Lop ORDER BY DiemTong DESC";
+        $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom  WHERE nguoidung.IdNhom=$IdNhom AND nguoidung.Lop=$Lop ORDER BY nguoidung.DiemTong DESC";
         
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("IdNguoiDung" => $row["IdNguoiDung"], "HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
+            array_push($output, $row);
         }
         return $output;
-
     }
 
     public function getHocSinhRanking_Lop($Lop) {
-        $qr = "SELECT * FROM nguoidung WHERE Lop=$Lop ORDER BY DiemTong DESC";
+        $qr = "SELECT * FROM nguoidung INNER JOIN nhom ON nguoidung.IdNhom=nhom.IdNhom  WHERE nguoidung.Lop=$Lop ORDER BY nguoidung.DiemTong DESC";
         
         $result = mysqli_query($this->con, $qr);
         $output = array();
         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-            array_push($output, array("IdNguoiDung" => $row["IdNguoiDung"], "HoTen" => $row["HoTen"], "NamSinh" => $row["NamSinh"], "Avatar" => $row["Avatar"], "Lop" => $row["Lop"], "Email" => $row["Email"], "DiemTong" => $row["DiemTong"]));
+            array_push($output, $row);
         }
         return $output;
     }
-
 }
 ?>

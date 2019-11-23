@@ -1,4 +1,4 @@
-<div class="container border border-dark bg-light">
+<div class="container-fluid">
     <div class="row">
 
         <div class="input-group mb-3">
@@ -6,8 +6,8 @@
                 <label class="input-group-text" for="inputGroupSelect01">Xếp hạng theo</label>
             </div>
             <select class="custom-select" id="inputGroupSelect01" onchange="location = this.value;">
-                <option value="/ExtraClassroomWebsite/HocSinh/BangXepHang/Nhom/1" <?php echo ($data["KieuXepHang"] == "Nhom") ? "selected" : ""; ?>>Nhóm hiện tại</option>
-                <option value="/ExtraClassroomWebsite/HocSinh/BangXepHang/Lop/1" <?php echo ($data["KieuXepHang"] == "Lop") ? "selected" : ""; ?>>Lớp hiện tại</option>
+                <option value="/ExtraClassroomWebsite/GiaoVien/BangXepHangHocSinh/Nhom/1" <?php echo ($data["KieuXepHang"] == "Nhom") ? "selected" : ""; ?>>Nhóm hiện tại</option>
+                <option value="/ExtraClassroomWebsite/GiaoVien/BangXepHangHocSinh/Lop/1" <?php echo ($data["KieuXepHang"] == "Lop") ? "selected" : ""; ?>>Lớp hiện tại</option>
                 <?php if ($data["KieuXepHang"] == "De") { ?>
                     <option selected><?= $data["TenDe"]?></option>
                 <?php  } ?>

@@ -143,6 +143,11 @@ if (isset($data["result"])) {
     </div>
 
     <div class="form-group">
+        <label for="thoigian">Thời gian</label>
+        <input type="number" min="1" max="120" class="form-control" id="thoigian" name="ThoiGian" placeholder="Thời gian" value="<?php echo (isset($data["DataDeChinhSua"])) ? $data["DataDeChinhSua"]["ThoiGian"] : 90; ?>">
+    </div>
+
+    <div class="form-group">
         <label for="socaude">Số câu dễ</label>
         <input type="number" min="0" max="100" class="form-control" id="socaude" name="SoCauDe" placeholder="Tuần" value="<?php echo (isset($data["DataDeChinhSua"])) ? $data["DataDeChinhSua"]["SoCauDe"] : "5"; ?>">
     </div>

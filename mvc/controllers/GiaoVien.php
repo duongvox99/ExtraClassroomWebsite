@@ -8,6 +8,7 @@ class GiaoVien extends Controller{
     public $De_CauHoiModel;
     public $De_NhomModel;
     public $ThongBaoNhomModel;
+    public $Diem_DeModel;
 
     public $DataNguoiDung;
 
@@ -20,6 +21,7 @@ class GiaoVien extends Controller{
         $this->De_CauHoiModel = $this->model("De_CauHoiModel");
         $this->ThongBaoNhomModel = $this->model("ThongBaoNhomModel");
         $this->De_NhomModel = $this->model("De_NhomModel");
+        $this->Diem_DeModel = $this->model("Diem_DeModel");
 
         $this->DataNguoiDung = array("IdNguoiDung" => $_SESSION["IdNguoiDung"],
                                 "HoTen" => $_SESSION["HoTen"],
@@ -188,8 +190,9 @@ class GiaoVien extends Controller{
             $NgayTaoDe = $_POST["NgayTaoDe"];
             $Lop = $_POST["Lop"];
             $Tuan = $_POST["Tuan"];
+            $ThoiGian = $_POST["ThoiGian"];
 
-            $result = $this->DeModel->addDe($TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho);
+            $result = $this->DeModel->addDe($TenDe, $LoaiDe, $HienDapAn, $NgayTaoDe, $Lop, $Tuan, $SoCauDe, $SoCauTrungBinh, $SoCauKho, $ThoiGian);
             if ($result) {
                 $IdDe = $this->DeModel->getIdDe($TenDe)[0]["IdDe"];
 
@@ -484,8 +487,8 @@ class GiaoVien extends Controller{
             ]);
         }
         else {
-            $TieuDe = $_POST["TieuDe"];
-            $NoiDung = $_POST["NoiDung"];
+            $TieuDe = $this->HandleString($_POST["TieuDe"]);
+            $NoiDung = $this->HandleString($_POST["NoiDung"]);
             $NgayTao = $_POST["NgayTao"];
 
             $result = $this->ThongBaoNhomModel->addThongBaoNhom($IdNhom, $TieuDe, $NoiDung, $NgayTao);
@@ -633,5 +636,44 @@ class GiaoVien extends Controller{
 
     }
     // ####################################################################################
+
+    public function KenhThaoLuanChung() {
+        $this->view("BangDieuKhienGiaoVien", [
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "KenhThaoLuanChung",
+            "GiaoVien" => true,
+            "Title" => "Kênh thảo luận chung",
+        ]);
+    }
+    
+    // ####################################################################################
+    
+    public function BangXepHangHocSinh($Category, $Id) {
+        if (!($Category == "Lop" || $Category == "Nhom" || $Category == "De" )) {
+            $Category = "Lop";
+        }
+
+        if ($Category == "Lop") {
+            $DataRank = $this->NguoiDungModel->getHocSinhRanking_Nhom_Lop($this->DataNguoiDung["IdNhom"], $this->DataNguoiDung["Lop"]);
+        }
+        else if ($Category == "Nhom") {
+            $DataRank = $this->NguoiDungModel->getHocSinhRanking_Lop($this->DataNguoiDung["Lop"]);
+        }
+        else {
+            $DataDe = $this->DeModel->getDe($IdDe);
+            $DataRank = $this->Diem_DeModel->getHocSinhRanking_De($IdDe);
+            $TenDe = $DataDe["TenDe"];
+        }
+        
+        $DataNhom = $this->NhomModel->getAllNhom();
+
+        $this->view("BangDieuKhienGiaoVien", [
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "BangXepHangHocSinh",
+            "DataRank" => $DataRank,
+            "KieuXepHang" => $Category,
+            "DataNhom" => $DataNhom
+        ]);
+    }
 }
 ?>

@@ -22,8 +22,6 @@
 	
 	<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/jquery-3.4.1.js'></script>
 	<script type='text/javascript' src='/ExtraClassroomWebsite/public/js/bootstrap.js'></script>
-	
-
 </head>
 
 <body >

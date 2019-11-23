@@ -18,13 +18,13 @@
             <div class="x_content">
                 <div class="row">
                     <div class="col-md-6"><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1" type="button" class="btn <?php echo ($data["Category"] == "TatCa") ? "btn-primary" : "btn-success"; ?>">
-                            Tất cả <span class="badge bg-white"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoDe"] : ""; ?></span>
+                            Tất cả <span class="badge bg-danger"><?php echo ($data["Category"] == "TatCa") ? $data["TongSoDe"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop10/1" type="button" class="btn <?php echo ($data["Category"] == "Lop10") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 10 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoDe"] : ""; ?></span>
+                            Lớp 10 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop10") ? $data["TongSoDe"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop11/1" type="button" class="btn <?php echo ($data["Category"] == "Lop11") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 11 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoDe"] : ""; ?></span>
+                            Lớp 11 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop11") ? $data["TongSoDe"] : ""; ?></span>
                         </a><a href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/Lop12/1" type="button" class="btn <?php echo ($data["Category"] == "Lop12") ? "btn-primary" : "btn-success"; ?>">
-                            Lớp 12 <span class="badge bg-white"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoDe"] : ""; ?></span>
+                            Lớp 12 <span class="badge bg-danger"><?php echo ($data["Category"] == "Lop12") ? $data["TongSoDe"] : ""; ?></span>
                         </a>
                     </div>
                 </div>
@@ -51,6 +51,7 @@
                                 <th class="column-title">Loại đề</th>
                                 <th class="column-title">Lớp</th>
                                 <th class="column-title">Tuần</th>
+                                <th class="column-title">Thời gian</th>
                                 <th class="column-title">Dễ</th>
                                 <th class="column-title">Trung bình</th>
                                 <th class="column-title">Khó</th>
@@ -84,6 +85,7 @@
                                     <td><?php echo $LoaiDe; ?></td>
                                     <td><?php echo $data["DanhSachDe"][$i]["Lop"]; ?></td>
                                     <td><?php echo $data["DanhSachDe"][$i]["Tuan"]; ?></td>
+                                    <td><?php echo $data["DanhSachDe"][$i]["ThoiGian"]; ?> phút</td>
                                     <td><?php echo $data["DanhSachDe"][$i]["SoCauDe"]; ?></td>
                                     <td><?php echo $data["DanhSachDe"][$i]["SoCauTrungBinh"]; ?></td>
                                     <td><?php echo $data["DanhSachDe"][$i]["SoCauKho"]; ?></td>
