@@ -12,8 +12,7 @@ class TrangChu extends Controller
 
     public function Default()
     {
-        // $this->DangNhap();
-        $this->CallAPICheckExistEmail("vovanduong3010@gmail.com");
+        $this->DangNhap();
     }
 
     public function DangNhap()
