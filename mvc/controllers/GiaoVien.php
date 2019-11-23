@@ -653,26 +653,29 @@ class GiaoVien extends Controller{
             $Category = "Lop";
         }
 
-        if ($Category == "Lop") {
-            $DataRank = $this->NguoiDungModel->getHocSinhRanking_Nhom_Lop($this->DataNguoiDung["IdNhom"], $this->DataNguoiDung["Lop"]);
+        $DataDe = $this->DeModel->getAllDeKiemTra();
+        $DataNhom = $this->NhomModel->getAllNhom();
+        // NEED TO DO remove admin group
+
+        if ($Category == "Nhom") {
+            $Nhom = $this->NhomModel->getNhom($Id);
+            $DataRank = $this->NguoiDungModel->getHocSinhRanking_Nhom_Lop($Id, $Nhom["Lop"]);
         }
-        else if ($Category == "Nhom") {
-            $DataRank = $this->NguoiDungModel->getHocSinhRanking_Lop($this->DataNguoiDung["Lop"]);
+        else if ($Category == "Lop") {
+            $DataRank = $this->NguoiDungModel->getHocSinhRanking_Lop($Id);
         }
         else {
-            $DataDe = $this->DeModel->getDe($IdDe);
-            $DataRank = $this->Diem_DeModel->getHocSinhRanking_De($IdDe);
-            $TenDe = $DataDe["TenDe"];
+            $DataRank = $this->Diem_DeModel->getHocSinhRanking_De($Id);
         }
         
-        $DataNhom = $this->NhomModel->getAllNhom();
-
         $this->view("BangDieuKhienGiaoVien", [
             "DataNguoiDung" => $this->DataNguoiDung,
             "SubView" => "BangXepHangHocSinh",
             "DataRank" => $DataRank,
             "KieuXepHang" => $Category,
-            "DataNhom" => $DataNhom
+            "Id" => $Id,
+            "DataNhom" => $DataNhom,
+            "DataDe" => $DataDe
         ]);
     }
 }

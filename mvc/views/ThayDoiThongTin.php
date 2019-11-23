@@ -8,7 +8,7 @@
     <title>Cập nhật tài khoản</title>
 
     <link rel="icon" href="/ExtraClassroomWebsite/public/img/icon.ico" type="image/ico" />
-    
+
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/DangNhap.css" />
@@ -21,11 +21,32 @@
     <?php
     if (isset($data["result"])) {
         if (!$data["result"]) {
-            echo 
-            "<script type='text/javascript'>
+            if (isset($data["error"])) {
+                echo
+                    "<script type='text/javascript'>
                 $.confirm({
                     theme: 'modern',
-                    title: 'Cập nhật thông tin tài khoản thất bại',
+                    title: 'Cập nhật thất bại',
+                    content: 'Địa chỉ mail không tồn tại!',
+                    type: 'red',
+                    typeAnimated: true,
+                    autoClose: 'tryAgain|5000',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Thử lại',
+                            btnClass: 'btn-red',
+                            action: function(){
+                            }
+                        }
+                    },
+                });            
+            </script>";
+            } else {
+                echo
+                    "<script type='text/javascript'>
+                $.confirm({
+                    theme: 'modern',
+                    title: 'Cập nhật thất bại',
                     content: 'Bạn vui lòng kiểm tra lại các trường!',
                     type: 'red',
                     typeAnimated: true,
@@ -40,59 +61,41 @@
                     },
                 });            
             </script>";
+            }
         }
-        else {
-            echo 
-            "<script type='text/javascript'>
-                $.confirm({
-                    theme: 'modern',
-                    title: 'Kết quả',
-                    content: 'Cập nhật thông tin tài khoản thành công!',
-                    type: 'red',
-                    typeAnimated: true,
-                    autoClose: 'tryAgain|5000',
-                    buttons: {
-                        ok: {
-                            text: 'OK',
-                            btnClass: 'btn-green',
-                            action: function(){
-                                location.href = 'http://localhost/ExtraClassroomWebsite'; 
-                            }
-                        }
-                    },
-                });            
-            </script>";
-        }
-
     }
     ?>
     <div class="wrapper fadeInDown">
         <div id="formContent">
-
-            <!-- Banner -->
-            <div class="fadeIn first">
-                <img src="/ExtraClassroomWebsite/public/img/banner.jpg" id="banner" alt="Login Banner" />
-            </div>
-
             <!-- Login Form -->
             <form action="" method="POST">
-            <!-- 
-            $NamSinh = $_POST["NamSinh"];
-            $Avatar = "";
-            $Lop = $_POST["Lop"];
-            $Email = $_POST["Email"]' -->
-                <input type="text" id="username" class="fadeIn second" name="HoTen" placeholder="Tên đăng nhập" value="<?php echo $data["DataNguoiDung"]["Username"];?>">
+
+                <h5><b>Họ và tên</b></h5>
+
+                <input type="text" id="hoten" class="fadeIn first" name="HoTen" placeholder="Họ tên" value="<?php echo $data["DataNguoiDung"]["HoTen"]; ?>">
+
+                <br><br>
+                <h5><b>Năm sinh</b></h5>
+                <input type="number" min="1950" max="2019" id="namsinh" class="fadeIn first" name="NamSinh" placeholder="Năm sinh" value="<?php echo $data["DataNguoiDung"]["NamSinh"]; ?>">
+
+                <br><br>
+                <h5><b>Ảnh đại diện mới</b></h5>
+                <input type="file" id="avatar" class="fadeIn second" name="Avatar" placeholder="Avatar" value="<?php echo $data["DataNguoiDung"]["Avatar"]; ?>">
+
+                <br><br>
+                <h5><b>Email</b></h5>
+                <input type="text" id="email" class="fadeIn third" name="Email" placeholder="Email" value="<?php echo $data["DataNguoiDung"]["Email"]; ?>">
+
+                <br><br>
+                <h5><b>Mật khẩu mới</b></h5>
                 <input type="password" id="password" class="fadeIn third" name="Password" placeholder="Mật khẩu">
-                <input type="text" id="hoten" class="fadeIn second" name="Username" placeholder="Họ tên" value="<?php echo $data["DataNguoiDung"]["HoTen"];?>">
-                <input type="number" min="1950" max="2019" id="namsinh" class="fadeIn third" name="NamSinh" placeholder="Năm sinh" value="<?php echo $data["DataNguoiDung"]["NamSinh"];?>">
-                <input type="file" id="avatar" class="fadeIn second" name="Avatar" placeholder="Avatar" value="<?php echo $data["DataNguoiDung"]["Avatar"];?>">
-                <input type="text" id="email" class="fadeIn third" name="Email" placeholder="Email" value="<?php echo $data["DataNguoiDung"]["Email"];?>">
+
                 <input type="submit" class="fadeIn fourth" value="Cập nhật" name="btnSubmit">
             </form>
 
             <!-- Remind Passowrd -->
             <div id="formFooter">
-                <!-- <a class="underlineHover" href="/ExtraClassroomWebsite/TrangChu/QuenMatKhau">Quên mật khẩu?</a> -->
+                <a class="underlineHover" href="/ExtraClassroomWebsite">Quay về trang chủ?</a>
             </div>
 
         </div>

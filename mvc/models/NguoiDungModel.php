@@ -110,9 +110,29 @@ class NguoiDungModel extends MySQL{
         return mysqli_fetch_array(mysqli_query($this->con, $qr), MYSQLI_ASSOC);
     }
 
-    public function editThongtinNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email) {
+    public function editThongtinNguoiDung($IdNguoiDung, $HoTen, $NamSinh, $Email) {
+        $qr = "UPDATE nguoidung SET HoTen='$HoTen', NamSinh=$NamSinh, Email='$Email' WHERE IdNguoiDung=$IdNguoiDung";
+        
+        $result = false;
+        if (mysqli_query($this->con, $qr)) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function editAvatarNguoiDung($IdNguoiDung, $Avatar) {
+        $qr = "UPDATE nguoidung SET Avatar='$Avatar' WHERE IdNguoiDung=$IdNguoiDung";
+        
+        $result = false;
+        if (mysqli_query($this->con, $qr)) {
+            $result = true;
+        }
+        return $result;
+    }
+
+    public function editPasswordNguoiDung($IdNguoiDung, $Password) {
         $PasswordHash = password_hash($Password, PASSWORD_DEFAULT);
-        $qr = "UPDATE nguoidung SET Password='$PasswordHash', HoTen='$HoTen', NamSinh=$NamSinh, Avatar='$Avatar', Lop=$Lop, Email=$Email WHERE IdNguoiDung=$IdNguoiDung";
+        $qr = "UPDATE nguoidung SET Password='$PasswordHash' WHERE IdNguoiDung=$IdNguoiDung";
         
         $result = false;
         if (mysqli_query($this->con, $qr)) {

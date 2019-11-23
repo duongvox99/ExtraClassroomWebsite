@@ -46,7 +46,7 @@
                             <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNhomHocSinh" <?php echo ($data["SubView"] == "DanhSachNhomHocSinh") ? 'style="background-color: green;"' : "";?>><i class="fas fa-users"></i> Nhóm lớp học</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1" <?php echo ($data["SubView"] == "DanhSachDe") ? 'style="background-color: green;"' : "";?>><i class="fas fa-user"></i> Đề kiểm tra</a>
+                            <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachDe/TatCa/1" <?php echo ($data["SubView"] == "DanhSachDe") ? 'style="background-color: green;"' : "";?>><i class="fas fa-star"></i> Đề kiểm tra</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/ExtraClassroomWebsite/GiaoVien/DanhSachNguoiDung/TatCa/1" <?php echo ($data["SubView"] == "DanhSachNguoiDung") ? 'style="background-color: green;"' : "";?>><i class="fas fa-user"></i> Người dùng</a>

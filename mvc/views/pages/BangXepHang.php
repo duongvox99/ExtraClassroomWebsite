@@ -22,7 +22,7 @@
                     <th scope="col">Họ và tên</th>
                     <th scope="col">Lớp</th>
                     <th scope="col">Nhóm</th>
-                    <th scope="col">Điểm tổng</th>
+                    <th scope="col">Điểm</th>
                 </tr>
             </thead>
             <tbody>

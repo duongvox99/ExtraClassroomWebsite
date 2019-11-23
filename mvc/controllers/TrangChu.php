@@ -1,28 +1,32 @@
 <?php
 
-class TrangChu extends Controller{
+class TrangChu extends Controller
+{
     public $NguoiDungModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         // init model
         $this->NguoiDungModel = $this->model("NguoiDungModel");
     }
 
-    function Default(){
+    function
+    Default()
+    {
         $this->DangNhap();
     }
 
-    public function DangNhap(){
+    public function DangNhap()
+    {
         if (!isset($_POST["btnSubmit"])) {
             $this->view("DangNhap");
-        }
-        else {
+        } else {
             $username = $_POST["username"];
             $password = $_POST["password"];
 
             if (!is_null($username) and !is_null($password)) {
                 $result = $this->NguoiDungModel->checkTaiKhoan($username, $password);
-                
+
                 // print_r($result);
 
                 // Đăng nhập thành công sẽ trả về ID và Loại tài khoản
@@ -43,8 +47,7 @@ class TrangChu extends Controller{
 
                     // Đi tới trang chủ
                     header("Location: /ExtraClassroomWebsite");
-                }
-                else {
+                } else {
                     $this->view("DangNhap", [
                         "result" => $result
                     ]);
@@ -53,17 +56,17 @@ class TrangChu extends Controller{
         }
     }
 
-    public function QuenMatKhau(){
+    public function QuenMatKhau()
+    {
         if (!isset($_POST["btnSubmit"])) {
             $this->view("QuenMatKhau");
-        }
-        else {
+        } else {
             $username = $_POST["username"];
             $email = $_POST["email"];
 
             if (!is_null($username) and !is_null($email)) {
                 $resultSendLinkVerifyToResetMatKhau = false;
-                $randomCode = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+                $randomCode = substr(md5(uniqid(mt_rand(), true)), 0, 8);
                 $resultSetRandomCode = $this->NguoiDungModel->setRandomCode($username, $email, $randomCode);
                 if ($resultSetRandomCode) {
                     $url = 'http://' . $_SERVER['SERVER_NAME'] . '/ExtraClassroomWebsite/TrangChu/ResetMatKhau/' . $username . '/' . $randomCode;
@@ -98,45 +101,70 @@ class TrangChu extends Controller{
 
 
     // HIDDEN (NO VIEW)
-    public function ResetMatKhau($username, $randomCode) {
+    public function ResetMatKhau($username, $randomCode)
+    {
         if (!is_null($randomCode) && !is_null($username)) {
             $resultResetMatKhau = $this->NguoiDungModel->ResetMatKhau($username, $randomCode);
             if ($resultResetMatKhau) {
                 header("Location: /ExtraClassroomWebsite");
-            }
-            else {
+            } else {
                 $this->view("404");
             }
         }
     }
 
-    public function ThayDoiThongTin($IdNguoiDung) {
+    public function ThayDoiThongTin()
+    {
+        $IdNguoiDung = $_SESSION["IdNguoiDung"];
+        $DataNguoiDung = $this->NguoiDungModel->getNguoiDung($IdNguoiDung);
         if (!isset($_POST["btnSubmit"])) {
-            $DataNguoiDung = $this->NguoiDungModel->getNguoiDung($IdNguoiDung);
             $this->view("ThayDoiThongTin", ["DataNguoiDung" => $DataNguoiDung]);
-        }
-        else {
-            $IdNguoiDung = $_SESSION["IdNguoiDung"];
-            $Password = $_POST["Password"];
+        } else {
+            $error = "";
+
+            $NewPassword = $_POST["Password"];
+            if ($NewPassword != "") {
+                $result = $this->NguoiDungModel->editPasswordNguoiDung($IdNguoiDung, $NewPassword);
+            }
+
+            $Avatar = $_POST["Avatar"];
+            if ($Avatar != "") {
+                $result = $this->NguoiDungModel->editAvatarNguoiDung($IdNguoiDung, $Avatar);
+            }
+
             $HoTen = $_POST["HoTen"];
             $NamSinh = $_POST["NamSinh"];
-            $Avatar = "";
-            $Lop = $_SESSION["Lop"]; // Không tồn tại trong post
-            $Email = $_POST["Email"];
 
-            $result = $this->NguoiDungModel->editThongtinNguoiDung($IdNguoiDung, $Password, $HoTen, $NamSinh, $Avatar, $Lop, $Email);
+            $Email = $_POST["Email"];
+            // CALL API CHECKMAIL
+            if (!$this->CallAPICheckExistEmail($Email)) {
+                $result = false;
+                $error = "Địa chỉ email không tồn tại!";
+            } else {
+                $result = $this->NguoiDungModel->editThongtinNguoiDung($IdNguoiDung, $HoTen, $NamSinh, $Email);
+            }
+
             if ($result) {
-                header("Location: /ExtraClassroomWebsite");
+                $this->DangXuat();
             }
             else {
                 $this->view("ThayDoiThongTin", [
                     "result" => $result,
+                    "error" => $error,
+                    "DataNguoiDung" => $DataNguoiDung
                 ]);
             }
         }
     }
 
-    public function DangXuat() {
+    // API
+    public function CallAPICheckExistEmail($Email)
+    {
+        return true;
+    }
+
+    public function DangXuat()
+    {
         // remove all session variables
         session_unset();
 

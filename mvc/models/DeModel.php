@@ -23,6 +23,17 @@ class DeModel extends MySQL{
         return $output;
     }
 
+    public function getAllDeKiemTra(){
+        $qr = "SELECT * FROM de";
+        
+        $result = mysqli_query($this->con, $qr);
+        $output = array();
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            array_push($output, $row);
+        }
+        return $output;
+    }
+
     public function getTotalNumberDe($category){
         if ($category == "TatCa") {
             $qr = "SELECT * FROM de";
@@ -105,4 +116,3 @@ class DeModel extends MySQL{
         return false;
     }
 }
-?>
