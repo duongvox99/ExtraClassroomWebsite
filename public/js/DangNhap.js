@@ -3,7 +3,7 @@ $(document).ready(function(){
 	$("#btnSubmit").click(function(){
 		var password = $("#password").val();
 		var username = $("#username").val();
-		var email = $("#email").val();
+		// var email = $("#email").val();
     	// alert(password+" "+ username);
     	
     	if (username == "") 

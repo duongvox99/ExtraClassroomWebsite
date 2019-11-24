@@ -15,6 +15,7 @@
 
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/ThayDoiThongTin.js"></script>
 </head>
 
 <body>
@@ -90,7 +91,7 @@
                 <h5><b>Mật khẩu mới</b></h5>
                 <input type="password" id="password" class="fadeIn third" name="Password" placeholder="Mật khẩu">
 
-                <input type="submit" class="fadeIn fourth" value="Cập nhật" name="btnSubmit">
+                <input type="submit" id="btnSubmit" class="fadeIn fourth" value="Cập nhật" name="btnSubmit">
             </form>
 
             <!-- Remind Passowrd -->

@@ -5,17 +5,18 @@ $(document).ready(function(){
     }
 
     $("#btnSubmit").click(function(){
-		var username = $("#username").val();
+		var fullname = $("#hoten").val();
 		var email = $("#email").val();
+        var birthyear =$("#namsinh").val();
     	// alert(password+" "+ username);
     	
-    	if (username == "") 
+    	if (fullname == "") 
     	{
     	 	event.preventDefault();
     	 	$.confirm({
                     theme: 'modern',
-                    title: 'Tên đăng nhập rỗng',
-                    content: 'Bạn vui lòng kiểm tra lại tên đăng nhập!',
+                    title: 'Họ và tên rỗng',
+                    content: 'Bạn vui lòng kiểm tra lại Họ và tên!',
                     type: 'red',
                     typeAnimated: true,
                     autoClose: 'tryAgain|5000',
@@ -69,6 +70,27 @@ $(document).ready(function(){
                         }
                     },
             });
+        }
+
+        if (birthyear == "") 
+        {
+            event.preventDefault();
+            $.confirm({
+                    theme: 'modern',
+                    title: 'Năm sinh rỗng',
+                    content: 'Bạn vui lòng kiểm tra Năm sinh!',
+                    type: 'red',
+                    typeAnimated: true,
+                    autoClose: 'tryAgain|5000',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Thử lại',
+                            btnClass: 'btn-red',
+                            action: function(){
+                            }
+                        }
+                    },
+                });
         }
 	});
 });
