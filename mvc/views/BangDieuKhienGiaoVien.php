@@ -24,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/jquery-confirm.min.css">
     
     <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/KenhThaoLuanChung.css">
-    <link href="/ExtraClassroomWebsite/public/css/BangDieuKhienGiaoVien.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/ExtraClassroomWebsite/public/css/BangDieuKhienGiaoVien.css">
 
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="/ExtraClassroomWebsite/public/js/jquery-confirm.min.js"></script>
