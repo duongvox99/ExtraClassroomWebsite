@@ -78,7 +78,7 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 
-	console.log(idUser, nameUser);
+	// console.log(idUser, nameUser);
 
 	var oldData = [];
 
