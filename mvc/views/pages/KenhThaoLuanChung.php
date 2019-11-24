@@ -24,7 +24,7 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 							</div>
 							<div class="user_info">
 								<span>Kênh chat tổng</span>
-								<p>1767 Messages</p>
+								<!-- <p>1767 Messages</p> -->
 							</div>
 						</div>
 					</div>
@@ -78,7 +78,7 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 
-	// console.log(idUser, nameUser);
+	console.log(idUser, nameUser);
 
 	var oldData = [];
 
