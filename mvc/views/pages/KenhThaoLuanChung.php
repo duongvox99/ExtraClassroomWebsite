@@ -78,6 +78,14 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
 
+	nameUser = nameUser.split(" ");
+	newNameUser = "";
+	for (i = 0; i < nameUser.length - 1; i++) {
+	  newNameUser += nameUser[i][0] + ".";
+	}
+	newNameUser += nameUser[i];
+	nameUser = newNameUser;
+
 	console.log(idUser, nameUser);
 
 	var oldData = [];
