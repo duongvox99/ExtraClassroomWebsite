@@ -2,7 +2,7 @@
 class NganHangCauHoiModel extends MySQL{
 
     public function getAllCauHoi_Tuan_Lop($Lop, $Tuan, $MucDo, $SoCau){
-        $qr = "SELECT DISTINCT IdCauHoi FROM nganhangcauhoi WHERE LoaiCauHoi=$MucDo AND Lop>=$Lop AND Tuan>=$Tuan ORDER BY RAND () LIMIT $SoCau";
+        $qr = "SELECT DISTINCT IdCauHoi FROM nganhangcauhoi WHERE LoaiCauHoi=$MucDo AND Lop=$Lop AND Tuan<=$Tuan ORDER BY RAND () LIMIT $SoCau";
         
         $result = mysqli_query($this->con, $qr);
         $output = array();
