@@ -30,7 +30,7 @@
 					</ul>
 					<!-- Search -->
 					<div class="ml-auto">
-						<form class="form-inline  my-2 my-lg-0" action="/action_page.php">
+						<form class="form-inline  my-2 my-lg-0">
 
 							<span><input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm"></span>
 							<button class="btn btn-success my-2 my-sm-0" type="submit">Tìm kiếm</button>

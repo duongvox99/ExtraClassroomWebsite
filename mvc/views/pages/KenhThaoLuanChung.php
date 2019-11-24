@@ -86,7 +86,7 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 	newNameUser += nameUser[i];
 	nameUser = newNameUser;
 
-	console.log(idUser, nameUser);
+	// console.log(idUser, nameUser);
 
 	var oldData = [];
 
@@ -181,5 +181,5 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 				console.error("Error refreshMessages: ", error);
 				return false;
 			});
-	}, 1000);
+	}, 2000);
 </script>
