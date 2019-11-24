@@ -24,7 +24,7 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 							</div>
 							<div class="user_info">
 								<span>Kênh chat tổng</span>
-								<p>1767 Messages</p>
+								<!-- <p>1767 Messages</p> -->
 							</div>
 						</div>
 					</div>
@@ -77,6 +77,14 @@ if ($data["DataNguoiDung"]["Avatar"] != "") {
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
+
+	nameUser = nameUser.split(" ");
+	newNameUser = "";
+	for (i = 0; i < nameUser.length - 1; i++) {
+	  newNameUser += nameUser[i][0] + ".";
+	}
+	newNameUser += nameUser[i];
+	nameUser = newNameUser;
 
 	console.log(idUser, nameUser);
 

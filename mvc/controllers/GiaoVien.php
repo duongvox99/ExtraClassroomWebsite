@@ -462,7 +462,8 @@ class GiaoVien extends Controller{
 
             $this->view("BangDieuKhienGiaoVien", [
                 "DataNguoiDung" => $this->DataNguoiDung,
-                "SubView" => "ThemNhom",
+                "DataDe" => $DataDe,
+                "SubView" => "ThemDeNhom",
                 "Title" => "Chỉnh sửa đề kiểm tra cho nhóm",
                 "result" => $result,
                 "action" => "Chỉnh sửa",

@@ -122,6 +122,7 @@ $(document).ready(function () {
 		jQuery("#countdown #min").html(pad(minutes));
 		jQuery("#countdown #sec").html(pad(seconds));
 		if (hours == 0 && minutes == 0 && seconds == 0 && hasStarted == true) {
+			console.log("hetgio");
 			document.getElementById("formLamBai").submit();
 		}
 	}
