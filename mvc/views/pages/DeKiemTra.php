@@ -30,9 +30,9 @@
 				</div>
 				<div class="card-body">
 					<div class="list-group cusstom-listgroup" role="tablist" class="list-group collapse" id="side-menu-collapse">
-						<a class="list-group-item list-group-item-action" href="/ExtraClassroomWebsite/HocSinh/ThongBao/TatCa" role="tab" aria-controls="" <?php echo ($data["Category"] == "TatCa") ? 'style="background-color: green;"' : "";?>>Tất cả</a>
-						<a class="list-group-item list-group-item-action" href="/ExtraClassroomWebsite/HocSinh/ThongBao/ChuaXem" role="tab" aria-controls="" <?php echo ($data["Category"] == "ChuaXem") ? 'style="background-color: green;"' : "";?>>Chưa xem</a>
-						<a class="list-group-item list-group-item-action" href="/ExtraClassroomWebsite/HocSinh/ThongBao/DaXem" role="tab" aria-controls="" <?php echo ($data["Category"] == "DaXem") ? 'style="background-color: green;"' : "";?>>Đã xem</a>
+						<a class="list-group-item list-group-item-action" href="/ExtraClassroomWebsite/HocSinh/DeKiemTra/TatCa" role="tab" aria-controls="" <?php echo ($data["Category"] == "TatCa") ? 'style="background-color: green;"' : "";?>>Tất cả</a>
+						<a class="list-group-item list-group-item-action" href="/ExtraClassroomWebsite/HocSinh/DeKiemTra/ChuaLam" role="tab" aria-controls="" <?php echo ($data["Category"] == "ChuaLam") ? 'style="background-color: green;"' : "";?>>Chưa làm</a>
+						<a class="list-group-item list-group-item-action" href="/ExtraClassroomWebsite/HocSinh/DeKiemTra/DaLam" role="tab" aria-controls="" <?php echo ($data["Category"] == "DaLam") ? 'style="background-color: green;"' : "";?>>Đã làm</a>
 					</div>
 				</div>
 			</div>

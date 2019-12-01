@@ -8,6 +8,8 @@ class Hocsinh extends Controller{
     public $ThongBaoNhomModel;
     public $DeModel;
     public $Diem_DeModel;
+    public $NguoiDung_DeModel;
+    public $NguoiDung_ThongBaoModel;
 
     public $DataNguoiDung;
     
@@ -20,6 +22,8 @@ class Hocsinh extends Controller{
         $this->De_CauHoiModel = $this->model("De_CauHoiModel");
         $this->DeModel = $this->model("DeModel");
         $this->Diem_DeModel = $this->model("Diem_DeModel");
+        $this->NguoiDung_DeModel = $this->model("NguoiDung_DeModel");
+        $this->NguoiDung_ThongBaoModel = $this->model("NguoiDung_ThongBaoModel");
 
         $this->DataNguoiDung = array("IdNguoiDung" => $_SESSION["IdNguoiDung"],
                                 "HoTen" => $_SESSION["HoTen"],
@@ -36,12 +40,28 @@ class Hocsinh extends Controller{
         $this->DeKiemTra("TatCa");
     }
 
+
     public function ThongBao($Category) {
+        if (!isset($_GET["search"])) {
+            $SearchString = "";
+        } 
+        else {
+            $SearchString = $_GET["search"];
+        }
+
         if (!($Category == "TatCa" || $Category == "ChuaXem" || $Category == "DaXem")) {
             $Category = "TatCa";
         }
-
-        $DanhSachThongBaoNhom = $this->ThongBaoNhomModel->getAllThongBaoNhom( $this->DataNguoiDung["IdNhom"]);
+        if ($Category == "TatCa") {
+            $DanhSachThongBaoNhom = $this->ThongBaoNhomModel->getAllThongBaoNhom( $this->DataNguoiDung["IdNhom"], $SearchString);
+        }
+        else if ($Category == "ChuaXem") {
+            $DanhSachThongBaoNhom = $this->NguoiDung_ThongBaoModel->getAllUnReadThongBao($this->DataNguoiDung["IdNguoiDung"], $this->DataNguoiDung["IdNhom"], $SearchString);
+        }
+        else {
+            $DanhSachThongBaoNhom = $this->NguoiDung_ThongBaoModel->getAllReadThongBao($this->DataNguoiDung["IdNguoiDung"], $this->DataNguoiDung["IdNhom"], $SearchString);
+        }
+        
 
         $this->view("BangDieuKhienHocSinh", [
             "DataNguoiDung" => $this->DataNguoiDung,
@@ -51,14 +71,45 @@ class Hocsinh extends Controller{
             "Category" => $Category
         ]);
     }
+    
+    public function XemThongBao($IdThongBao){
+        $DataThongBaoNhom = $this->ThongBaoNhomModel->getThongBaoNhom($IdThongBao, $this->DataNguoiDung["IdNhom"]);
+
+        $this->view("BangDieuKhienHocSinh", [
+            "DataNguoiDung" => $this->DataNguoiDung,
+            "SubView" => "XemThongBao",
+            "DataThongBaoNhom" => $DataThongBaoNhom
+        ]);
+        
+    }
+
+    public function AddDaXemThongBao(){
+        if (isset($_POST["IdNguoiDung"]) && isset($_POST["IdThongBao"])) {
+            $IdNguoiDung = $_POST["IdNguoiDung"];
+            $IdThongBao = $_POST["IdThongBao"];
+            $result = $this->NguoiDung_ThongBaoModel->addNguoiDung_ThongBao($IdNguoiDung, $IdThongBao);
+            return $result;
+        }
+        
+        return false;
+    }
+
 
     public function DeKiemTra($Category) {
-        if (!($Category == "TatCa" || $Category == "ChuaXem" || $Category == "DaXem")) {
+        if (!($Category == "TatCa" || $Category == "ChuaLam" || $Category == "DaLam")) {
             $Category = "TatCa";
         }
-
-        $DanhSachDeNhom = $this->De_NhomModel->getAllDeNhom( $this->DataNguoiDung["IdNhom"]);
-
+        if ($Category == "TatCa") {
+            $DanhSachDeNhom = $this->De_NhomModel->getAllDeNhom( $this->DataNguoiDung["IdNhom"]);
+        }
+        else if ($Category == "ChuaLam") {
+            $DanhSachDeNhom = $this->NguoiDung_DeModel->getAllUnReadDeNhom($this->DataNguoiDung["IdNguoiDung"], $this->DataNguoiDung["IdNhom"]);
+        }
+        else {
+            $DanhSachDeNhom = $this->NguoiDung_DeModel->getAllReadDeNhom($this->DataNguoiDung["IdNguoiDung"], $this->DataNguoiDung["IdNhom"]);
+        }
+        
+        // return;
         $this->view("BangDieuKhienHocSinh", [
             "DataNguoiDung" => $this->DataNguoiDung,
             "SubView" => "DeKiemTra",
@@ -76,6 +127,7 @@ class Hocsinh extends Controller{
             $DiemDe = $this->Diem_DeModel->getHocSinhDiem_De($IdDe, $this->DataNguoiDung["IdNguoiDung"]);
             $DataAllCauHoi_DapAn = $this->De_CauHoiModel->getAllCauHoi_DapAn_De($IdDe);
             if (count($DiemDe) > 0) {// Da lam
+                
                 $this->view("BangDieuKhienHocSinh", [
                     "DataNguoiDung" => $this->DataNguoiDung,
                     "SubView" => "LamBai",
@@ -102,6 +154,8 @@ class Hocsinh extends Controller{
                     ]);
                 } else {
                     $this->Diem_DeModel->addDiem_De($this->DataNguoiDung["IdNguoiDung"], $IdDe, 0);
+                    $this->NguoiDung_DeModel->addNguoiDung_De($this->DataNguoiDung["IdNguoiDung"], $IdDe);
+                    
                     header("Location: /ExtraClassroomWebsite/HocSinh/LamBai/$IdDe");
                 }
             }  
@@ -125,6 +179,8 @@ class Hocsinh extends Controller{
             
             $this->Diem_DeModel->addDiem_De($this->DataNguoiDung["IdNguoiDung"], $IdDe, $Diem);
             $this->NguoiDungModel->setDiemTong($this->DataNguoiDung["IdNguoiDung"], $Diem);
+
+            $this->NguoiDung_DeModel->addNguoiDung_De($this->DataNguoiDung["IdNguoiDung"], $IdDe);
 
             header("Location: /ExtraClassroomWebsite/HocSinh/LamBai/$IdDe");
         }

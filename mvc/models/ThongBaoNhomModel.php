@@ -1,8 +1,8 @@
 <?php
 class ThongBaoNhomModel extends MySQL{
-    public function getAllThongBaoNhom($IdNhom){
+    public function getAllThongBaoNhom($IdNhom, $SearchString){
         
-        $qr = "SELECT * FROM thongbaonhom WHERE IdNhom=$IdNhom ORDER BY NgayTao DESC";
+        $qr = "SELECT * FROM thongbaonhom WHERE IdNhom=$IdNhom AND (TieuDe like '%$SearchString%') ORDER BY NgayTao DESC";
         
         $result = mysqli_query($this->con, $qr);
         $output = array();

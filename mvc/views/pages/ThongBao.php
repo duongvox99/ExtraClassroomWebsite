@@ -8,8 +8,9 @@
 				<div class="card border-0 shadow my-5 new-banner position-relative">
 					<div class="card-body p-5">
 						<h1 class="font-weight-light"><b><?php echo $data["DanhSachThongBaoNhom"][$i]["TieuDe"]; ?></b></h1>
-						<p class="lead"><?php echo $data["DanhSachThongBaoNhom"][$i]["NoiDung"];?></p>
 						<p class="lead mb-0"><i>Ngày tạo: <?php echo $data["DanhSachThongBaoNhom"][$i]["NgayTao"]; ?></i></p>
+						<p></p>
+						<a href="/ExtraClassroomWebsite/HocSinh/XemThongBao/<?php echo $data["DanhSachThongBaoNhom"][$i]["IdThongBao"]; ?>" class="btn btn-success" role="button">Xem thông báo</a>
 					</div>
 				</div>
 			<?php

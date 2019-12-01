@@ -2,10 +2,10 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 24, 2019 lúc 03:17 PM
--- Phiên bản máy phục vụ: 10.4.8-MariaDB
--- Phiên bản PHP: 7.3.10
+-- Host: 127.0.0.1
+-- Generation Time: Dec 01, 2019 at 10:39 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `extraclassroom`
+-- Database: `extraclassroom`
 --
 CREATE DATABASE IF NOT EXISTS `extraclassroom` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `extraclassroom`;
@@ -27,7 +27,7 @@ USE `extraclassroom`;
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `de`
+-- Table structure for table `de`
 --
 
 CREATE TABLE `de` (
@@ -45,7 +45,7 @@ CREATE TABLE `de` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `de`
+-- Dumping data for table `de`
 --
 
 INSERT INTO `de` (`IdDe`, `TenDe`, `LoaiDe`, `HienDapAn`, `NgayTaoDe`, `Lop`, `Tuan`, `SoCauDe`, `SoCauTrungBinh`, `SoCauKho`, `ThoiGian`) VALUES
@@ -62,7 +62,7 @@ INSERT INTO `de` (`IdDe`, `TenDe`, `LoaiDe`, `HienDapAn`, `NgayTaoDe`, `Lop`, `T
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `de_cauhoi`
+-- Table structure for table `de_cauhoi`
 --
 
 CREATE TABLE `de_cauhoi` (
@@ -71,7 +71,7 @@ CREATE TABLE `de_cauhoi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `de_cauhoi`
+-- Dumping data for table `de_cauhoi`
 --
 
 INSERT INTO `de_cauhoi` (`IdDe`, `IdCauHoi`) VALUES
@@ -223,7 +223,7 @@ INSERT INTO `de_cauhoi` (`IdDe`, `IdCauHoi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `de_nhom`
+-- Table structure for table `de_nhom`
 --
 
 CREATE TABLE `de_nhom` (
@@ -234,18 +234,18 @@ CREATE TABLE `de_nhom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `de_nhom`
+-- Dumping data for table `de_nhom`
 --
 
 INSERT INTO `de_nhom` (`IdNhom`, `IdDe`, `ThoiGianMo`, `ThoiGianDong`) VALUES
-(1, 9, '2019-11-24 13:13:32', '2019-11-26 13:13:32'),
-(1, 10, '2019-11-24 13:13:42', '2019-11-29 13:13:42'),
+(1, 9, '2019-11-26 13:45:00', '2019-12-31 13:13:32'),
+(1, 10, '2019-11-24 13:13:42', '2019-12-29 13:13:42'),
 (1, 11, '2019-11-24 13:13:48', '2019-11-29 13:13:48');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `diem_de`
+-- Table structure for table `diem_de`
 --
 
 CREATE TABLE `diem_de` (
@@ -255,16 +255,16 @@ CREATE TABLE `diem_de` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `diem_de`
+-- Dumping data for table `diem_de`
 --
 
 INSERT INTO `diem_de` (`IdNguoiDung`, `IdDe`, `Diem`) VALUES
-(6, 9, 2.5);
+(4, 9, 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nganhangcauhoi`
+-- Table structure for table `nganhangcauhoi`
 --
 
 CREATE TABLE `nganhangcauhoi` (
@@ -282,7 +282,7 @@ CREATE TABLE `nganhangcauhoi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `nganhangcauhoi`
+-- Dumping data for table `nganhangcauhoi`
 --
 
 INSERT INTO `nganhangcauhoi` (`IdCauHoi`, `CauHoi`, `DapAn1`, `DapAn2`, `DapAn3`, `DapAn4`, `DapAnDung`, `LoiGiai`, `LoaiCauHoi`, `Lop`, `Tuan`) VALUES
@@ -441,7 +441,7 @@ INSERT INTO `nganhangcauhoi` (`IdCauHoi`, `CauHoi`, `DapAn1`, `DapAn2`, `DapAn3`
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nguoidung`
+-- Table structure for table `nguoidung`
 --
 
 CREATE TABLE `nguoidung` (
@@ -460,14 +460,14 @@ CREATE TABLE `nguoidung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `nguoidung`
+-- Dumping data for table `nguoidung`
 --
 
 INSERT INTO `nguoidung` (`IdNguoiDung`, `Username`, `Password`, `HoTen`, `NamSinh`, `Avatar`, `Lop`, `IdNhom`, `LoaiTaiKhoan`, `RandomCode`, `Email`, `DiemTong`) VALUES
-(1, 'admin1', '$2y$10$LWQ/8ql/wj0FNKI2rEAlqeEK4Bt10ZpWuk0HWNWGUAf4R128x0OPe', 'Võ Văn Dương', 1999, '/ExtraClassroomWebsite/upload/avatar/4d245a0c668b297b0fc697be5e5403.jpg', 0, 0, 0, '', 'duongvox99@gmail.com', 0),
+(1, 'admin1', '$2y$10$/G0VqFt8Y1WUST6LShdJnOgFZcgexvJIe4g26tgHDxV/hBnsfoDBO', 'Võ Văn Dương', 1999, '/ExtraClassroomWebsite/upload/avatar/4d245a0c668b297b0fc697be5e5403.jpg', 0, 0, 0, '', 'duongvox99@gmail.com', 0),
 (2, 'admin2', '$2y$10$HBJgLtJLErByNdjHRpdOeuZR1Gwrp9jgXdqWJbGKqbK5Pe5JWMoz6', 'Phạm Minh Dương', 1999, '/ExtraClassroomWebsite/upload/avatar/302629309832ee31b2fb64f681eeb7.jpg', 0, 0, 0, '', 'phamminhduong@gmail.com', 0),
 (3, 'huynhducvu', '$2y$10$6w.Hxafrj.zghrDhU4d6SeZ8tVHrrcDepcctomeq/oxZIRe6mve1q', 'Huỳnh Đức Vũ', 1980, '', 0, 0, 0, '', 'huynhducvu@gmail.com', 0),
-(4, 'hocsinh', '$2y$10$pzu1AEuXVvvvNu0PTB.hMOoaqjqsKS6rFH/t/HpTb5ozMKiZUaxKG', 'Vox Van Duwowng', 1999, '', 10, 1, 1, '', 'vovanduong3010@gmail.com', 3),
+(4, 'hocsinh', '$2y$10$pzu1AEuXVvvvNu0PTB.hMOoaqjqsKS6rFH/t/HpTb5ozMKiZUaxKG', 'Vox Van Duwowng', 1999, '', 10, 1, 1, '', 'vovanduong3010@gmail.com', 8),
 (5, 'hocsinh1', '$2y$10$RDUGgF0chJD2V4n.rfKq0uJElP5FtbwUCDdXGgyKwGuRbcZzrQYgG', 'Học Sinh 1', 2004, '', 10, 1, 1, '', 'hocsinh1@gmail.com', 1),
 (6, 'hocsinh2', '$2y$10$AwP9SIhP6e7.sxEzsvPIret/AJCRydSIoWt8p0CWDIkUAVer2Elmy', 'Học Sinh 2', 2004, '', 10, 1, 1, '', 'hocsinh2@gmail.com', 4.5),
 (7, 'hocsinh3', '$2y$10$DzU0edxldesedcEInpyQoeN0mkAdXvGoE5m7lM6.0z7DSD5dm6o7W', 'Học Sinh 3', 2004, '', 10, 1, 1, '', 'hocsinh3@gmail.com', 0),
@@ -573,7 +573,29 @@ INSERT INTO `nguoidung` (`IdNguoiDung`, `Username`, `Password`, `HoTen`, `NamSin
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `nhom`
+-- Table structure for table `nguoidung_de`
+--
+
+CREATE TABLE `nguoidung_de` (
+  `IdNguoiDung` int(11) NOT NULL,
+  `IdDe` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nguoidung_thongbao`
+--
+
+CREATE TABLE `nguoidung_thongbao` (
+  `IdNguoiDung` int(11) NOT NULL,
+  `IdThongBao` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `nhom`
 --
 
 CREATE TABLE `nhom` (
@@ -583,7 +605,7 @@ CREATE TABLE `nhom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `nhom`
+-- Dumping data for table `nhom`
 --
 
 INSERT INTO `nhom` (`IdNhom`, `TenNhom`, `Lop`) VALUES
@@ -599,7 +621,7 @@ INSERT INTO `nhom` (`IdNhom`, `TenNhom`, `Lop`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thongbaonhom`
+-- Table structure for table `thongbaonhom`
 --
 
 CREATE TABLE `thongbaonhom` (
@@ -611,7 +633,7 @@ CREATE TABLE `thongbaonhom` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Đang đổ dữ liệu cho bảng `thongbaonhom`
+-- Dumping data for table `thongbaonhom`
 --
 
 INSERT INTO `thongbaonhom` (`IdThongBao`, `IdNhom`, `TieuDe`, `NoiDung`, `NgayTao`) VALUES
@@ -619,32 +641,32 @@ INSERT INTO `thongbaonhom` (`IdThongBao`, `IdNhom`, `TieuDe`, `NoiDung`, `NgayTa
 (7, 1, '<p>Tài liệu tổng hợp</p>', '<p>Học sinh xem tại <a href=\"https://i.ytimg.com/vi/Kp2bYWRQylk/maxresdefault.jpg\">đây</a></p>', '2019-11-24 13:12:13');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `de`
+-- Indexes for table `de`
 --
 ALTER TABLE `de`
   ADD PRIMARY KEY (`IdDe`),
   ADD UNIQUE KEY `TenDe` (`TenDe`);
 
 --
--- Chỉ mục cho bảng `de_cauhoi`
+-- Indexes for table `de_cauhoi`
 --
 ALTER TABLE `de_cauhoi`
   ADD PRIMARY KEY (`IdDe`,`IdCauHoi`),
   ADD KEY `cst_nganhangcauhoi_de_cauhoi` (`IdCauHoi`);
 
 --
--- Chỉ mục cho bảng `de_nhom`
+-- Indexes for table `de_nhom`
 --
 ALTER TABLE `de_nhom`
   ADD PRIMARY KEY (`IdNhom`,`IdDe`),
   ADD KEY `cst_de_de_nhom` (`IdDe`);
 
 --
--- Chỉ mục cho bảng `diem_de`
+-- Indexes for table `diem_de`
 --
 ALTER TABLE `diem_de`
   ADD PRIMARY KEY (`IdNguoiDung`,`IdDe`),
@@ -652,13 +674,13 @@ ALTER TABLE `diem_de`
   ADD KEY `IdDe` (`IdDe`);
 
 --
--- Chỉ mục cho bảng `nganhangcauhoi`
+-- Indexes for table `nganhangcauhoi`
 --
 ALTER TABLE `nganhangcauhoi`
   ADD PRIMARY KEY (`IdCauHoi`);
 
 --
--- Chỉ mục cho bảng `nguoidung`
+-- Indexes for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD PRIMARY KEY (`IdNguoiDung`),
@@ -667,86 +689,114 @@ ALTER TABLE `nguoidung`
   ADD KEY `cst_nhom_nguoidung` (`IdNhom`);
 
 --
--- Chỉ mục cho bảng `nhom`
+-- Indexes for table `nguoidung_de`
+--
+ALTER TABLE `nguoidung_de`
+  ADD PRIMARY KEY (`IdNguoiDung`,`IdDe`),
+  ADD KEY `cst_de_nguoidung_de` (`IdDe`);
+
+--
+-- Indexes for table `nguoidung_thongbao`
+--
+ALTER TABLE `nguoidung_thongbao`
+  ADD PRIMARY KEY (`IdNguoiDung`,`IdThongBao`),
+  ADD KEY `cst_thongbao_nguoidung_thongbao` (`IdThongBao`);
+
+--
+-- Indexes for table `nhom`
 --
 ALTER TABLE `nhom`
   ADD PRIMARY KEY (`IdNhom`),
   ADD UNIQUE KEY `TenNhom` (`TenNhom`);
 
 --
--- Chỉ mục cho bảng `thongbaonhom`
+-- Indexes for table `thongbaonhom`
 --
 ALTER TABLE `thongbaonhom`
   ADD PRIMARY KEY (`IdThongBao`,`IdNhom`),
   ADD KEY `cst_nhom_thongbaonhom` (`IdNhom`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `de`
+-- AUTO_INCREMENT for table `de`
 --
 ALTER TABLE `de`
   MODIFY `IdDe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT cho bảng `nganhangcauhoi`
+-- AUTO_INCREMENT for table `nganhangcauhoi`
 --
 ALTER TABLE `nganhangcauhoi`
   MODIFY `IdCauHoi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
 
 --
--- AUTO_INCREMENT cho bảng `nguoidung`
+-- AUTO_INCREMENT for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   MODIFY `IdNguoiDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=106;
 
 --
--- AUTO_INCREMENT cho bảng `nhom`
+-- AUTO_INCREMENT for table `nhom`
 --
 ALTER TABLE `nhom`
   MODIFY `IdNhom` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `thongbaonhom`
+-- AUTO_INCREMENT for table `thongbaonhom`
 --
 ALTER TABLE `thongbaonhom`
   MODIFY `IdThongBao` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `de_cauhoi`
+-- Constraints for table `de_cauhoi`
 --
 ALTER TABLE `de_cauhoi`
   ADD CONSTRAINT `cst_de_de_cauhoi` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cst_nganhangcauhoi_de_cauhoi` FOREIGN KEY (`IdCauHoi`) REFERENCES `nganhangcauhoi` (`IdCauHoi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `de_nhom`
+-- Constraints for table `de_nhom`
 --
 ALTER TABLE `de_nhom`
   ADD CONSTRAINT `cst_de_de_nhom` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cst_nhom_de_nhom` FOREIGN KEY (`IdNhom`) REFERENCES `nhom` (`IdNhom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `diem_de`
+-- Constraints for table `diem_de`
 --
 ALTER TABLE `diem_de`
   ADD CONSTRAINT `cst_de_diem_de` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `cst_nguoidung_diem_de` FOREIGN KEY (`IdNguoiDung`) REFERENCES `nguoidung` (`IdNguoiDung`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `nguoidung`
+-- Constraints for table `nguoidung`
 --
 ALTER TABLE `nguoidung`
   ADD CONSTRAINT `cst_nhom_nguoidung` FOREIGN KEY (`IdNhom`) REFERENCES `nhom` (`IdNhom`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Các ràng buộc cho bảng `thongbaonhom`
+-- Constraints for table `nguoidung_de`
+--
+ALTER TABLE `nguoidung_de`
+  ADD CONSTRAINT `cst_de_nguoidung_de` FOREIGN KEY (`IdDe`) REFERENCES `de` (`IdDe`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cst_nguoidung_nguoidung_de` FOREIGN KEY (`IdNguoiDung`) REFERENCES `nguoidung` (`IdNguoiDung`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `nguoidung_thongbao`
+--
+ALTER TABLE `nguoidung_thongbao`
+  ADD CONSTRAINT `cst_nguoidung_nguoidung_thongbao` FOREIGN KEY (`IdNguoiDung`) REFERENCES `nguoidung` (`IdNguoiDung`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `cst_thongbao_nguoidung_thongbao` FOREIGN KEY (`IdThongBao`) REFERENCES `thongbaonhom` (`IdThongBao`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `thongbaonhom`
 --
 ALTER TABLE `thongbaonhom`
   ADD CONSTRAINT `cst_nhom_thongbaonhom` FOREIGN KEY (`IdNhom`) REFERENCES `nhom` (`IdNhom`) ON DELETE CASCADE ON UPDATE CASCADE;

@@ -30,11 +30,13 @@
 					</ul>
 					<!-- Search -->
 					<div class="ml-auto">
-						<form class="form-inline  my-2 my-lg-0">
+						<?php if (isset($data["Category"])) {?>
+						<form class="form-inline  my-2 my-lg-0" action="/ExtraClassroomWebsite/HocSinh/<?php echo ($data["SubView"]); ?>/<?php echo ($data["Category"]); ?>" method="GET">
 
-							<span><input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm"></span>
+							<span><input class="form-control mr-sm-2" type="text" placeholder="Tìm kiếm" name="search"></span>
 							<button class="btn btn-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
 						</form>
+						<?php }?>
 					</div>
 
 					<ul class="navbar-nav ml-1 account">
